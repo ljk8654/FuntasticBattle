@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\ureal\\funtasticbattle\\intermediate\\build\\win64\\unrealeditor\\inc\\simpleshooter\\uht\\gun.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\ureal\\funtasticbattle\\intermediate\\build\\win64\\x64\\simpleshootereditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\ureal\\funtasticbattle\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\simpleshooter\\definitions.simpleshooter.h",
+            "d:\\ureal\\funtasticbattle\\source\\simpleshooter\\gun.h",
+            "d:\\ureal\\funtasticbattle\\intermediate\\build\\win64\\unrealeditor\\inc\\simpleshooter\\uht\\gun.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
