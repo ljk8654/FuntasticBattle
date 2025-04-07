@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\ureal\\simpleshooter\\source\\simpleshooter\\mypawn.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\ureal\\simpleshooter\\intermediate\\build\\win64\\x64\\simpleshootereditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\ureal\\simpleshooter\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\simpleshooter\\definitions.simpleshooter.h",
+            "d:\\ureal\\simpleshooter\\source\\simpleshooter\\mypawn.h",
+            "d:\\ureal\\simpleshooter\\intermediate\\build\\win64\\unrealeditor\\inc\\simpleshooter\\uht\\mypawn.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
