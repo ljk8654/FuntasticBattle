@@ -6,6 +6,7 @@
 #include "Components/CapsuleComponent.h"
 #include "SimpleShooterGameModeBase.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Engine/DamageEvents.h"
 
 // Sets default values
 AShoorterCharater::AShoorterCharater()
@@ -24,7 +25,7 @@ void AShoorterCharater::BeginPlay()
 	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 	Gun = GetWorld()->SpawnActor<AGun>(GunClass);
 	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
-	Gun->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("WeaponSocket"));
+	Gun->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("Ctrl_Index3_Right_end"));
 	Gun->SetOwner(this);
 }
 
@@ -78,7 +79,6 @@ float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent cons
         }
 		
 	}
-
 	return DamageToApply;
 }
 
@@ -96,6 +96,7 @@ void AShoorterCharater::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &AShoorterCharater::LookUpRate);
 	PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAction(TEXT("Shoot"), EInputEvent::IE_Pressed, this, &AShoorterCharater::Shoot);
+	PlayerInputComponent->BindAction(TEXT("Attack"), EInputEvent::IE_Pressed, this, &AShoorterCharater::PunchAttack);
 	
 }
 
@@ -107,7 +108,7 @@ void AShoorterCharater::Shoot()
 void AShoorterCharater::MoveForward(float AxisValue)
 {	
 
-		AddMovementInput(GetActorForwardVector() * AxisValue);
+	AddMovementInput(GetActorForwardVector() * AxisValue);
 	
 }
 
@@ -129,6 +130,60 @@ void AShoorterCharater::MoveSide(float AxisValue)
 void AShoorterCharater::LookUpRate(float AxisValue)
 {
 	AddControllerPitchInput(AxisValue * RotationRate * GetWorld()->GetDeltaSeconds());
+}
+
+void AShoorterCharater::PunchAttack()
+{
+	FHitResult HitResult;
+	FCollisionQueryParams Params(NAME_None, false, this);
+
+	float AttackRange = 100.f;
+	float AttackRadius = 25.f;
+
+
+	bool bResult = GetWorld()->SweepSingleByChannel(
+		OUT HitResult,
+		GetActorLocation(),
+		GetActorLocation() + GetActorForwardVector() * AttackRange,
+		FQuat::Identity,
+		ECollisionChannel::ECC_EngineTraceChannel2,
+		FCollisionShape::MakeSphere(AttackRadius),
+		Params);
+
+	FVector Vec = GetActorForwardVector() * AttackRange;
+	FVector Center = GetActorLocation() + Vec * 0.5f;
+	float HalfHeight = AttackRange * 0.5f + AttackRadius;
+	FQuat Rotation = FRotationMatrix::MakeFromZ(Vec).ToQuat();
+	FColor DrawColor;
+	if (bResult)
+		DrawColor = FColor::Green;
+	else
+		DrawColor = FColor::Red;
+
+	DrawDebugCapsule(GetWorld(), Center, HalfHeight, AttackRadius,
+		Rotation, DrawColor, false, 2.f);
+
+	if (bResult && HitResult.GetActor())
+	{
+		AActor* HitActor = HitResult.GetActor();
+		FDamageEvent DamageEvent;
+		HitActor->TakeDamage(10.0f, DamageEvent, GetController(), this);
+		UE_LOG(LogTemp, Log, TEXT("Hit Actor : %s"), *HitResult.GetActor()->GetName());
+
+		// 데미지 주는 곳
+	}
+	PlayAnimMontage(AttackMontage);
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if (AnimInstance && AttackMontage)
+	{
+			// 공격 애니메이션
+			AnimInstance->Montage_Play(AttackMontage);
+			GetCharacterMovement()->DisableMovement();
+
+			// 일정 시간 후 이동 가능하게 복구
+			FTimerHandle UnfreezeHandle;
+			GetWorldTimerManager().SetTimer(UnfreezeHandle, this, &AShoorterCharater::EnableMovement, 0.7f, false);
+	}
 }
 
 // void AShoorterCharater::LookUp(float AxisValue)

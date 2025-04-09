@@ -44,12 +44,16 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	UAnimMontage* HitMontage;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	UAnimMontage* AttackMontage;
+
 private:
 void MoveForward(float AxisValue);
 void StartSprint();
 void StopSprint();
 void MoveSide(float AxisValue);
 void LookUpRate(float AxisValue);
+void PunchAttack();
 float fast = 0.5;
 
 	UPROPERTY(EditAnywhere)
