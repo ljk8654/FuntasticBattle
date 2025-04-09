@@ -25,7 +25,7 @@ void AShoorterCharater::BeginPlay()
 	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 	Gun = GetWorld()->SpawnActor<AGun>(GunClass);
 	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
-	Gun->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("Ctrl_Index3_Right_end"));
+	Gun->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("Ctrl_Index3_Right_end	"));
 	Gun->SetOwner(this);
 }
 

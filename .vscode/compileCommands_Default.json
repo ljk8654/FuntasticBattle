@@ -1,26 +1,234 @@
 [
 	{
-		"file": "D:\\Ureal\\SimpleShooter\\Source\\SimpleShooter\\SimpleShooter.Build.cs",
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\BTService_PlayerLocation.cpp",
 		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Ureal\\SimpleShooter\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
 		],
-		"directory": "D:\\UE_5.5\\Engine\\Source"
+		"directory": "E:\\UE_5.5\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Ureal\\SimpleShooter\\Source\\SimpleShooter\\SimpleShooter.cpp",
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\BTService_PlayerLocation.h",
 		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Ureal\\SimpleShooter\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
 		],
-		"directory": "D:\\UE_5.5\\Engine\\Source"
+		"directory": "E:\\UE_5.5\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Ureal\\SimpleShooter\\Source\\SimpleShooter\\SimpleShooter.h",
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\BTService_PlayerLocationIfSeen.cpp",
 		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Ureal\\SimpleShooter\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
 		],
-		"directory": "D:\\UE_5.5\\Engine\\Source"
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\BTService_PlayerLocationIfSeen.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\BTTask_ClearBlackboardValue.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\BTTask_ClearBlackboardValue.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\Bat.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\Bat.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\Gun.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\Gun.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\KillEmAllGameMode.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\KillEmAllGameMode.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\MyBTTask_Shoot.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\MyBTTask_Shoot.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\MyPawn.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\MyPawn.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\ShoorterCharater.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\ShoorterCharater.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\ShooterAIController.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\ShooterAIController.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\ShooterPlayerController.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\ShooterPlayerController.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\SimpleShooter.Build.cs",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\SimpleShooter.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\SimpleShooter.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\SimpleShooterGameModeBase.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\SimpleShooterGameModeBase.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\testactor.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Ureal\\FuntasticBattle\\Source\\SimpleShooter\\testactor.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Ureal\\FuntasticBattle\\.vscode\\compileCommands_Default\\SimpleShooter.1.rsp"
+		],
+		"directory": "E:\\UE_5.5\\Engine\\Source"
 	}
 ]
