@@ -91,7 +91,7 @@ void AShoorterCharater::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAction(TEXT("FastMoveForward"), IE_Pressed, this, &AShoorterCharater::StartSprint);
     PlayerInputComponent->BindAction(TEXT("FastMoveForward"), IE_Released, this, &AShoorterCharater::StopSprint);
 	PlayerInputComponent->BindAxis(TEXT("MoveSide"), this, &AShoorterCharater::MoveSide);
-	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &AShoorterCharater::Jump);
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &AShoorterCharater::LookUpRate);
 	PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &APawn::AddControllerYawInput);
@@ -103,6 +103,12 @@ void AShoorterCharater::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 void AShoorterCharater::Shoot()
 {
 	Gun->PullTrigger();
+}
+
+void AShoorterCharater::Jump()
+{
+	Super::Jump();
+	PlayAnimMontage(JumpMontage);
 }
 
 void AShoorterCharater::MoveForward(float AxisValue)

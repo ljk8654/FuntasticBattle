@@ -129,6 +129,10 @@ struct Z_Construct_UClass_AShoorterCharater_Statics
 		{ "Category", "Combat" },
 		{ "ModuleRelativePath", "ShoorterCharater.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_JumpMontage_MetaData[] = {
+		{ "Category", "Combat" },
+		{ "ModuleRelativePath", "ShoorterCharater.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RotationRate_MetaData[] = {
 		{ "Category", "ShoorterCharater" },
 		{ "ModuleRelativePath", "ShoorterCharater.h" },
@@ -148,6 +152,7 @@ struct Z_Construct_UClass_AShoorterCharater_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Health;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_HitMontage;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AttackMontage;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_JumpMontage;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_RotationRate;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHealth;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_GunClass;
@@ -167,6 +172,7 @@ struct Z_Construct_UClass_AShoorterCharater_Statics
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_Health = { "Health", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, Health), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Health_MetaData), NewProp_Health_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_HitMontage = { "HitMontage", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, HitMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HitMontage_MetaData), NewProp_HitMontage_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_AttackMontage = { "AttackMontage", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, AttackMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AttackMontage_MetaData), NewProp_AttackMontage_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_JumpMontage = { "JumpMontage", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, JumpMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_JumpMontage_MetaData), NewProp_JumpMontage_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_RotationRate = { "RotationRate", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, RotationRate), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RotationRate_MetaData), NewProp_RotationRate_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_MaxHealth = { "MaxHealth", nullptr, (EPropertyFlags)0x0040000000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, MaxHealth), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxHealth_MetaData), NewProp_MaxHealth_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_GunClass = { "GunClass", nullptr, (EPropertyFlags)0x0044000000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, GunClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AGun_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GunClass_MetaData), NewProp_GunClass_MetaData) };
@@ -175,6 +181,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShoorter
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_Health,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_HitMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_AttackMontage,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_JumpMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_RotationRate,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_MaxHealth,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_GunClass,
@@ -221,10 +228,10 @@ AShoorterCharater::~AShoorterCharater() {}
 struct Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AShoorterCharater, AShoorterCharater::StaticClass, TEXT("AShoorterCharater"), &Z_Registration_Info_UClass_AShoorterCharater, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShoorterCharater), 1556115544U) },
+		{ Z_Construct_UClass_AShoorterCharater, AShoorterCharater::StaticClass, TEXT("AShoorterCharater"), &Z_Registration_Info_UClass_AShoorterCharater, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShoorterCharater), 3066981578U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_3805913269(TEXT("/Script/SimpleShooter"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_2464834412(TEXT("/Script/SimpleShooter"),
 	Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
