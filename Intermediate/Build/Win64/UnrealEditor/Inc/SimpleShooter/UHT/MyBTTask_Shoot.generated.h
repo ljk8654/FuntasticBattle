@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define SIMPLESHOOTER_MyBTTask_Shoot_generated_h
 
-#define FID_Ureal_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUMyBTTask_Shoot(); \
 	friend struct Z_Construct_UClass_UMyBTTask_Shoot_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UMyBTTask_Shoot)
 
 
-#define FID_Ureal_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UMyBTTask_Shoot(UMyBTTask_Shoot&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~UMyBTTask_Shoot();
 
 
-#define FID_Ureal_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_12_PROLOG
-#define FID_Ureal_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_15_GENERATED_BODY \
+#define FID_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_12_PROLOG
+#define FID_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Ureal_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_15_INCLASS_NO_PURE_DECLS \
-	FID_Ureal_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_15_ENHANCED_CONSTRUCTORS \
+	FID_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_15_INCLASS_NO_PURE_DECLS \
+	FID_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> SIMPLESHOOTER_API UClass* StaticClass<class UMyBTTask_Shoot>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Ureal_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h
+#define CURRENT_FILE_ID FID_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -79,14 +79,14 @@ UBTService_PlayerLocation::~UBTService_PlayerLocation() {}
 // End Class UBTService_PlayerLocation
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Ureal_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_Statics
+struct Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_UBTService_PlayerLocation, UBTService_PlayerLocation::StaticClass, TEXT("UBTService_PlayerLocation"), &Z_Registration_Info_UClass_UBTService_PlayerLocation, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTService_PlayerLocation), 3512417906U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Ureal_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_3777285074(TEXT("/Script/SimpleShooter"),
-	Z_CompiledInDeferFile_FID_Ureal_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Ureal_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_3777285074(TEXT("/Script/SimpleShooter"),
+	Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

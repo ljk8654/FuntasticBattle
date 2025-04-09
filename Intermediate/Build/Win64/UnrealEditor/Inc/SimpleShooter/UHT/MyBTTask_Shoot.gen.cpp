@@ -79,14 +79,14 @@ UMyBTTask_Shoot::~UMyBTTask_Shoot() {}
 // End Class UMyBTTask_Shoot
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Ureal_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_Statics
+struct Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_UMyBTTask_Shoot, UMyBTTask_Shoot::StaticClass, TEXT("UMyBTTask_Shoot"), &Z_Registration_Info_UClass_UMyBTTask_Shoot, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMyBTTask_Shoot), 2095160742U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Ureal_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_3781779337(TEXT("/Script/SimpleShooter"),
-	Z_CompiledInDeferFile_FID_Ureal_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Ureal_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_3781779337(TEXT("/Script/SimpleShooter"),
+	Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_MyBTTask_Shoot_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

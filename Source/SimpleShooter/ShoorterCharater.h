@@ -22,7 +22,9 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-
+	UFUNCTION() 
+	void EnableMovement();
+	
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
 
@@ -35,6 +37,12 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
 	void Shoot();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MySettings")
+	float Health;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	UAnimMontage* HitMontage;
 
 private:
 void MoveForward(float AxisValue);
@@ -50,8 +58,7 @@ float fast = 0.5;
 	UPROPERTY(EditDefaultsOnly)
 	float MaxHealth = 100;
 
-	UPROPERTY(VisibleAnywhere)
-	float Health;
+	
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;

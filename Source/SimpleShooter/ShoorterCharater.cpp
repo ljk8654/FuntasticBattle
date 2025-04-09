@@ -28,6 +28,11 @@ void AShoorterCharater::BeginPlay()
 	Gun->SetOwner(this);
 }
 
+void AShoorterCharater::EnableMovement()
+{
+	GetCharacterMovement()->SetMovementMode(MOVE_Walking);
+}
+
 bool AShoorterCharater::IsDead() const
 {
 	return Health <= 0;
@@ -45,7 +50,7 @@ float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent cons
 	float DamageToApply = Super::TakeDamage(DamageAmount,DamageEvent,EventInstigator, DamageCauser);
 	DamageToApply = FMath::Min(Health, DamageToApply);
 	Health -= DamageToApply;
-	UE_LOG(LogTemp, Warning, TEXT("Health left %f"),Health);
+	PlayAnimMontage(HitMontage);
 
 	if (IsDead()) // 죽으면 충돌 x
 	{
@@ -57,6 +62,21 @@ float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent cons
 		DetachFromControllerPendingDestroy();
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision); 
 
+	} else 
+	{
+		UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+        if (AnimInstance && HitMontage)
+        {
+			// 피격 애니메이션
+            AnimInstance->Montage_Play(HitMontage);
+			GetCharacterMovement()->DisableMovement();
+
+			// 일정 시간 후 이동 가능하게 복구
+			FTimerHandle UnfreezeHandle;
+			GetWorldTimerManager().SetTimer(UnfreezeHandle, this, &AShoorterCharater::EnableMovement, 0.7f, false);
+			UE_LOG(LogTemp, Warning, TEXT("Health left %f"),Health);
+        }
+		
 	}
 
 	return DamageToApply;

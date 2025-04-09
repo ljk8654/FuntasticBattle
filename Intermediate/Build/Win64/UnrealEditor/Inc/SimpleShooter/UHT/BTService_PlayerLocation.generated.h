@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define SIMPLESHOOTER_BTService_PlayerLocation_generated_h
 
-#define FID_Ureal_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUBTService_PlayerLocation(); \
 	friend struct Z_Construct_UClass_UBTService_PlayerLocation_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UBTService_PlayerLocation)
 
 
-#define FID_Ureal_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UBTService_PlayerLocation(UBTService_PlayerLocation&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~UBTService_PlayerLocation();
 
 
-#define FID_Ureal_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_12_PROLOG
-#define FID_Ureal_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_15_GENERATED_BODY \
+#define FID_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_12_PROLOG
+#define FID_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Ureal_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_15_INCLASS_NO_PURE_DECLS \
-	FID_Ureal_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_15_ENHANCED_CONSTRUCTORS \
+	FID_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_15_INCLASS_NO_PURE_DECLS \
+	FID_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> SIMPLESHOOTER_API UClass* StaticClass<class UBTService_PlayerLocation>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Ureal_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h
+#define CURRENT_FILE_ID FID_FuntasticBattle_Source_SimpleShooter_BTService_PlayerLocation_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
