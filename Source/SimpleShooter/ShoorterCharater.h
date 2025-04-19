@@ -7,6 +7,7 @@
 #include "ShoorterCharater.generated.h"
 
 class AGun;
+class Atestactor;
 
 UCLASS()
 class SIMPLESHOOTER_API AShoorterCharater : public ACharacter
@@ -71,6 +72,12 @@ float fast = 0.5;
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;
 
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<Atestactor> BatClass;
+
 	UPROPERTY()
 	AGun* Gun;
+
+	UPROPERTY()
+	Atestactor* Bat;
 };

@@ -3,6 +3,7 @@
 
 #include "ShoorterCharater.h"
 #include "Gun.h"
+#include "testactor.h"
 #include "Components/CapsuleComponent.h"
 #include "SimpleShooterGameModeBase.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -23,10 +24,13 @@ void AShoorterCharater::BeginPlay()
 	
 	Health = MaxHealth;
 	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
-	Gun = GetWorld()->SpawnActor<AGun>(GunClass);
+	//Gun = GetWorld()->SpawnActor<AGun>(GunClass);
+	//GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
+	//Gun->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("WeaponSocket"));
+	//Gun->SetOwner(this);
+	Bat = GetWorld()->SpawnActor<Atestactor>(BatClass);
 	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
-	Gun->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("Ctrl_Index3_Right_end	"));
-	Gun->SetOwner(this);
+	Bat->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("WeaponSocket"));
 }
 
 void AShoorterCharater::EnableMovement()
