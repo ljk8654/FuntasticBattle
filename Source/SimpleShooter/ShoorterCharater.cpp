@@ -105,11 +105,7 @@ void AShoorterCharater::Shoot()
 	Gun->PullTrigger();
 }
 
-void AShoorterCharater::Jump()
-{
-	Super::Jump();
-	PlayAnimMontage(JumpMontage);
-}
+
 
 void AShoorterCharater::MoveForward(float AxisValue)
 {	

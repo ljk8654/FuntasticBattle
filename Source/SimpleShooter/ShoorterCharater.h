@@ -57,7 +57,7 @@ void StopSprint();
 void MoveSide(float AxisValue);
 void LookUpRate(float AxisValue);
 void PunchAttack();
-void Jump();
+
 float fast = 0.5;
 
 	UPROPERTY(EditAnywhere)
