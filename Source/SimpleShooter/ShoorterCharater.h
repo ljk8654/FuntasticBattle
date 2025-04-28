@@ -29,6 +29,12 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
 
+	UFUNCTION(BlueprintPure)
+	float HealthPercent() const;
+
+	UFUNCTION(BlueprintPure)
+	float StaminaPercent() const;
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -41,6 +47,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MySettings")
 	float Health;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MySettings")
+	float Stamina;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	UAnimMontage* HitMontage;
@@ -60,14 +69,15 @@ void LookUpRate(float AxisValue);
 void PunchAttack();
 
 float fast = 0.5;
-
+bool running = false;
 	UPROPERTY(EditAnywhere)
 	float RotationRate = 10;
 
 	UPROPERTY(EditDefaultsOnly)
 	float MaxHealth = 100;
 
-	
+	UPROPERTY(EditDefaultsOnly)
+	float MaxStamina = 100;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;

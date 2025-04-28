@@ -1,4 +1,4 @@
-﻿Log file open, 04/19/25 18:01:03
+﻿Log file open, 04/28/25 19:32:55
 LogWindows: Failed to load 'aqProf.dll' (GetLastError=126)
 LogWindows: File 'aqProf.dll' does not exist
 LogProfilingDebugging: Loading WinPixEventRuntime.dll for PIX profiling (from ../../../Engine/Binaries/ThirdParty/Windows/WinPixEventRuntime/x64).
@@ -6,7 +6,7 @@ LogWindows: Failed to load 'VtuneApi.dll' (GetLastError=126)
 LogWindows: File 'VtuneApi.dll' does not exist
 LogWindows: Failed to load 'VtuneApi32e.dll' (GetLastError=126)
 LogWindows: File 'VtuneApi32e.dll' does not exist
-LogWindows: Started CrashReportClient (pid=5476)
+LogWindows: Started CrashReportClient (pid=22304)
 LogWindows: Enabling Tpause support
 LogWindows: Warning: Failed to set completion port for job object "UE.ShaderCompileWorker.JobGroup": 매개 변수가 틀립니다.
 LogWindows: Custom abort handler registered for crash reporting.
@@ -14,7 +14,7 @@ LogInit: Display: Running engine for game: FuntasticBattle
 LogCore: UTS: Unreal Trace Server launched successfully
 LogTrace: Initializing trace...
 LogCore: Display: Requested channels: 'cpu,gpu,frame,log,bookmark,screenshot,region'
-LogTrace: Display: Display Control listening on port 32978
+LogTrace: Display: Display Control listening on port 33478
 LogTrace: Finished trace initialization.
 LogCsvProfiler: Display: Metadata set : platform="Windows"
 LogCsvProfiler: Display: Metadata set : config="Development"
@@ -29,37 +29,36 @@ LogCsvProfiler: Display: Metadata set : asan="0"
 LogCsvProfiler: Display: Metadata set : commandline="" D:\Ureal\FuntasticBattle\FuntasticBattle.uproject""
 LogCsvProfiler: Display: Metadata set : loginid="1265c5304205e58b58505d836d891c7a"
 LogCsvProfiler: Display: Metadata set : llm="0"
-LogStats: Stats thread started at 0.260939
+LogStats: Stats thread started at 6.463949
 LogIris: FNetObjectFactoryRegistry::UnregisterFactory is unregistering factory: None name: NetActorFactory id: 0
 LogIris: FNetObjectFactoryRegistry::UnregisterFactory is unregistering factory: None name: NetSubObjectFactory id: 1
 LogICUInternationalization: ICU TimeZone Detection - Raw Offset: +9:00, Platform Override: ''
 LogInit: Session CrashGUID >====================================================
-         Session CrashGUID >   UECC-Windows-41490B7E4763D6CF1932AABFCF55AEA8
+         Session CrashGUID >   UECC-Windows-A3C20CC148BB3D348B3D4C88759C2D22
          Session CrashGUID >====================================================
-LogConfig: No local boot hotfix file found at: [D:/Ureal/FuntasticBattle/Saved/PersistentDownloadDir/HotfixForNextBoot.txt]
-LogConfig: Display: Loading Android ini files took 0.04 seconds
-LogConfig: Display: Loading VulkanPC ini files took 0.05 seconds
+LogConfig: Display: Loading VulkanPC ini files took 0.04 seconds
+LogConfig: Display: Loading Android ini files took 0.05 seconds
 LogConfig: Display: Loading Mac ini files took 0.05 seconds
 LogConfig: Display: Loading IOS ini files took 0.05 seconds
-LogAudio: Display: Pre-Initializing Audio Device Manager...
+LogConfig: Display: Loading TVOS ini files took 0.05 seconds
 LogConfig: Display: Loading Unix ini files took 0.06 seconds
+LogConfig: Display: Loading LinuxArm64 ini files took 0.07 seconds
+LogConfig: Display: Loading Linux ini files took 0.07 seconds
+LogConfig: Display: Loading Windows ini files took 0.03 seconds
+LogConfig: Display: Loading VisionOS ini files took 0.03 seconds
+LogConfig: No local boot hotfix file found at: [D:/Ureal/FuntasticBattle/Saved/PersistentDownloadDir/HotfixForNextBoot.txt]
+LogAudio: Display: Pre-Initializing Audio Device Manager...
 LogAudio: Display: AudioInfo: 'OPUS' Registered
-LogConfig: Display: Loading TVOS ini files took 0.07 seconds
 LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
 LogAudio: Display: AudioInfo: 'OGG' Registered
-LogConfig: Display: Loading Linux ini files took 0.07 seconds
 LogAudio: Display: AudioInfo: 'ADPCM' Registered
 LogAudio: Display: AudioInfo: 'PCM' Registered
 LogAudio: Display: AudioInfo: 'BINKA' Registered
-LogConfig: Display: Loading LinuxArm64 ini files took 0.08 seconds
 LogAudio: Display: AudioInfo: 'RADA' Registered
 LogAudio: Display: Audio Device Manager Pre-Initialized
 LogPluginManager: Looking for build plugins target receipt
-LogConfig: Display: Loading Windows ini files took 0.05 seconds
-LogConfig: Display: Loading VisionOS ini files took 0.05 seconds
 LogPluginManager: Found matching target receipt: D:/Ureal/FuntasticBattle/Binaries/Win64/SimpleShooterEditor.target
 LogPluginManager: Looking for enabled plugins target receipt
-LogAssetRegistry: Display: Asset registry cache read as 48.2 MiB from D:/Ureal/FuntasticBattle/Intermediate/CachedAssetRegistry_0.bin
 LogPluginManager: Found matching target receipt: D:/Ureal/FuntasticBattle/Binaries/Win64/SimpleShooterEditor.target
 LogPluginManager: Mounting Engine plugin ChaosCloth
 LogPluginManager: Mounting Engine plugin ChaosVD
@@ -76,77 +75,127 @@ LogPluginManager: Mounting Engine plugin Fab
 LogPluginManager: Mounting Engine plugin Bridge
 LogPluginManager: Mounting Engine plugin DatasmithContent
 LogPluginManager: Mounting Engine plugin GLTFExporter
-LogPluginManager: Mounting Engine plugin VariantManagerContent
 LogPluginManager: Mounting Engine plugin VariantManager
+LogPluginManager: Mounting Engine plugin VariantManagerContent
 LogPluginManager: Mounting Engine plugin Niagara
 LogPluginManager: Mounting Engine plugin NiagaraSimCaching
 LogPluginManager: Mounting Engine plugin InterchangeAssets
 LogPluginManager: Mounting Engine plugin InterchangeEditor
 LogPluginManager: Mounting Engine plugin Interchange
-LogPluginManager: Mounting Engine plugin TcpMessaging
-LogPluginManager: Mounting Engine plugin UdpMessaging
+LogPluginManager: Mounting Engine plugin ActorSequence
+LogPluginManager: Mounting Engine plugin LevelSequenceEditor
+LogPluginManager: Mounting Engine plugin SequencerScripting
+LogPluginManager: Mounting Engine plugin TemplateSequence
 LogPluginManager: Mounting Engine plugin NNEDenoiser
 LogPluginManager: Mounting Engine plugin NNERuntimeORT
-LogPluginManager: Mounting Engine plugin InterchangeTests
-LogPluginManager: Mounting Engine plugin LauncherChunkInstaller
 LogPluginManager: Mounting Engine plugin Takes
-LogPluginManager: Mounting Engine plugin Paper2D
+LogPluginManager: Mounting Engine plugin EOSShared
+LogPluginManager: Mounting Engine plugin OnlineBase
+LogPluginManager: Mounting Engine plugin OnlineServices
+LogPluginManager: Mounting Engine plugin OnlineSubsystem
+LogPluginManager: Mounting Engine plugin OnlineSubsystemNull
+LogPluginManager: Mounting Engine plugin OnlineSubsystemUtils
+LogPluginManager: Mounting Engine plugin LauncherChunkInstaller
+LogPluginManager: Mounting Engine plugin ActorLayerUtilities
+LogPluginManager: Mounting Engine plugin AndroidDeviceProfileSelector
+LogPluginManager: Mounting Engine plugin AndroidFileServer
+LogPluginManager: Mounting Engine plugin AndroidMoviePlayer
+LogPluginManager: Mounting Engine plugin AndroidPermission
+LogPluginManager: Mounting Engine plugin AppleImageUtils
+LogPluginManager: Mounting Engine plugin AppleMoviePlayer
+LogPluginManager: Mounting Engine plugin ArchVisCharacter
+LogPluginManager: Mounting Engine plugin AssetTags
+LogPluginManager: Mounting Engine plugin AudioCapture
+LogPluginManager: Mounting Engine plugin AudioSynesthesia
+LogPluginManager: Mounting Engine plugin CableComponent
+LogPluginManager: Mounting Engine plugin AudioWidgets
+LogPluginManager: Mounting Engine plugin ChunkDownloader
+LogPluginManager: Mounting Engine plugin ComputeFramework
+LogPluginManager: Mounting Engine plugin CustomMeshComponent
+LogPluginManager: Mounting Engine plugin ExampleDeviceProfileSelector
+LogPluginManager: Mounting Engine plugin GeometryCache
+LogPluginManager: Mounting Engine plugin GeometryProcessing
+LogPluginManager: Mounting Engine plugin GoogleCloudMessaging
+LogPluginManager: Mounting Engine plugin GooglePAD
+LogPluginManager: Mounting Engine plugin HairStrands
+LogPluginManager: Mounting Engine plugin InputDebugging
+LogPluginManager: Mounting Engine plugin IOSDeviceProfileSelector
+LogPluginManager: Mounting Engine plugin LinuxDeviceProfileSelector
+LogPluginManager: Mounting Engine plugin LocationServicesBPLibrary
+LogPluginManager: Mounting Engine plugin MeshModelingToolset
+LogPluginManager: Mounting Engine plugin Metasound
+LogPluginManager: Mounting Engine plugin MobilePatchingUtils
+LogPluginManager: Mounting Engine plugin MsQuic
+LogPluginManager: Mounting Engine plugin ProceduralMeshComponent
+LogPluginManager: Mounting Engine plugin PropertyAccessEditor
+LogPluginManager: Mounting Engine plugin ResonanceAudio
+LogPluginManager: Mounting Engine plugin RigVM
+LogPluginManager: Mounting Engine plugin SignificanceManager
+LogPluginManager: Mounting Engine plugin SoundFields
+LogPluginManager: Mounting Engine plugin StateTree
+LogPluginManager: Mounting Engine plugin Synthesis
+LogPluginManager: Mounting Engine plugin USDCore
+LogPluginManager: Mounting Engine plugin WaveTable
+LogPluginManager: Mounting Engine plugin WebMMoviePlayer
+LogPluginManager: Mounting Engine plugin WindowsDeviceProfileSelector
+LogPluginManager: Mounting Engine plugin WindowsMoviePlayer
 LogPluginManager: Mounting Engine plugin AISupport
+LogPluginManager: Mounting Engine plugin Paper2D
 LogPluginManager: Mounting Engine plugin EnvironmentQueryEditor
-LogPluginManager: Mounting Engine plugin ACLPlugin
 LogPluginManager: Mounting Engine plugin AnimationData
+LogPluginManager: Mounting Engine plugin ACLPlugin
 LogPluginManager: Mounting Engine plugin AnimationModifierLibrary
 LogPluginManager: Mounting Engine plugin BlendSpaceMotionAnalysis
 LogPluginManager: Mounting Engine plugin ControlRig
 LogPluginManager: Mounting Engine plugin ControlRigModules
-LogPluginManager: Mounting Engine plugin DeformerGraph
 LogPluginManager: Mounting Engine plugin ControlRigSpline
+LogPluginManager: Mounting Engine plugin DeformerGraph
 LogPluginManager: Mounting Engine plugin IKRig
 LogPluginManager: Mounting Engine plugin LiveLink
 LogPluginManager: Mounting Engine plugin RigLogic
 LogPluginManager: Mounting Engine plugin CameraShakePreviewer
 LogPluginManager: Mounting Engine plugin EngineCameras
 LogPluginManager: Mounting Engine plugin GameplayCameras
-LogPluginManager: Mounting Engine plugin AnimationSharing
 LogPluginManager: Mounting Engine plugin OodleNetwork
-LogPluginManager: Mounting Engine plugin CodeLiteSourceCodeAccess
+LogPluginManager: Mounting Engine plugin AnimationSharing
 LogPluginManager: Mounting Engine plugin CLionSourceCodeAccess
+LogPluginManager: Mounting Engine plugin CodeLiteSourceCodeAccess
 LogPluginManager: Mounting Engine plugin DumpGPUServices
 LogPluginManager: Mounting Engine plugin GitSourceControl
-LogPluginManager: Mounting Engine plugin N10XSourceCodeAccess
 LogPluginManager: Mounting Engine plugin KDevelopSourceCodeAccess
+LogPluginManager: Mounting Engine plugin N10XSourceCodeAccess
 LogPluginManager: Mounting Engine plugin NullSourceCodeAccess
 LogPluginManager: Mounting Engine plugin PerforceSourceControl
 LogPluginManager: Mounting Engine plugin PixWinPlugin
 LogPluginManager: Mounting Engine plugin PlasticSourceControl
-LogPluginManager: Mounting Engine plugin PluginUtils
 LogPluginManager: Mounting Engine plugin PropertyAccessNode
+LogPluginManager: Mounting Engine plugin PluginUtils
 LogPluginManager: Mounting Engine plugin RenderDocPlugin
 LogPluginManager: Mounting Engine plugin RiderSourceCodeAccess
-LogPluginManager: Mounting Engine plugin SubversionSourceControl
 LogPluginManager: Mounting Engine plugin TextureFormatOodle
+LogPluginManager: Mounting Engine plugin SubversionSourceControl
+LogPluginManager: Mounting Engine plugin VisualStudioSourceCodeAccess
 LogPluginManager: Mounting Engine plugin UObjectPlugin
 LogPluginManager: Mounting Engine plugin VisualStudioCodeSourceCodeAccess
-LogPluginManager: Mounting Engine plugin VisualStudioSourceCodeAccess
-LogPluginManager: Mounting Engine plugin XCodeSourceCodeAccess
 LogPluginManager: Mounting Engine plugin AssetManagerEditor
+LogPluginManager: Mounting Engine plugin XCodeSourceCodeAccess
 LogPluginManager: Mounting Engine plugin BlueprintHeaderView
 LogPluginManager: Mounting Engine plugin ChangelistReview
 LogPluginManager: Mounting Engine plugin ColorGrading
 LogPluginManager: Mounting Engine plugin CryptoKeys
-LogPluginManager: Mounting Engine plugin CurveEditorTools
 LogPluginManager: Mounting Engine plugin DataValidation
-LogPluginManager: Mounting Engine plugin EditorScriptingUtilities
+LogPluginManager: Mounting Engine plugin CurveEditorTools
 LogPluginManager: Mounting Engine plugin EditorDebugTools
+LogPluginManager: Mounting Engine plugin EditorScriptingUtilities
 LogPluginManager: Mounting Engine plugin EngineAssetDefinitions
-LogPluginManager: Mounting Engine plugin FacialAnimation
-LogPluginManager: Mounting Engine plugin GameplayTagsEditor
 LogPluginManager: Mounting Engine plugin GeometryMode
+LogPluginManager: Mounting Engine plugin GameplayTagsEditor
+LogPluginManager: Mounting Engine plugin FacialAnimation
 LogPluginManager: Mounting Engine plugin MacGraphicsSwitching
 LogPluginManager: Mounting Engine plugin MaterialAnalyzer
 LogPluginManager: Mounting Engine plugin MeshLODToolset
-LogPluginManager: Mounting Engine plugin ModelingToolsEditorMode
 LogPluginManager: Mounting Engine plugin MobileLauncherProfileWizard
+LogPluginManager: Mounting Engine plugin ModelingToolsEditorMode
 LogPluginManager: Mounting Engine plugin PluginBrowser
 LogPluginManager: Mounting Engine plugin ProxyLODPlugin
 LogPluginManager: Mounting Engine plugin SequencerAnimTools
@@ -191,127 +240,42 @@ LogPluginManager: Mounting Engine plugin MediaPlate
 LogPluginManager: Mounting Engine plugin MediaPlayerEditor
 LogPluginManager: Mounting Engine plugin WebMMedia
 LogPluginManager: Mounting Engine plugin WmfMedia
-LogPluginManager: Mounting Engine plugin ActorSequence
-LogPluginManager: Mounting Engine plugin LevelSequenceEditor
-LogPluginManager: Mounting Engine plugin SequencerScripting
-LogPluginManager: Mounting Engine plugin TemplateSequence
-LogPluginManager: Mounting Engine plugin EOSShared
-LogPluginManager: Mounting Engine plugin OnlineBase
-LogPluginManager: Mounting Engine plugin OnlineServices
-LogPluginManager: Mounting Engine plugin OnlineSubsystem
-LogPluginManager: Mounting Engine plugin OnlineSubsystemNull
-LogPluginManager: Mounting Engine plugin OnlineSubsystemUtils
-LogPluginManager: Mounting Engine plugin ActorLayerUtilities
-LogPluginManager: Mounting Engine plugin AndroidDeviceProfileSelector
-LogPluginManager: Mounting Engine plugin AndroidFileServer
-LogPluginManager: Mounting Engine plugin AndroidMoviePlayer
-LogPluginManager: Mounting Engine plugin AndroidPermission
-LogPluginManager: Mounting Engine plugin AppleImageUtils
-LogPluginManager: Mounting Engine plugin AppleMoviePlayer
-LogPluginManager: Mounting Engine plugin ArchVisCharacter
-LogPluginManager: Mounting Engine plugin AudioCapture
-LogPluginManager: Mounting Engine plugin AssetTags
-LogPluginManager: Mounting Engine plugin AudioSynesthesia
-LogPluginManager: Mounting Engine plugin AudioWidgets
-LogPluginManager: Mounting Engine plugin CableComponent
-LogPluginManager: Mounting Engine plugin ChunkDownloader
-LogPluginManager: Mounting Engine plugin ComputeFramework
-LogPluginManager: Mounting Engine plugin CustomMeshComponent
-LogPluginManager: Mounting Engine plugin ExampleDeviceProfileSelector
-LogPluginManager: Mounting Engine plugin GeometryCache
-LogPluginManager: Mounting Engine plugin GeometryProcessing
-LogPluginManager: Mounting Engine plugin GoogleCloudMessaging
-LogPluginManager: Mounting Engine plugin GooglePAD
-LogPluginManager: Mounting Engine plugin HairStrands
-LogPluginManager: Mounting Engine plugin InputDebugging
-LogPluginManager: Mounting Engine plugin IOSDeviceProfileSelector
-LogPluginManager: Mounting Engine plugin LinuxDeviceProfileSelector
-LogPluginManager: Mounting Engine plugin LocationServicesBPLibrary
-LogPluginManager: Mounting Engine plugin MeshModelingToolset
-LogPluginManager: Mounting Engine plugin Metasound
-LogPluginManager: Mounting Engine plugin MobilePatchingUtils
-LogPluginManager: Mounting Engine plugin MsQuic
-LogPluginManager: Mounting Engine plugin PropertyAccessEditor
-LogPluginManager: Mounting Engine plugin ProceduralMeshComponent
-LogPluginManager: Mounting Engine plugin ResonanceAudio
-LogPluginManager: Mounting Engine plugin RigVM
-LogPluginManager: Mounting Engine plugin SignificanceManager
-LogPluginManager: Mounting Engine plugin SoundFields
-LogPluginManager: Mounting Engine plugin StateTree
-LogPluginManager: Mounting Engine plugin Synthesis
-LogPluginManager: Mounting Engine plugin USDCore
-LogPluginManager: Mounting Engine plugin WaveTable
-LogPluginManager: Mounting Engine plugin WebMMoviePlayer
-LogPluginManager: Mounting Engine plugin WindowsDeviceProfileSelector
-LogPluginManager: Mounting Engine plugin WindowsMoviePlayer
-LogPluginManager: Mounting Engine plugin ConcertMain
+LogPluginManager: Mounting Engine plugin TcpMessaging
+LogPluginManager: Mounting Engine plugin UdpMessaging
+LogPluginManager: Mounting Engine plugin InterchangeTests
 LogPluginManager: Mounting Engine plugin OnlineSubsystemIOS
-LogPluginManager: Mounting Engine plugin BaseCharacterFXEditor
-LogPluginManager: Mounting Engine plugin OnlineSubsystemGooglePlay
-LogPluginManager: Mounting Engine plugin XInputDevice
-LogPluginManager: Mounting Engine plugin ContentBrowserAssetDataSource
-LogPluginManager: Mounting Engine plugin ContentBrowserClassDataSource
-LogPluginManager: Mounting Engine plugin ContentBrowserFileDataSource
+LogPluginManager: Mounting Engine plugin ConcertMain
 LogPluginManager: Mounting Engine plugin HoldoutComposite
-LogPluginManager: Mounting Engine plugin SQLiteCore
-LogPluginManager: Mounting Engine plugin PortableObjectFileDataSource
 LogPluginManager: Mounting Engine plugin LightMixer
 LogPluginManager: Mounting Engine plugin ObjectMixer
+LogPluginManager: Mounting Engine plugin SQLiteCore
+LogPluginManager: Mounting Engine plugin XInputDevice
+LogPluginManager: Mounting Engine plugin OnlineSubsystemGooglePlay
+LogPluginManager: Mounting Engine plugin PortableObjectFileDataSource
+LogPluginManager: Mounting Engine plugin ContentBrowserAssetDataSource
+LogPluginManager: Mounting Engine plugin ContentBrowserFileDataSource
+LogPluginManager: Mounting Engine plugin ContentBrowserClassDataSource
+LogPluginManager: Mounting Engine plugin BaseCharacterFXEditor
 LogPluginManager: Mounting Engine plugin SkeletalMeshModelingTools
 LogPluginManager: Mounting Engine plugin MetaHumanSDK
-LogPluginManager: Mounting Engine plugin ConcertSyncClient
 LogPluginManager: Mounting Engine plugin ConcertSyncCore
+LogPluginManager: Mounting Engine plugin ConcertSyncClient
+LogAssetRegistry: Display: Asset registry cache read as 48.2 MiB from D:/Ureal/FuntasticBattle/Intermediate/CachedAssetRegistry_0.bin
 SourceControl: Revision control is disabled
 SourceControl: Revision control is disabled
 SourceControl: Revision control is disabled
 Running E:/UE_5.5/Engine/Build/BatchFiles/Build.bat Development Win64 -Project="D:/Ureal/FuntasticBattle/FuntasticBattle.uproject" -TargetType=Editor -Progress -NoEngineChanges -NoHotReloadFromIDE
 Using bundled DotNet SDK version: 8.0.300
 Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" Development Win64 -Project="D:/Ureal/FuntasticBattle/FuntasticBattle.uproject" -TargetType=Editor -Progress -NoEngineChanges -NoHotReloadFromIDE
-Log file: C:\Users\ljk\AppData\Local\UnrealBuildTool\Log.txt
-Available x64 toolchains (1):
- * C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808
-    (Family=14.43.34808, FamilyRank=1, Version=14.43.34810, Is64Bit=True, ReleaseChannel=Latest, Architecture=x64)
-Visual Studio 2022 compiler version 14.43.34810 is not a preferred version. Please use the latest preferred version 14.38.33130
-Using 'git status' to determine working set for adaptive non-unity build (D:\Ureal\FuntasticBattle).
-@progress push 5%
-@progress pop
-Failed to delete file 'D:\Ureal\FuntasticBattle\Binaries\Win64\UnrealEditor-SimpleShooter.pdb'
-    Exception: Access to the path 'D:\Ureal\FuntasticBattle\Binaries\Win64\UnrealEditor-SimpleShooter.pdb' is denied.
-Attempting to retry...
-Failed to delete file 'D:\Ureal\FuntasticBattle\Binaries\Win64\UnrealEditor-SimpleShooter.pdb'
-    Exception: Access to the path 'D:\Ureal\FuntasticBattle\Binaries\Win64\UnrealEditor-SimpleShooter.pdb' is denied.
-Attempting to retry...
-Failed to delete file 'D:\Ureal\FuntasticBattle\Binaries\Win64\UnrealEditor-SimpleShooter.pdb'
-    Exception: Access to the path 'D:\Ureal\FuntasticBattle\Binaries\Win64\UnrealEditor-SimpleShooter.pdb' is denied.
-ERROR: Exhausted all retries!
-Building SimpleShooterEditor...
-Using Visual Studio 2022 14.43.34810 toolchain (C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
-Warning: Visual Studio 2022 compiler is not a preferred version
-Determining max actions to execute in parallel (6 physical cores, 12 logical cores)
-  Executing up to 6 processes, one per physical core
-  Requested 1.5 GB memory per action, 5.69 GB available: limiting max parallel actions to 3
-Using Unreal Build Accelerator local executor to run 4 action(s)
-  Storage capacity 40Gb
----- Starting trace: 250419_180107 ----
-UbaSessionServer - Disable remote execution (remote sessions will finish current processes)
------- Building 4 action(s) started ------
-[1/4] Compile [x64] ShoorterCharater.cpp
-[2/4] Link [x64] UnrealEditor-SimpleShooter.lib
-   D:\Ureal\FuntasticBattle\Intermediate\Build\Win64\x64\UnrealEditor\Development\SimpleShooter\UnrealEditor-SimpleShooter.lib ??̺귯?? ??D:\Ureal\FuntasticBattle\Intermediate\Build\Win64\x64\UnrealEditor\Development\SimpleShooter\UnrealEditor-SimpleShooter.exp ??ü?? ??ϰ????ϴ?
-UbaSessionServer - ERROR opening file D:\Ureal\FuntasticBattle\Binaries\Win64\UnrealEditor-SimpleShooter.dll for write (The process cannot access the file because it is being used by another process. - E:\UE_5.5\Engine\Binaries\Win64\UnrealEditor.exe)
-Link [x64] UnrealEditor-SimpleShooter.dll: Exited with error code 9001. This action will retry without UBA
-[3/4] Link [x64] UnrealEditor-SimpleShooter.dll (UBA disabled)
-LINK : fatal error LNK1104: 'D:\Ureal\FuntasticBattle\Binaries\Win64\UnrealEditor-SimpleShooter.dll' ?ä????? ??? ??? ?????????ʤ??.
-Trace file written to C:/Users/ljk/AppData/Local/UnrealBuildTool/Log.uba with size 4.5kb
-Total time in Unreal Build Accelerator local executor: 23.78 seconds
-Total execution time: 26.68 seconds
+A conflicting instance of UnrealBuildTool is already running.
 LogCore: Engine exit requested (reason: EngineExit() was called)
 LogAudio: Display: Beginning Audio Device Manager Shutdown (Module: )...
 LogAudio: Display: Audio Device Manager Shutdown
 LogExit: Preparing to exit.
 LogXGEController: Cannot use XGE Controller as Incredibuild is not installed on this machine.
+LogXGEController: Cleaning working directory: C:/Users/ljk/AppData/Local/Temp/UnrealXGEWorkingDir/
 LogIris: FNetObjectFactoryRegistry::UnregisterFactory is unregistering factory: None name: NetActorFactory id: 0
 LogIris: FNetObjectFactoryRegistry::UnregisterFactory is unregistering factory: None name: NetSubObjectFactory id: 1
 LogPakFile: Destroying PakPlatformFile
 LogExit: Exiting.
-Log file closed, 04/19/25 18:01:40
+Log file closed, 04/28/25 19:34:09

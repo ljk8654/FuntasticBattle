@@ -24,13 +24,13 @@ void AShoorterCharater::BeginPlay()
 	
 	Health = MaxHealth;
 	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
-	//Gun = GetWorld()->SpawnActor<AGun>(GunClass);
-	//GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
-	//Gun->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("WeaponSocket"));
-	//Gun->SetOwner(this);
-	Bat = GetWorld()->SpawnActor<Atestactor>(BatClass);
+	Gun = GetWorld()->SpawnActor<AGun>(GunClass);
 	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
-	Bat->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("WeaponSocket"));
+	Gun->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("WeaponSocket"));
+	Gun->SetOwner(this);
+	//Bat = GetWorld()->SpawnActor<Atestactor>(BatClass);
+	//GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
+	//Bat->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("WeaponSocket"));
 }
 
 void AShoorterCharater::EnableMovement()
@@ -43,11 +43,38 @@ bool AShoorterCharater::IsDead() const
 	return Health <= 0;
 }
 
+float AShoorterCharater::HealthPercent() const
+{
+	return Health / MaxHealth;
+}
+
+float AShoorterCharater::StaminaPercent() const
+{
+	return Stamina / MaxStamina;
+}
+
 // Called every frame
 void AShoorterCharater::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	if (running)
+	{
+		Stamina -= 0.1f; // 스프린트 시 스태미너 감소
+		if (Stamina <= 0.0f) // 스태미너가 0이 되면 스프린트 중지
+		{
+			GetCharacterMovement()->MaxWalkSpeed = 300.0f; // 원래 속도로 복구
+		}
+		else if (Stamina > MaxStamina) // 스태미너가 최대치를 초과하지 않도록 제한
+		{
+			Stamina = MaxStamina;
+		}
+	}
+	else 
+	{
+		if (Stamina < MaxStamina){
+		Stamina += 0.05f; // 스태미너 증가
+		}
+	}
 }
 
 float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
@@ -120,11 +147,13 @@ void AShoorterCharater::MoveForward(float AxisValue)
 
 void AShoorterCharater::StartSprint()
 {
+	running = true;
     GetCharacterMovement()->MaxWalkSpeed = 600.0f;  // 스프린트 속도 증가
 }
 
 void AShoorterCharater::StopSprint()
 {
+	running = false;
     GetCharacterMovement()->MaxWalkSpeed = 300.0f;  // 원래 속도로 복구
 }
 

@@ -15,6 +15,8 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define SIMPLESHOOTER_ShoorterCharater_generated_h
 
 #define FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execStaminaPercent); \
+	DECLARE_FUNCTION(execHealthPercent); \
 	DECLARE_FUNCTION(execIsDead); \
 	DECLARE_FUNCTION(execEnableMovement);
 
