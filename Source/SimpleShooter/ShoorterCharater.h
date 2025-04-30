@@ -67,7 +67,10 @@ void StopSprint();
 void MoveSide(float AxisValue);
 void LookUpRate(float AxisValue);
 void PunchAttack();
+void GunMode();
+void BatMode();
 
+int ItemMode = 0;
 float fast = 0.5;
 bool running = false;
 	UPROPERTY(EditAnywhere)

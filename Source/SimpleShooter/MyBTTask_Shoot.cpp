@@ -8,6 +8,7 @@
 UMyBTTask_Shoot::UMyBTTask_Shoot()
 {
      NodeName = TEXT("Shoot");
+     
 }
 
 EBTNodeResult::Type UMyBTTask_Shoot::ExecuteTask(UBehaviorTreeComponent &OwnerComp, uint8 *NodeMemory)

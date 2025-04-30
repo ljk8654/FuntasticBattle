@@ -28,9 +28,7 @@ void AShoorterCharater::BeginPlay()
 	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
 	Gun->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("WeaponSocket"));
 	Gun->SetOwner(this);
-	//Bat = GetWorld()->SpawnActor<Atestactor>(BatClass);
-	//GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
-	//Bat->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("WeaponSocket"));
+	
 }
 
 void AShoorterCharater::EnableMovement()
@@ -82,7 +80,6 @@ float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent cons
 	float DamageToApply = Super::TakeDamage(DamageAmount,DamageEvent,EventInstigator, DamageCauser);
 	DamageToApply = FMath::Min(Health, DamageToApply);
 	Health -= DamageToApply;
-	PlayAnimMontage(HitMontage);
 
 	if (IsDead()) // 죽으면 충돌 x
 	{
@@ -128,12 +125,13 @@ void AShoorterCharater::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAction(TEXT("Shoot"), EInputEvent::IE_Pressed, this, &AShoorterCharater::Shoot);
 	PlayerInputComponent->BindAction(TEXT("Attack"), EInputEvent::IE_Pressed, this, &AShoorterCharater::PunchAttack);
-	
+	PlayerInputComponent->BindAction(TEXT("GunMode"), EInputEvent::IE_Pressed, this, &AShoorterCharater::GunMode);
+	PlayerInputComponent->BindAction(TEXT("BatMode"), EInputEvent::IE_Pressed, this, &AShoorterCharater::BatMode);
 }
 
 void AShoorterCharater::Shoot()
 {
-	Gun->PullTrigger();
+	if (ItemMode == 0) Gun->PullTrigger();
 }
 
 
@@ -219,6 +217,41 @@ void AShoorterCharater::PunchAttack()
 			FTimerHandle UnfreezeHandle;
 			GetWorldTimerManager().SetTimer(UnfreezeHandle, this, &AShoorterCharater::EnableMovement, 0.7f, false);
 	}
+}
+
+void AShoorterCharater::GunMode()
+{
+	ItemMode = 0;
+	if (Bat)
+    {
+        Bat->Destroy();
+        Bat = nullptr;
+    }
+
+    if (Gun == nullptr)
+    {
+        Gun = GetWorld()->SpawnActor<AGun>(GunClass);
+        GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
+        Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+        Gun->SetOwner(this);
+    }
+}
+
+void AShoorterCharater::BatMode()
+{
+	ItemMode = 1;
+	if (Gun)
+    {
+        Gun->Destroy();
+        Gun = nullptr;
+    }
+
+    if (Bat == nullptr)
+    {
+        Bat = GetWorld()->SpawnActor<Atestactor>(BatClass);
+        GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
+        Bat->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+    }
 }
 
 // void AShoorterCharater::LookUp(float AxisValue)
