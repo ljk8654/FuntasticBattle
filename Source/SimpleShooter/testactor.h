@@ -31,4 +31,14 @@ private:
 	UStaticMeshComponent* Mesh;
 
 	AController* GetOwnerController() const;
+
+	public:
+	UPROPERTY(EditAnywhere)
+	float Damage = 10.0f;
+
+	UPROPERTY(EditAnywhere)
+	float StunDamage = 20.0f;
+
+	UPROPERTY(EditAnywhere)
+	float AddForce = 2000.0f;
 };

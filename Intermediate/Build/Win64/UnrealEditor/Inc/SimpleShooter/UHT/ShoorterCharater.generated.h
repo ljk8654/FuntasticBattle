@@ -14,14 +14,16 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define SIMPLESHOOTER_ShoorterCharater_generated_h
 
-#define FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execExitRagdoll); \
+	DECLARE_FUNCTION(execEnterRagdoll); \
 	DECLARE_FUNCTION(execStaminaPercent); \
 	DECLARE_FUNCTION(execHealthPercent); \
 	DECLARE_FUNCTION(execIsDead); \
 	DECLARE_FUNCTION(execEnableMovement);
 
 
-#define FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAShoorterCharater(); \
 	friend struct Z_Construct_UClass_AShoorterCharater_Statics; \
@@ -30,7 +32,7 @@ public: \
 	DECLARE_SERIALIZER(AShoorterCharater)
 
 
-#define FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AShoorterCharater(AShoorterCharater&&); \
@@ -42,13 +44,13 @@ public: \
 	NO_API virtual ~AShoorterCharater();
 
 
-#define FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_12_PROLOG
-#define FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_15_GENERATED_BODY \
+#define FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_13_PROLOG
+#define FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_16_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_15_INCLASS_NO_PURE_DECLS \
-	FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_15_ENHANCED_CONSTRUCTORS \
+	FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_16_INCLASS_NO_PURE_DECLS \
+	FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

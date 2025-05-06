@@ -8,6 +8,7 @@
 #include "SimpleShooterGameModeBase.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Engine/DamageEvents.h"
+#include "MeleeWeapon.h"
 
 // Sets default values
 AShoorterCharater::AShoorterCharater()
@@ -21,7 +22,9 @@ AShoorterCharater::AShoorterCharater()
 void AShoorterCharater::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	AmountDamage = PlayerDamage;
+	AmountStunDamage = PlayerStunDamage;
+	AmountForce = PlayerForce;
 	Health = MaxHealth;
 	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 	Gun = GetWorld()->SpawnActor<AGun>(GunClass);
@@ -81,6 +84,19 @@ float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent cons
 	DamageToApply = FMath::Min(Health, DamageToApply);
 	Health -= DamageToApply;
 
+    // 체력이 50% 이하로 떨어졌고 아직 기절 안 했으면 기절 처리
+    if (!bIsRagdoll && !bHasTriggeredStun && Health <= MaxHealth * 0.5f && Health > 0.f)
+    {
+        EnterRagdoll();
+        bHasTriggeredStun = true;
+    }
+
+    // 체력이 다시 50% 이상으로 회복되면 기절 체크 플래그 초기화
+    if (Health > MaxHealth * 0.5f)
+    {
+        bHasTriggeredStun = false;
+    }
+
 	if (IsDead())
 	{
 			ASimpleShooterGameModeBase* GameMode = GetWorld()->GetAuthGameMode<ASimpleShooterGameModeBase>();
@@ -101,14 +117,14 @@ float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent cons
 		else
 		{
     	AttackerLocation = FVector::ZeroVector; // 예외처리
-		}// 공격자 위치
+	}// 공격자 위치
 		FVector VictimLocation = GetActorLocation(); // 피격자(자기 자신) 위치
 
 		// 넉백 방향 = 피격자에서 공격자를 향하는 방향의 반대
 		FVector KnockbackDirection = (VictimLocation - AttackerLocation).GetSafeNormal();
 		GetMesh()->SetSimulatePhysics(true);
 		GetCharacterMovement()->DisableMovement();;
-		GetMesh()->AddImpulse(KnockbackDirection * 5000.0f, NAME_None, true);
+		GetMesh()->AddImpulse(KnockbackDirection * AmountForce, NAME_None, true);
 
 		DetachFromControllerPendingDestroy();
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision); 
@@ -148,7 +164,8 @@ void AShoorterCharater::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAction(TEXT("Shoot"), EInputEvent::IE_Pressed, this, &AShoorterCharater::Shoot);
 	PlayerInputComponent->BindAction(TEXT("Attack"), EInputEvent::IE_Pressed, this, &AShoorterCharater::PunchAttack);
 	PlayerInputComponent->BindAction(TEXT("GunMode"), EInputEvent::IE_Pressed, this, &AShoorterCharater::GunMode);
-	PlayerInputComponent->BindAction(TEXT("BatMode"), EInputEvent::IE_Pressed, this, &AShoorterCharater::BatMode);
+	PlayerInputComponent->BindAction(TEXT("BatMode"), EInputEvent::IE_Pressed, this, &AShoorterCharater::EquipBat);
+	PlayerInputComponent->BindAction(TEXT("HockeyMode"), EInputEvent::IE_Pressed, this, &AShoorterCharater::EquipHockey);
 }
 
 void AShoorterCharater::Shoot()
@@ -189,55 +206,64 @@ void AShoorterCharater::LookUpRate(float AxisValue)
 
 void AShoorterCharater::PunchAttack()
 {
-	FHitResult HitResult;
+	TArray<FHitResult> HitResults;
 	FCollisionQueryParams Params(NAME_None, false, this);
 
 	float AttackRange = 100.f;
-	float AttackRadius = 25.f;
+	float AttackRadius = 15.f;
 
+	FVector Start = GetActorLocation();
+	FVector End = Start + GetActorForwardVector() * AttackRange;
 
-	bool bResult = GetWorld()->SweepSingleByChannel(
-		OUT HitResult,
-		GetActorLocation(),
-		GetActorLocation() + GetActorForwardVector() * AttackRange,
+	bool bResult = GetWorld()->SweepMultiByChannel(
+		OUT HitResults,
+		Start,
+		End,
 		FQuat::Identity,
 		ECollisionChannel::ECC_EngineTraceChannel2,
 		FCollisionShape::MakeSphere(AttackRadius),
-		Params);
+		Params
+	);
 
+	// 디버그용 캡슐
 	FVector Vec = GetActorForwardVector() * AttackRange;
 	FVector Center = GetActorLocation() + Vec * 0.5f;
 	float HalfHeight = AttackRange * 0.5f + AttackRadius;
 	FQuat Rotation = FRotationMatrix::MakeFromZ(Vec).ToQuat();
-	FColor DrawColor;
+	FColor DrawColor = bResult ? FColor::Green : FColor::Red;
+
+	DrawDebugCapsule(GetWorld(), Center, HalfHeight, AttackRadius, Rotation, DrawColor, false, 2.f);
+
 	if (bResult)
-		DrawColor = FColor::Green;
-	else
-		DrawColor = FColor::Red;
-
-	DrawDebugCapsule(GetWorld(), Center, HalfHeight, AttackRadius,
-		Rotation, DrawColor, false, 2.f);
-
-	if (bResult && HitResult.GetActor())
 	{
-		AActor* HitActor = HitResult.GetActor();
-		FDamageEvent DamageEvent;
-		HitActor->TakeDamage(10.0f, DamageEvent, GetController(), this);
-		UE_LOG(LogTemp, Log, TEXT("Hit Actor : %s"), *HitResult.GetActor()->GetName());
-
-		// 데미지 주는 곳
+		for (const FHitResult& Hit : HitResults)
+		{
+			AActor* HitActor = Hit.GetActor();
+			if (HitActor && HitActor != this && HitActor->IsA<ACharacter>())
+			{
+				FDamageEvent DamageEvent;
+				HitActor->TakeDamage(AmountDamage, DamageEvent, GetController(), this);
+			}
+		}
+		UE_LOG(LogTemp, Warning, TEXT("Sweep hit %d actors"), HitResults.Num());
+		for (auto& Hit : HitResults)
+		{
+    		if (Hit.GetActor())
+    		{
+        	UE_LOG(LogTemp, Warning, TEXT("Hit actor: %s"), *Hit.GetActor()->GetName());
+    		}
+		}
 	}
-	PlayAnimMontage(AttackMontage);
+
+	// 애니메이션 재생 및 이동 제어
 	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	if (AnimInstance && AttackMontage)
 	{
-			// 공격 애니메이션
-			AnimInstance->Montage_Play(AttackMontage);
-			GetCharacterMovement()->DisableMovement();
+		AnimInstance->Montage_Play(AttackMontage);
+		GetCharacterMovement()->DisableMovement();
 
-			// 일정 시간 후 이동 가능하게 복구
-			FTimerHandle UnfreezeHandle;
-			GetWorldTimerManager().SetTimer(UnfreezeHandle, this, &AShoorterCharater::EnableMovement, 0.7f, false);
+		FTimerHandle UnfreezeHandle;
+		GetWorldTimerManager().SetTimer(UnfreezeHandle, this, &AShoorterCharater::EnableMovement, 0.7f, false);
 	}
 }
 
@@ -259,21 +285,85 @@ void AShoorterCharater::GunMode()
     }
 }
 
-void AShoorterCharater::BatMode()
+void AShoorterCharater::EquipBat()
 {
-	ItemMode = 1;
-	if (Gun)
+	EquipWeapon(BatClass);
+}
+
+void AShoorterCharater::EquipHockey()
+{
+	EquipWeapon(HockeyClass);
+}
+
+void AShoorterCharater::EquipWeapon(TSubclassOf<AMeleeWeapon> NewWeaponClass)
+{
+    if (MeleeWeapon)
     {
-        Gun->Destroy();
-        Gun = nullptr;
+        MeleeWeapon->Destroy();
+        MeleeWeapon = nullptr;
     }
 
-    if (Bat == nullptr)
+    MeleeWeapon = GetWorld()->SpawnActor<AMeleeWeapon>(NewWeaponClass);
+    if (MeleeWeapon)
     {
-        Bat = GetWorld()->SpawnActor<Atestactor>(BatClass);
-        GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
-        Bat->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+		GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
+		if (NewWeaponClass == HockeyClass)	{
+			MeleeWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("HockeySocket"));
+		}
+        else {
+			MeleeWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+		}
+        AmountDamage = PlayerDamage + MeleeWeapon->Damage;
+        AmountStunDamage = PlayerStunDamage + MeleeWeapon->StunDamage;
+        AmountForce = PlayerForce + MeleeWeapon->AddForce;
     }
+}
+
+void AShoorterCharater::EnterRagdoll()
+{
+	bIsRagdoll = true;
+	SavedActorRotation = GetActorRotation(); // 기절 시 회전 저장
+
+    GetMesh()->SetSimulatePhysics(true);
+    GetMesh()->SetCollisionProfileName(TEXT("Ragdoll"));
+    GetCharacterMovement()->DisableMovement();
+
+    // 캡슐 비활성화
+    GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+    // 일정 시간 후 기상
+    FTimerHandle RagdollTimerHandle;
+    GetWorldTimerManager().SetTimer(RagdollTimerHandle, this, &AShoorterCharater::ExitRagdoll, RagdollRecoverTime, false);
+
+    UE_LOG(LogTemp, Warning, TEXT(">> 기절 상태 진입 (Ragdoll)"));
+}
+
+void AShoorterCharater::ExitRagdoll()
+{
+    bIsRagdoll = false;
+
+    // 물리 OFF + 충돌 설정 복구
+    GetMesh()->SetSimulatePhysics(false);
+    GetMesh()->SetCollisionProfileName(TEXT("CharacterMesh"));
+
+    // 캡슐 활성화
+    GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+
+    // 캡슐 위치 보정 (바닥에 깔린 메시 → 정상 높이로 이동)
+    FVector MeshLocation = GetMesh()->GetComponentLocation();
+    SetActorLocation(FVector(MeshLocation.X, MeshLocation.Y, MeshLocation.Z + 88.f));
+
+    // 메시 위치와 회전 리셋
+    GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -88.f));
+	GetMesh()->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
+
+    // 이동 가능하도록 설정
+    GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
+
+    // 시점 리셋 (선택)
+	SetActorRotation(SavedActorRotation); // 저장된 회전으로 복구
+	
+    UE_LOG(LogTemp, Warning, TEXT("기상 완료 (애니메이션 없음)"));
 }
 
 // void AShoorterCharater::LookUp(float AxisValue)

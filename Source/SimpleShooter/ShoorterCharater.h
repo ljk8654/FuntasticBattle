@@ -8,6 +8,7 @@
 
 class AGun;
 class Atestactor;
+class AMeleeWeapon;
 
 UCLASS()
 class SIMPLESHOOTER_API AShoorterCharater : public ACharacter
@@ -60,6 +61,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	UAnimMontage* JumpMontage;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stun")
+float RagdollRecoverTime = 3.f;
+
 private:
 void MoveForward(float AxisValue);
 void StartSprint();
@@ -68,11 +72,38 @@ void MoveSide(float AxisValue);
 void LookUpRate(float AxisValue);
 void PunchAttack();
 void GunMode();
-void BatMode();
+void EquipBat();
+void EquipHockey();
+void EquipWeapon(TSubclassOf<AMeleeWeapon> NewWeaponClass);
 
-int ItemMode = 0;
-float fast = 0.5;
-bool running = false;
+UFUNCTION()
+void EnterRagdoll();
+
+UFUNCTION()
+void ExitRagdoll();
+
+
+
+bool bIsRagdoll = false;
+bool bHasTriggeredStun = false;
+FRotator SavedActorRotation;
+
+	int ItemMode = 0;
+	float fast = 0.5;
+	bool running = false;
+	float AmountDamage = 0.0f;
+	float AmountStunDamage = 0.0f;
+	float AmountForce = 0.0f;
+
+	UPROPERTY(EditAnywhere)
+	float PlayerDamage = 10.0f;
+
+	UPROPERTY(EditAnywhere)
+	float PlayerStunDamage = 10.0f;
+
+	UPROPERTY(EditAnywhere)
+	float PlayerForce = 1000.0f;
+
 	UPROPERTY(EditAnywhere)
 	float RotationRate = 10;
 
@@ -83,14 +114,30 @@ bool running = false;
 	float MaxStamina = 100;
 
 	UPROPERTY(EditDefaultsOnly)
+	float MaxStunGage = 100;
+	
+	UPROPERTY(EditDefaultsOnly)
+	float StunDamage = 10;
+	
+	UPROPERTY(EditDefaultsOnly)
+	float ChaForce = 100;
+	
+
+	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;
 
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<Atestactor> BatClass;
+	TSubclassOf<AMeleeWeapon> BatClass;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AMeleeWeapon> HockeyClass;
 
 	UPROPERTY()
 	AGun* Gun;
 
 	UPROPERTY()
 	Atestactor* Bat;
+
+	UPROPERTY()
+	AMeleeWeapon* MeleeWeapon;
 };
