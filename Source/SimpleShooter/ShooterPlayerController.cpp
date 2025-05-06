@@ -32,9 +32,9 @@ void AShooterPlayerController::GameHasEnded(class AActor* EndGameFocus, bool bIs
 void AShooterPlayerController::BeginPlay()
 {
     Super::BeginPlay();
-    UUserWidget* HUDScreen = CreateWidget(this, HUDClass);
-    if(HUDScreen != nullptr)
+    HUD= CreateWidget(this, HUDClass);
+    if(HUD != nullptr)
     {
-        HUDScreen->AddToViewport();
+        HUD->AddToViewport();
     }
 }
