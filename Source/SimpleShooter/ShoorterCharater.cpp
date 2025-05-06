@@ -81,13 +81,35 @@ float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent cons
 	DamageToApply = FMath::Min(Health, DamageToApply);
 	Health -= DamageToApply;
 
-	if (IsDead()) // 죽으면 충돌 x
+	if (IsDead())
 	{
 			ASimpleShooterGameModeBase* GameMode = GetWorld()->GetAuthGameMode<ASimpleShooterGameModeBase>();
 		if (GameMode != nullptr)
 		{
 			GameMode->PawnKilled(this);
 		}
+		// 죽음 애니메이션 물리 시뮬 적용
+		FVector AttackerLocation;
+		if(EventInstigator && EventInstigator->GetPawn())
+		{
+    	AttackerLocation = EventInstigator->GetPawn()->GetActorLocation();
+		}
+		else if (DamageCauser)
+		{
+    	AttackerLocation = DamageCauser->GetActorLocation();
+		}
+		else
+		{
+    	AttackerLocation = FVector::ZeroVector; // 예외처리
+		}// 공격자 위치
+		FVector VictimLocation = GetActorLocation(); // 피격자(자기 자신) 위치
+
+		// 넉백 방향 = 피격자에서 공격자를 향하는 방향의 반대
+		FVector KnockbackDirection = (VictimLocation - AttackerLocation).GetSafeNormal();
+		GetMesh()->SetSimulatePhysics(true);
+		GetCharacterMovement()->DisableMovement();;
+		GetMesh()->AddImpulse(KnockbackDirection * 5000.0f, NAME_None, true);
+
 		DetachFromControllerPendingDestroy();
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision); 
 
