@@ -6,6 +6,7 @@
 #include "GameFramework/Controller.h"
 #include "ShooterAIController.h"
 
+
 void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
 {
     Super::PawnKilled(PawnKilled);
@@ -46,3 +47,4 @@ void AKillEmAllGameMode::EndGame(bool bIsPlayerWinner)
        Controller->GameHasEnded(Controller->GetPawn(), bIsWinner);
     }
 }
+

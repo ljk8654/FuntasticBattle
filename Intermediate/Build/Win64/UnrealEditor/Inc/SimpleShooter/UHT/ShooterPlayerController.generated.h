@@ -14,7 +14,11 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define SIMPLESHOOTER_ShooterPlayerController_generated_h
 
-#define FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execOnLoginSuccess);
+
+
+#define FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAShooterPlayerController(); \
 	friend struct Z_Construct_UClass_AShooterPlayerController_Statics; \
@@ -23,7 +27,7 @@ public: \
 	DECLARE_SERIALIZER(AShooterPlayerController)
 
 
-#define FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_17_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AShooterPlayerController(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -37,12 +41,13 @@ public: \
 	NO_API virtual ~AShooterPlayerController();
 
 
-#define FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_12_PROLOG
-#define FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_15_GENERATED_BODY \
+#define FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_14_PROLOG
+#define FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_15_INCLASS_NO_PURE_DECLS \
-	FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_15_ENHANCED_CONSTRUCTORS \
+	FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_17_INCLASS_NO_PURE_DECLS \
+	FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

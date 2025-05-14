@@ -1,5 +1,40 @@
 {
 	"RemapUnityFiles": 
 	{
+		"Module.SimpleShooter.cpp.obj": [
+			"Bat.gen.cpp.obj",
+			"BTService_PlayerLocation.gen.cpp.obj",
+			"BTService_PlayerLocationIfSeen.gen.cpp.obj",
+			"BTTask_ClearBlackboardValue.gen.cpp.obj",
+			"Gun.gen.cpp.obj",
+			"KillEmAllGameMode.gen.cpp.obj",
+			"LoginWidget.gen.cpp.obj",
+			"MeleeWeapon.gen.cpp.obj",
+			"MyBTTask_Shoot.gen.cpp.obj",
+			"MyPawn.gen.cpp.obj",
+			"ShoorterCharater.gen.cpp.obj",
+			"ShooterAIController.gen.cpp.obj",
+			"ShooterPlayerController.gen.cpp.obj",
+			"SimpleShooter.init.gen.cpp.obj",
+			"SimpleShooterGameModeBase.gen.cpp.obj",
+			"testactor.gen.cpp.obj",
+			"PerModuleInline.gen.cpp.obj",
+			"Bat.cpp.obj",
+			"BTService_PlayerLocation.cpp.obj",
+			"BTService_PlayerLocationIfSeen.cpp.obj",
+			"BTTask_ClearBlackboardValue.cpp.obj",
+			"Gun.cpp.obj",
+			"KillEmAllGameMode.cpp.obj",
+			"LoginWidget.cpp.obj",
+			"MeleeWeapon.cpp.obj",
+			"MyBTTask_Shoot.cpp.obj",
+			"MyPawn.cpp.obj",
+			"ShoorterCharater.cpp.obj",
+			"ShooterAIController.cpp.obj",
+			"ShooterPlayerController.cpp.obj",
+			"SimpleShooter.cpp.obj",
+			"SimpleShooterGameModeBase.cpp.obj",
+			"testactor.cpp.obj"
+		]
 	}
 }
