@@ -40,6 +40,10 @@ void AShooterPlayerController::BeginPlay()
         HUD->AddToViewport();
     }
 
+    // 1. 입력 비활성화
+    SetShowMouseCursor(false);
+    FInputModeUIOnly InputMode;
+    SetInputMode(InputMode);
 
     // 2. 로그인 UI 표시
     if (LoginWidgetClass)
@@ -55,7 +59,8 @@ void AShooterPlayerController::BeginPlay()
 }
 void AShooterPlayerController::OnLoginSuccess()
 {
-     // 1. UI 제거
+
+       // 1. UI 제거
     if (CurrentLoginWidget)
     {
         CurrentLoginWidget->RemoveFromParent();
@@ -65,6 +70,4 @@ void AShooterPlayerController::OnLoginSuccess()
     SetShowMouseCursor(false);
     FInputModeGameOnly InputMode;
     SetInputMode(InputMode);
-
-    
 }

@@ -25,6 +25,7 @@ void ULoginWidget::OnLoginClicked()
     {
         OnLoginSuccess.Broadcast();
         UE_LOG(LogTemp, Log, TEXT("로그인 성공"));
+       RemoveFromViewport();
     }
     else
     {
