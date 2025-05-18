@@ -41,7 +41,7 @@ void AShooterPlayerController::BeginPlay()
     }
 
     // 1. 입력 비활성화
-    SetShowMouseCursor(false);
+    SetShowMouseCursor(true);
     FInputModeUIOnly InputMode;
     SetInputMode(InputMode);
 
@@ -66,8 +66,19 @@ void AShooterPlayerController::OnLoginSuccess()
         CurrentLoginWidget->RemoveFromParent();
     }
 
-    // 2. 입력 활성화
+    RoomList = CreateWidget<ULoomList>(this, RoomListClass);
+    if(RoomList){
+    RoomList->AddToViewport();
+    RoomList->OnEnterRoomSuccess.AddDynamic(this, &AShooterPlayerController::OnEnterRoomSuccess);
+    }
+}
+
+void AShooterPlayerController::OnEnterRoomSuccess()
+{
     SetShowMouseCursor(false);
     FInputModeGameOnly InputMode;
     SetInputMode(InputMode);
+
+    RoomList->RemoveFromViewport();
+    
 }

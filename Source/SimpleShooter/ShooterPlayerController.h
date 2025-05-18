@@ -7,6 +7,7 @@
 #include "ShooterPlayerController.generated.h"
 
 class ULoginWidget;
+class ULoomList;
 
 /**
  * 
@@ -19,16 +20,21 @@ class SIMPLESHOOTER_API AShooterPlayerController : public APlayerController
 public:
 	virtual void GameHasEnded(class AActor* EndGameFocus = nullptr, bool bIsWinner = false) override;
 
-	/** 로그인 UI 위젯 */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
     TSubclassOf<ULoginWidget> LoginWidgetClass;
 
-    /** 현재 생성된 로그인 위젯 인스턴스 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+    TSubclassOf<ULoomList> RoomListClass;
+
     UPROPERTY()
     ULoginWidget* CurrentLoginWidget;
 
 	UFUNCTION()
 	void OnLoginSuccess();
+	
+	UFUNCTION()
+	void OnEnterRoomSuccess();
+
 
 protected:
 	virtual void BeginPlay() override;
@@ -51,4 +57,7 @@ private:
 
 	UPROPERTY()
 	UUserWidget* HUD;
+
+	UPROPERTY()
+	ULoomList* RoomList;
 };
