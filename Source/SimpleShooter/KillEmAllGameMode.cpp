@@ -30,6 +30,16 @@ void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
     EndGame(true);
 }
 
+void AKillEmAllGameMode::BeginPlay()
+{
+    Super::BeginPlay();
+    UGameplayStatics::SetGamePaused(GetWorld(), true);
+    if (BackgroundMusic)
+    {
+        UGameplayStatics::PlaySound2D(this, BackgroundMusic);
+    }
+}
+
 void AKillEmAllGameMode::EndGame(bool bIsPlayerWinner)
 {
     for(AController* Controller : TActorRange<AController>(GetWorld()))

@@ -24,7 +24,7 @@ EBTNodeResult::Type UMyBTTask_Shoot::ExecuteTask(UBehaviorTreeComponent &OwnerCo
         return EBTNodeResult::Failed;
     }
 
-    Character->Shoot();
+    Character->PunchAttack();
 
     return EBTNodeResult::Succeeded;
 }

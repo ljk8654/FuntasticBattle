@@ -1,2 +1,3 @@
-2025/04/09-21:37:28.347 35ec Creating DB D:/Ureal/FuntasticBattle/Saved/webcache_4430\Local Storage\leveldb since it was missing.
-2025/04/09-21:37:28.402 35ec Reusing MANIFEST D:/Ureal/FuntasticBattle/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
+2025/06/04-18:09:22.893 4af0 Reusing MANIFEST D:/Ureal/FuntasticBattle/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
+2025/06/04-18:09:22.900 4af0 Recovering log #3
+2025/06/04-18:09:22.900 4af0 Reusing old log D:/Ureal/FuntasticBattle/Saved/webcache_4430\Local Storage\leveldb/000003.log 

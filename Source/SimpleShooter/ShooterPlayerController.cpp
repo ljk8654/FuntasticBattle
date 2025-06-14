@@ -78,7 +78,7 @@ void AShooterPlayerController::OnEnterRoomSuccess()
     SetShowMouseCursor(false);
     FInputModeGameOnly InputMode;
     SetInputMode(InputMode);
-
+    UGameplayStatics::SetGamePaused(GetWorld(), false);
     RoomList->RemoveFromViewport();
     
 }

@@ -17,4 +17,11 @@ class SIMPLESHOOTER_API UBTService_PlayerLocationIfSeen : public UBTService_Blac
 	UBTService_PlayerLocationIfSeen();
 protected:
 	virtual void TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *NodeMemory, float DeltaSeconds) override;
+
+	UPROPERTY(EditAnywhere, Category = "AI")
+	float SightRadius = 1000.0f;
+
+	UPROPERTY(EditAnywhere, Category = "AI")
+	float SightAngle = 60.0f;
+
 };

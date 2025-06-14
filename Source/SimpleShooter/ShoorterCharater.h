@@ -24,6 +24,9 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool bIsAttacking = false;
+	
 	UFUNCTION() 
 	void EnableMovement();
 	
@@ -45,6 +48,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
 	void Shoot();
+	
+	void PunchAttack();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MySettings")
 	float Health;
@@ -70,7 +75,7 @@ void StartSprint();
 void StopSprint();
 void MoveSide(float AxisValue);
 void LookUpRate(float AxisValue);
-void PunchAttack();
+
 void GunMode();
 void EquipBat();
 void EquipHockey();
@@ -106,6 +111,15 @@ FRotator SavedActorRotation;
 
 	UPROPERTY(EditAnywhere)
 	float RotationRate = 10;
+
+	UPROPERTY(EditAnywhere)
+	float ForwardInput = 10;
+
+	UPROPERTY(EditAnywhere)
+	float RightInput= 10;
+
+	UPROPERTY(EditAnywhere)
+	float MoveForce= 20000;
 
 	UPROPERTY(EditDefaultsOnly)
 	float MaxHealth = 100;

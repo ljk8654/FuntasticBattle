@@ -37,6 +37,7 @@ void AShoorterCharater::BeginPlay()
 void AShoorterCharater::EnableMovement()
 {
 	GetCharacterMovement()->SetMovementMode(MOVE_Walking);
+	bIsAttacking = false;
 }
 
 bool AShoorterCharater::IsDead() const
@@ -177,9 +178,7 @@ void AShoorterCharater::Shoot()
 
 void AShoorterCharater::MoveForward(float AxisValue)
 {	
-
 	AddMovementInput(GetActorForwardVector() * AxisValue);
-	
 }
 
 void AShoorterCharater::StartSprint()
@@ -206,6 +205,11 @@ void AShoorterCharater::LookUpRate(float AxisValue)
 
 void AShoorterCharater::PunchAttack()
 {
+	if (bIsAttacking)
+	{
+    	return;
+	}
+	bIsAttacking = true;
 	TArray<FHitResult> HitResults;
 	FCollisionQueryParams Params(NAME_None, false, this);
 
@@ -232,7 +236,7 @@ void AShoorterCharater::PunchAttack()
 	FQuat Rotation = FRotationMatrix::MakeFromZ(Vec).ToQuat();
 	FColor DrawColor = bResult ? FColor::Green : FColor::Red;
 
-	DrawDebugCapsule(GetWorld(), Center, HalfHeight, AttackRadius, Rotation, DrawColor, false, 2.f);
+	//DrawDebugCapsule(GetWorld(), Center, HalfHeight, AttackRadius, Rotation, DrawColor, false, 2.f);
 
 	if (bResult)
 	{
@@ -263,7 +267,8 @@ void AShoorterCharater::PunchAttack()
 		GetCharacterMovement()->DisableMovement();
 
 		FTimerHandle UnfreezeHandle;
-		GetWorldTimerManager().SetTimer(UnfreezeHandle, this, &AShoorterCharater::EnableMovement, 0.7f, false);
+		GetWorldTimerManager().SetTimer(UnfreezeHandle, this, &AShoorterCharater::EnableMovement, 1.3f, false);
+		
 	}
 }
 
@@ -351,7 +356,7 @@ void AShoorterCharater::ExitRagdoll()
 
     // 캡슐 위치 보정 (바닥에 깔린 메시 → 정상 높이로 이동)
     FVector MeshLocation = GetMesh()->GetComponentLocation();
-    SetActorLocation(FVector(MeshLocation.X, MeshLocation.Y, MeshLocation.Z + 88.f));
+    SetActorLocation(FVector(MeshLocation.X, MeshLocation.Y, MeshLocation.Z + 5.0f));
 
     // 메시 위치와 회전 리셋
     GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -88.f));

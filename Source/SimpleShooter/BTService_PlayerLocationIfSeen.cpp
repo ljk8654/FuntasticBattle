@@ -28,13 +28,35 @@ void UBTService_PlayerLocationIfSeen::TickNode(UBehaviorTreeComponent &OwnerComp
     {
         return;
     }
-    if(OwnerComp.GetAIOwner()->LineOfSightTo(PlayerPawn))
-    {
-        OwnerComp.GetBlackboardComponent()->SetValueAsVector(GetSelectedBlackboardKey(), PlayerPawn->GetActorLocation());
-    }
-    else
-    {
-         OwnerComp.GetBlackboardComponent()->ClearValue(GetSelectedBlackboardKey());
-    }
+    APawn* AIPawn = OwnerComp.GetAIOwner()->GetPawn();
 
+	if (AIPawn == nullptr) return;
+    FVector DirectionToPlayer = PlayerPawn->GetActorLocation() - AIPawn->GetActorLocation();
+	float Distance = DirectionToPlayer.Size();
+
+	// 거리 확인
+	if (Distance > SightRadius)
+	{
+		OwnerComp.GetBlackboardComponent()->ClearValue(GetSelectedBlackboardKey());
+		return;
+	}
+
+	// 각도 확인
+	DirectionToPlayer.Normalize();
+	FVector Forward = AIPawn->GetActorForwardVector();
+	float Dot = FVector::DotProduct(Forward, DirectionToPlayer);
+
+	// Dot > cos(각도) : 시야 각도 안에 있음
+	float CosSightAngle = FMath::Cos(FMath::DegreesToRadians(SightAngle));
+	if (Dot > CosSightAngle)
+	{
+		// LineOfSight도 확인하면 좋음
+		if (OwnerComp.GetAIOwner()->LineOfSightTo(PlayerPawn))
+		{
+			OwnerComp.GetBlackboardComponent()->SetValueAsVector(GetSelectedBlackboardKey(), PlayerPawn->GetActorLocation());
+			return;
+		}
+	}
+
+	OwnerComp.GetBlackboardComponent()->ClearValue(GetSelectedBlackboardKey());
 }

@@ -16,9 +16,15 @@ class SIMPLESHOOTER_API AKillEmAllGameMode : public ASimpleShooterGameModeBase
 
 public:
 	virtual void PawnKilled(APawn* PawnKilled) override;
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BGM")
+	USoundBase* BackgroundMusic;
 
 private:
 	void EndGame(bool bIsPlayerWinner);
+
+protected:
+	// Called when the game starts
+	virtual void BeginPlay() override;
 
 };
