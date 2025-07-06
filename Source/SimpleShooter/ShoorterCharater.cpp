@@ -36,7 +36,6 @@ void AShoorterCharater::BeginPlay()
 
 void AShoorterCharater::EnableMovement()
 {
-	GetCharacterMovement()->SetMovementMode(MOVE_Walking);
 	bIsAttacking = false;
 }
 
@@ -137,7 +136,6 @@ float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent cons
         {
 			// 피격 애니메이션
             AnimInstance->Montage_Play(HitMontage);
-			GetCharacterMovement()->DisableMovement();
 
 			// 일정 시간 후 이동 가능하게 복구
 			FTimerHandle UnfreezeHandle;
@@ -167,6 +165,7 @@ void AShoorterCharater::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAction(TEXT("GunMode"), EInputEvent::IE_Pressed, this, &AShoorterCharater::GunMode);
 	PlayerInputComponent->BindAction(TEXT("BatMode"), EInputEvent::IE_Pressed, this, &AShoorterCharater::EquipBat);
 	PlayerInputComponent->BindAction(TEXT("HockeyMode"), EInputEvent::IE_Pressed, this, &AShoorterCharater::EquipHockey);
+	PlayerInputComponent->BindAction(TEXT("ThrowBomb"), IE_Pressed, this, &AShoorterCharater::ThrowBomb);
 }
 
 void AShoorterCharater::Shoot()
@@ -264,11 +263,9 @@ void AShoorterCharater::PunchAttack()
 	if (AnimInstance && AttackMontage)
 	{
 		AnimInstance->Montage_Play(AttackMontage);
-		GetCharacterMovement()->DisableMovement();
-
-		FTimerHandle UnfreezeHandle;
-		GetWorldTimerManager().SetTimer(UnfreezeHandle, this, &AShoorterCharater::EnableMovement, 1.3f, false);
 		
+		FTimerHandle UnfreezeHandle;
+		GetWorldTimerManager().SetTimer(UnfreezeHandle, this, &AShoorterCharater::EnableMovement, 1.3f, false);	
 	}
 }
 
@@ -375,3 +372,33 @@ void AShoorterCharater::ExitRagdoll()
 // {
 //	AddControllerPitchInput(AxisValue);
 // }
+
+void AShoorterCharater::PickupBomb(ABomb* Bomb)
+{
+    if (HeldBomb == nullptr && Bomb)
+    {
+        HeldBomb = Bomb;
+
+        HeldBomb->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("BombSocket"));
+        HeldBomb->SetOwner(this);
+
+    }
+}
+
+void AShoorterCharater::ThrowBomb()
+{
+    if (HeldBomb)
+    {
+        FVector HandLoc = GetMesh()->GetSocketLocation(FName("BombSocket"));
+
+        FVector SpawnLoc = HandLoc 
+            + GetActorForwardVector() * 70.f   // 앞으로 70cm
+            + FVector(0,0,40.f);               // 위로 40cm
+
+        HeldBomb->SetActorLocation(SpawnLoc);
+        HeldBomb->SetActorRotation(GetControlRotation());
+        HeldBomb->OnThrown();
+        HeldBomb->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+        HeldBomb = nullptr;
+    }
+}

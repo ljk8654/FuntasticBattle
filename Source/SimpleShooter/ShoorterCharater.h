@@ -10,6 +10,16 @@ class AGun;
 class Atestactor;
 class AMeleeWeapon;
 
+UENUM(BlueprintType)
+enum class ECharState : uint8
+{
+    Normal     UMETA(DisplayName = "Normal"),
+    Hit        UMETA(DisplayName = "Hit"),
+    Stunned    UMETA(DisplayName = "Stunned"),
+    Recover    UMETA(DisplayName = "Recover")
+};
+
+
 UCLASS()
 class SIMPLESHOOTER_API AShoorterCharater : public ACharacter
 {
@@ -24,6 +34,13 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+	void PickupBomb(class ABomb* Bomb);
+
+    void ThrowBomb();
+
+ 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="State")
+    ECharState CurrentState = ECharState::Normal;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bIsAttacking = false;
 	
@@ -70,6 +87,10 @@ public:
 float RagdollRecoverTime = 3.f;
 
 private:
+
+UPROPERTY(VisibleAnywhere)
+    class ABomb* HeldBomb;
+
 void MoveForward(float AxisValue);
 void StartSprint();
 void StopSprint();

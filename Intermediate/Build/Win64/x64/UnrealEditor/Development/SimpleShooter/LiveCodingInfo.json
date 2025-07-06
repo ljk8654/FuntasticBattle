@@ -3,6 +3,7 @@
 	{
 		"Module.SimpleShooter.cpp.obj": [
 			"Bat.gen.cpp.obj",
+			"Bomb.gen.cpp.obj",
 			"BTService_PlayerLocation.gen.cpp.obj",
 			"BTService_PlayerLocationIfSeen.gen.cpp.obj",
 			"BTTask_ClearBlackboardValue.gen.cpp.obj",
@@ -23,6 +24,7 @@
 			"testactor.gen.cpp.obj",
 			"PerModuleInline.gen.cpp.obj",
 			"Bat.cpp.obj",
+			"Bomb.cpp.obj",
 			"BTService_PlayerLocation.cpp.obj",
 			"BTService_PlayerLocationIfSeen.cpp.obj",
 			"BTTask_ClearBlackboardValue.cpp.obj",

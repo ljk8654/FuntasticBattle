@@ -13,13 +13,75 @@ void EmptyLinkFunctionForGeneratedCodeShoorterCharater() {}
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
+SIMPLESHOOTER_API UClass* Z_Construct_UClass_ABomb_NoRegister();
 SIMPLESHOOTER_API UClass* Z_Construct_UClass_AGun_NoRegister();
 SIMPLESHOOTER_API UClass* Z_Construct_UClass_AMeleeWeapon_NoRegister();
 SIMPLESHOOTER_API UClass* Z_Construct_UClass_AShoorterCharater();
 SIMPLESHOOTER_API UClass* Z_Construct_UClass_AShoorterCharater_NoRegister();
 SIMPLESHOOTER_API UClass* Z_Construct_UClass_Atestactor_NoRegister();
+SIMPLESHOOTER_API UEnum* Z_Construct_UEnum_SimpleShooter_ECharState();
 UPackage* Z_Construct_UPackage__Script_SimpleShooter();
 // End Cross Module References
+
+// Begin Enum ECharState
+static FEnumRegistrationInfo Z_Registration_Info_UEnum_ECharState;
+static UEnum* ECharState_StaticEnum()
+{
+	if (!Z_Registration_Info_UEnum_ECharState.OuterSingleton)
+	{
+		Z_Registration_Info_UEnum_ECharState.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_SimpleShooter_ECharState, (UObject*)Z_Construct_UPackage__Script_SimpleShooter(), TEXT("ECharState"));
+	}
+	return Z_Registration_Info_UEnum_ECharState.OuterSingleton;
+}
+template<> SIMPLESHOOTER_API UEnum* StaticEnum<ECharState>()
+{
+	return ECharState_StaticEnum();
+}
+struct Z_Construct_UEnum_SimpleShooter_ECharState_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "Hit.DisplayName", "Hit" },
+		{ "Hit.Name", "ECharState::Hit" },
+		{ "ModuleRelativePath", "ShoorterCharater.h" },
+		{ "Normal.DisplayName", "Normal" },
+		{ "Normal.Name", "ECharState::Normal" },
+		{ "Recover.DisplayName", "Recover" },
+		{ "Recover.Name", "ECharState::Recover" },
+		{ "Stunned.DisplayName", "Stunned" },
+		{ "Stunned.Name", "ECharState::Stunned" },
+	};
+#endif // WITH_METADATA
+	static constexpr UECodeGen_Private::FEnumeratorParam Enumerators[] = {
+		{ "ECharState::Normal", (int64)ECharState::Normal },
+		{ "ECharState::Hit", (int64)ECharState::Hit },
+		{ "ECharState::Stunned", (int64)ECharState::Stunned },
+		{ "ECharState::Recover", (int64)ECharState::Recover },
+	};
+	static const UECodeGen_Private::FEnumParams EnumParams;
+};
+const UECodeGen_Private::FEnumParams Z_Construct_UEnum_SimpleShooter_ECharState_Statics::EnumParams = {
+	(UObject*(*)())Z_Construct_UPackage__Script_SimpleShooter,
+	nullptr,
+	"ECharState",
+	"ECharState",
+	Z_Construct_UEnum_SimpleShooter_ECharState_Statics::Enumerators,
+	RF_Public|RF_Transient|RF_MarkAsNative,
+	UE_ARRAY_COUNT(Z_Construct_UEnum_SimpleShooter_ECharState_Statics::Enumerators),
+	EEnumFlags::None,
+	(uint8)UEnum::ECppForm::EnumClass,
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UEnum_SimpleShooter_ECharState_Statics::Enum_MetaDataParams), Z_Construct_UEnum_SimpleShooter_ECharState_Statics::Enum_MetaDataParams)
+};
+UEnum* Z_Construct_UEnum_SimpleShooter_ECharState()
+{
+	if (!Z_Registration_Info_UEnum_ECharState.InnerSingleton)
+	{
+		UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_ECharState.InnerSingleton, Z_Construct_UEnum_SimpleShooter_ECharState_Statics::EnumParams);
+	}
+	return Z_Registration_Info_UEnum_ECharState.InnerSingleton;
+}
+// End Enum ECharState
 
 // Begin Class AShoorterCharater Function EnableMovement
 struct Z_Construct_UFunction_AShoorterCharater_EnableMovement_Statics
@@ -263,6 +325,10 @@ struct Z_Construct_UClass_AShoorterCharater_Statics
 		{ "IncludePath", "ShoorterCharater.h" },
 		{ "ModuleRelativePath", "ShoorterCharater.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentState_MetaData[] = {
+		{ "Category", "State" },
+		{ "ModuleRelativePath", "ShoorterCharater.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsAttacking_MetaData[] = {
 		{ "Category", "ShoorterCharater" },
 		{ "ModuleRelativePath", "ShoorterCharater.h" },
@@ -289,6 +355,10 @@ struct Z_Construct_UClass_AShoorterCharater_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RagdollRecoverTime_MetaData[] = {
 		{ "Category", "Stun" },
+		{ "ModuleRelativePath", "ShoorterCharater.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HeldBomb_MetaData[] = {
+		{ "Category", "ShoorterCharater" },
 		{ "ModuleRelativePath", "ShoorterCharater.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerDamage_MetaData[] = {
@@ -361,6 +431,8 @@ struct Z_Construct_UClass_AShoorterCharater_Statics
 		{ "ModuleRelativePath", "ShoorterCharater.h" },
 	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FBytePropertyParams NewProp_CurrentState_Underlying;
+	static const UECodeGen_Private::FEnumPropertyParams NewProp_CurrentState;
 	static void NewProp_bIsAttacking_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsAttacking;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Health;
@@ -369,6 +441,7 @@ struct Z_Construct_UClass_AShoorterCharater_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AttackMontage;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_JumpMontage;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_RagdollRecoverTime;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_HeldBomb;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_PlayerDamage;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_PlayerStunDamage;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_PlayerForce;
@@ -403,6 +476,8 @@ struct Z_Construct_UClass_AShoorterCharater_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_CurrentState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_CurrentState = { "CurrentState", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, CurrentState), Z_Construct_UEnum_SimpleShooter_ECharState, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentState_MetaData), NewProp_CurrentState_MetaData) }; // 1499059422
 void Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bIsAttacking_SetBit(void* Obj)
 {
 	((AShoorterCharater*)Obj)->bIsAttacking = 1;
@@ -414,6 +489,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterChara
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_AttackMontage = { "AttackMontage", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, AttackMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AttackMontage_MetaData), NewProp_AttackMontage_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_JumpMontage = { "JumpMontage", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, JumpMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_JumpMontage_MetaData), NewProp_JumpMontage_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_RagdollRecoverTime = { "RagdollRecoverTime", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, RagdollRecoverTime), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RagdollRecoverTime_MetaData), NewProp_RagdollRecoverTime_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_HeldBomb = { "HeldBomb", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, HeldBomb), Z_Construct_UClass_ABomb_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HeldBomb_MetaData), NewProp_HeldBomb_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_PlayerDamage = { "PlayerDamage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, PlayerDamage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerDamage_MetaData), NewProp_PlayerDamage_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_PlayerStunDamage = { "PlayerStunDamage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, PlayerStunDamage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerStunDamage_MetaData), NewProp_PlayerStunDamage_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_PlayerForce = { "PlayerForce", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, PlayerForce), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerForce_MetaData), NewProp_PlayerForce_MetaData) };
@@ -433,6 +509,8 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterChara
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_Bat = { "Bat", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, Bat), Z_Construct_UClass_Atestactor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Bat_MetaData), NewProp_Bat_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_MeleeWeapon = { "MeleeWeapon", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, MeleeWeapon), Z_Construct_UClass_AMeleeWeapon_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MeleeWeapon_MetaData), NewProp_MeleeWeapon_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShoorterCharater_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_CurrentState_Underlying,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_CurrentState,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bIsAttacking,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_Health,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_Stamina,
@@ -440,6 +518,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShoorter
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_AttackMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_JumpMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_RagdollRecoverTime,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_HeldBomb,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_PlayerDamage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_PlayerStunDamage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_PlayerForce,
@@ -499,13 +578,16 @@ AShoorterCharater::~AShoorterCharater() {}
 // Begin Registration
 struct Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_Statics
 {
+	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
+		{ ECharState_StaticEnum, TEXT("ECharState"), &Z_Registration_Info_UEnum_ECharState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1499059422U) },
+	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AShoorterCharater, AShoorterCharater::StaticClass, TEXT("AShoorterCharater"), &Z_Registration_Info_UClass_AShoorterCharater, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShoorterCharater), 2889760854U) },
+		{ Z_Construct_UClass_AShoorterCharater, AShoorterCharater::StaticClass, TEXT("AShoorterCharater"), &Z_Registration_Info_UClass_AShoorterCharater, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShoorterCharater), 3574397502U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_1309982176(TEXT("/Script/SimpleShooter"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_4136014288(TEXT("/Script/SimpleShooter"),
 	Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_Statics::ClassInfo),
 	nullptr, 0,
-	nullptr, 0);
+	Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
