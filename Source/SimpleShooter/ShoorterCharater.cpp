@@ -9,6 +9,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Engine/DamageEvents.h"
 #include "MeleeWeapon.h"
+#include "ShooterPlayerController.h"
+#include "HUDWidget.h"
+#include "Bomb.h"
 
 // Sets default values
 AShoorterCharater::AShoorterCharater()
@@ -26,6 +29,7 @@ void AShoorterCharater::BeginPlay()
 	AmountStunDamage = PlayerStunDamage;
 	AmountForce = PlayerForce;
 	Health = MaxHealth;
+	Stamina = MaxStamina;
 	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
 	Gun = GetWorld()->SpawnActor<AGun>(GunClass);
 	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
@@ -76,6 +80,23 @@ void AShoorterCharater::Tick(float DeltaTime)
 		Stamina += 0.05f; // 스태미너 증가
 		}
 	}
+	 const float Stamina01 = Stamina / MaxStamina;
+
+    if (!FMath::IsNearlyEqual(Stamina01, PrevStamina01, 0.001f))
+    {
+        PrevStamina01 = Stamina01;
+
+        if (APlayerController* PC0 = Cast<APlayerController>(GetController()))
+        {
+            if (AShooterPlayerController* PC = Cast<AShooterPlayerController>(PC0))
+            {
+                if (UHUDWidget* HUD = PC->GetHUDWidget())
+                {
+                    HUD->SetStaminaNormalized(Stamina01);
+                }
+            }
+        }
+    }
 }
 
 float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
@@ -83,6 +104,17 @@ float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent cons
 	float DamageToApply = Super::TakeDamage(DamageAmount,DamageEvent,EventInstigator, DamageCauser);
 	DamageToApply = FMath::Min(Health, DamageToApply);
 	Health -= DamageToApply;
+
+	if (APlayerController* PC0 = Cast<APlayerController>(GetController()))
+	{
+    	if (AShooterPlayerController* PC = Cast<AShooterPlayerController>(PC0))
+    	{
+        	if (UHUDWidget* HUD = PC->GetHUDWidget())
+        	{
+            	HUD->SetHpNormalized(Health / MaxHealth);
+        	}
+    	}
+	}
 
     // 체력이 50% 이하로 떨어졌고 아직 기절 안 했으면 기절 처리
     if (!bIsRagdoll && !bHasTriggeredStun && Health <= MaxHealth * 0.5f && Health > 0.f)

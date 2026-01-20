@@ -4,13 +4,19 @@
 #include "ShooterPlayerController.h"
 #include "TimerManager.h"
 #include "Blueprint/UserWidget.h"
-#include "LoginWidget.h"
+#include "ShooterPlayerController.h"
+#include "HUDWidget.h"
+#include "Kismet/GameplayStatics.h"
 
 void AShooterPlayerController::GameHasEnded(class AActor* EndGameFocus, bool bIsWinner)
 {
     Super::GameHasEnded(EndGameFocus,bIsWinner);
     
-    HUD->RemoveFromViewport();
+    if (HUD)
+    {
+        HUD->RemoveFromViewport();
+    }
+
     if (bIsWinner)
     {
         UUserWidget* WinnerScreen = CreateWidget(this, WinnerScreenClass);
@@ -34,51 +40,81 @@ void AShooterPlayerController::BeginPlay()
 {
     Super::BeginPlay();
 
-    HUD= CreateWidget(this, HUDClass);
-    if(HUD != nullptr)
+    // 게임 HUD 생성
+    HUD = nullptr;
+    if (HUDClass)
     {
-        HUD->AddToViewport();
+        HUD = CreateWidget<UHUDWidget>(this, HUDClass);
+        if (HUD)
+        {
+            HUD->AddToViewport();
+            HUD->SetVisibility(ESlateVisibility::Hidden);
+        }
     }
 
-    // 1. 입력 비활성화
+
+    // 입력/UI 모드
     SetShowMouseCursor(true);
+
     FInputModeUIOnly InputMode;
     SetInputMode(InputMode);
 
-    // 2. 로그인 UI 표시
+    // 게임 일시정지
+    UGameplayStatics::SetGamePaused(GetWorld(), true);
+
+    // 로그인 UI 표시
     if (LoginWidgetClass)
     {
-        ULoginWidget* LoginUI = CreateWidget<ULoginWidget>(this, LoginWidgetClass);
-        CurrentLoginWidget = LoginUI;
-        if (LoginUI)
+        CurrentLoginWidget = CreateWidget<ULoginWidget>(this, LoginWidgetClass);
+        if (CurrentLoginWidget)
         {
-            LoginUI->AddToViewport();
-            LoginUI->OnLoginSuccess.AddDynamic(this, &AShooterPlayerController::OnLoginSuccess); // 커스텀 이벤트
+            CurrentLoginWidget->AddToViewport();
+            CurrentLoginWidget->OnLoginSuccess.AddDynamic(this, &AShooterPlayerController::OnLoginSuccess);
         }
     }
 }
+
 void AShooterPlayerController::OnLoginSuccess()
 {
-
-       // 1. UI 제거
+    // 1) 로그인 UI 제거
     if (CurrentLoginWidget)
     {
         CurrentLoginWidget->RemoveFromParent();
+        CurrentLoginWidget = nullptr;
     }
 
-    RoomList = CreateWidget<ULoomList>(this, RoomListClass);
-    if(RoomList){
-    RoomList->AddToViewport();
-    RoomList->OnEnterRoomSuccess.AddDynamic(this, &AShooterPlayerController::OnEnterRoomSuccess);
+    // 2) 룸 리스트 표시
+    if (RoomListClass)
+    {
+        RoomList = CreateWidget<ULoomList>(this, RoomListClass);
+        if (RoomList)
+        {
+            RoomList->AddToViewport();
+            RoomList->OnEnterRoomSuccess.AddDynamic(this, &AShooterPlayerController::OnEnterRoomSuccess);
+        }
     }
 }
 
 void AShooterPlayerController::OnEnterRoomSuccess()
 {
+    // 게임 입력 모드로 전환
     SetShowMouseCursor(false);
+
     FInputModeGameOnly InputMode;
     SetInputMode(InputMode);
+
     UGameplayStatics::SetGamePaused(GetWorld(), false);
-    RoomList->RemoveFromViewport();
-    
+
+    // 룸 리스트 제거
+    if (RoomList)
+    {
+        RoomList->RemoveFromViewport();
+        RoomList = nullptr;
+    }
+
+    // HUD 보이기
+    if (HUD)
+    {
+        HUD->SetVisibility(ESlateVisibility::Visible);
+    }
 }

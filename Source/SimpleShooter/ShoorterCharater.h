@@ -9,6 +9,9 @@
 class AGun;
 class Atestactor;
 class AMeleeWeapon;
+class AShooterPlayerController;
+class UHUDWidget;
+class ABomb;
 
 UENUM(BlueprintType)
 enum class ECharState : uint8
@@ -108,7 +111,7 @@ void EnterRagdoll();
 UFUNCTION()
 void ExitRagdoll();
 
-
+float PrevStamina01 = -1.f;
 
 bool bIsRagdoll = false;
 bool bHasTriggeredStun = false;
