@@ -2,6 +2,9 @@
 
 
 #include "RoomButton.h"
+#include "Components/Button.h"
+#include "Components/TextBlock.h"
+#include "Kismet/GameplayStatics.h"
 
 
 
@@ -16,6 +19,11 @@ void URoomButton::Setup(const FString& InRoomName)
 
 void URoomButton::HandleClick()
 {
+     if (ClickSound)
+    {
+        UGameplayStatics::PlaySound2D(this, ClickSound);
+    }
+
     OnClicked.Broadcast(RoomName);
 }
 

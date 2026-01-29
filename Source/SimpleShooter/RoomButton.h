@@ -25,6 +25,8 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnRoomClicked OnClicked;
 
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Sound")
+    USoundBase* ClickSound;
 protected:
     UPROPERTY(meta = (BindWidget))
     class UButton* RoomButton;

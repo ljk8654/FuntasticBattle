@@ -36,7 +36,18 @@ protected:
     UPROPERTY(meta = (BindWidget))
     class UTextBlock* ErrorText;
 
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Sound")
+    USoundBase* ClickSound;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Sound")
+    USoundBase* InputSound;
+
+    
 private:
     UFUNCTION()
     void OnLoginClicked(); // 로그인 클릭
+    UFUNCTION() 
+    void OnTextChanged(const FText& Text);
+    float LastInputSoundTime = 0.f;
+    float InputInterval = 0.0f;
 };

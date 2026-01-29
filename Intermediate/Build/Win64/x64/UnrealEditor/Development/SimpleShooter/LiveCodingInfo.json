@@ -24,19 +24,17 @@
 			"testactor.gen.cpp.obj",
 			"PerModuleInline.gen.cpp.obj",
 			"Bat.cpp.obj",
+			"Bomb.cpp.obj",
 			"BTService_PlayerLocation.cpp.obj",
 			"BTService_PlayerLocationIfSeen.cpp.obj",
 			"BTTask_ClearBlackboardValue.cpp.obj",
 			"Gun.cpp.obj",
 			"HUDWidget.cpp.obj",
 			"KillEmAllGameMode.cpp.obj",
-			"LoginWidget.cpp.obj",
-			"LoomList.cpp.obj",
 			"MeleeWeapon.cpp.obj",
 			"MyBTTask_Shoot.cpp.obj",
 			"MyPawn.cpp.obj",
 			"PoisonGas.cpp.obj",
-			"RoomButton.cpp.obj",
 			"ShoorterCharater.cpp.obj",
 			"ShooterAIController.cpp.obj",
 			"ShooterPlayerController.cpp.obj",
@@ -44,7 +42,9 @@
 			"SimpleShooterGameModeBase.cpp.obj",
 			"testactor.cpp.obj",
 			"SimpleShooter.init.gen.cpp.obj",
-			"Bomb.cpp.obj"
+			"LoginWidget.cpp.obj",
+			"LoomList.cpp.obj",
+			"RoomButton.cpp.obj"
 		]
 	}
 }
