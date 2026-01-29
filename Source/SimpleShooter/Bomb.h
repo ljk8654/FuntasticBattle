@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Sound/SoundBase.h"
+#include "Components/AudioComponent.h"
+#include "Sound/SoundAttenuation.h"
 #include "Bomb.generated.h"
 
 UCLASS()
@@ -13,6 +16,19 @@ class SIMPLESHOOTER_API ABomb : public AActor
     
 public:
     ABomb();
+    // 퓨즈 소리
+    UPROPERTY(EditAnywhere, Category="Sound")
+    USoundBase* FuseSound;
+
+    // 폭발 소리
+    UPROPERTY(EditAnywhere, Category="Sound")
+    USoundBase* ExplosionSound;
+
+    UPROPERTY(EditAnywhere, Category="Sound")
+    USoundAttenuation* FuseAttenuation;
+
+    UPROPERTY(EditAnywhere, Category="Sound")
+    USoundAttenuation* ExplosionAttenuation;
 
     // 폭탄 퓨즈 타이머 제어
     void StartFuse();
@@ -57,4 +73,7 @@ public:
 private:
     FTimerHandle ExplosionTimerHandle;
     bool bFuseStarted = false;
+    
+    UPROPERTY()
+    UAudioComponent* FuseAudioComponent;
 };

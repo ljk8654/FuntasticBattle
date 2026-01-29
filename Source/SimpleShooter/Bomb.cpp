@@ -82,11 +82,32 @@ void ABomb::OnThrown()
 
     StartFuse();
 }
+
 void ABomb::StartFuse()
 {
     if (!bFuseStarted)
     {
+        if (bFuseStarted) return;
         bFuseStarted = true;
+
+        // 심지 소리 재생 (루프)
+        if (FuseSound)
+    {
+        FuseAudioComponent = UGameplayStatics::SpawnSoundAttached(
+            FuseSound,
+            RootComponent,                // 폭탄에 붙임
+            NAME_None,
+            FVector::ZeroVector,
+            EAttachLocation::KeepRelativeOffset,
+            true,                         // 액터 파괴 시 자동 종료
+            1.0f,                         // Volume
+            1.0f,                         // Pitch
+            0.0f,
+            FuseAttenuation               // 거리 기반 소리
+        );
+    }
+
+
         GetWorld()->GetTimerManager().SetTimer(
             ExplosionTimerHandle,
             this,
@@ -101,10 +122,37 @@ void ABomb::StopFuse()
 {
     bFuseStarted = false;
     GetWorld()->GetTimerManager().ClearTimer(ExplosionTimerHandle);
+
+    // 심지 소리 정지
+    if (FuseAudioComponent)
+    {
+        FuseAudioComponent->Stop();
+        FuseAudioComponent = nullptr;
+    }
 }
 
 void ABomb::Explode()
 {
+    // 심지 소리 정지
+    if (FuseAudioComponent)
+    {
+        FuseAudioComponent->Stop();
+        FuseAudioComponent = nullptr;
+    }
+
+    // 폭발음 재생
+    if (ExplosionSound)
+    {
+        UGameplayStatics::PlaySoundAtLocation(
+            this,
+            ExplosionSound,
+            GetActorLocation(),
+            1.0f,
+            1.0f,
+            0.0f,
+            ExplosionAttenuation 
+);
+    }
     // 폭발 이펙트
     if (ExplosionEffect)
     {

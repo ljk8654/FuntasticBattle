@@ -19,15 +19,16 @@
 			"RoomButton.gen.cpp.obj",
 			"ShoorterCharater.gen.cpp.obj",
 			"ShooterAIController.gen.cpp.obj",
+			"ShooterPlayerController.gen.cpp.obj",
 			"SimpleShooterGameModeBase.gen.cpp.obj",
 			"testactor.gen.cpp.obj",
 			"PerModuleInline.gen.cpp.obj",
 			"Bat.cpp.obj",
-			"Bomb.cpp.obj",
 			"BTService_PlayerLocation.cpp.obj",
 			"BTService_PlayerLocationIfSeen.cpp.obj",
 			"BTTask_ClearBlackboardValue.cpp.obj",
 			"Gun.cpp.obj",
+			"HUDWidget.cpp.obj",
 			"KillEmAllGameMode.cpp.obj",
 			"LoginWidget.cpp.obj",
 			"LoomList.cpp.obj",
@@ -36,15 +37,14 @@
 			"MyPawn.cpp.obj",
 			"PoisonGas.cpp.obj",
 			"RoomButton.cpp.obj",
+			"ShoorterCharater.cpp.obj",
 			"ShooterAIController.cpp.obj",
+			"ShooterPlayerController.cpp.obj",
 			"SimpleShooter.cpp.obj",
 			"SimpleShooterGameModeBase.cpp.obj",
 			"testactor.cpp.obj",
-			"ShooterPlayerController.gen.cpp.obj",
 			"SimpleShooter.init.gen.cpp.obj",
-			"HUDWidget.cpp.obj",
-			"ShoorterCharater.cpp.obj",
-			"ShooterPlayerController.cpp.obj"
+			"Bomb.cpp.obj"
 		]
 	}
 }
