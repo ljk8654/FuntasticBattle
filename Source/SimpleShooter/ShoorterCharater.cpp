@@ -208,8 +208,16 @@ void AShoorterCharater::Shoot()
 
 
 void AShoorterCharater::MoveForward(float AxisValue)
-{	
-	AddMovementInput(GetActorForwardVector() * AxisValue);
+{
+    if (!Controller) return;
+
+    if (AxisValue == 0.f) return;
+
+    const FRotator ControlRot = Controller->GetControlRotation();
+    const FRotator YawRot(0.f, ControlRot.Yaw, 0.f);
+
+    const FVector Forward = FRotationMatrix(YawRot).GetUnitAxis(EAxis::X);
+    AddMovementInput(Forward, AxisValue);
 }
 
 void AShoorterCharater::StartSprint()
@@ -226,7 +234,15 @@ void AShoorterCharater::StopSprint()
 
 void AShoorterCharater::MoveSide(float AxisValue)
 {
-	AddMovementInput(GetActorRightVector() * AxisValue);
+    if (!Controller) return;
+
+    if (AxisValue == 0.f) return;
+	
+    const FRotator ControlRot = Controller->GetControlRotation();
+    const FRotator YawRot(0.f, ControlRot.Yaw, 0.f);
+
+    const FVector Right = FRotationMatrix(YawRot).GetUnitAxis(EAxis::Y);
+    AddMovementInput(Right, AxisValue);
 }
 
 void AShoorterCharater::LookUpRate(float AxisValue)

@@ -20,6 +20,7 @@
 			"ShoorterCharater.gen.cpp.obj",
 			"ShooterAIController.gen.cpp.obj",
 			"ShooterPlayerController.gen.cpp.obj",
+			"SimpleShooter.init.gen.cpp.obj",
 			"SimpleShooterGameModeBase.gen.cpp.obj",
 			"testactor.gen.cpp.obj",
 			"PerModuleInline.gen.cpp.obj",
@@ -31,20 +32,19 @@
 			"Gun.cpp.obj",
 			"HUDWidget.cpp.obj",
 			"KillEmAllGameMode.cpp.obj",
+			"LoginWidget.cpp.obj",
+			"LoomList.cpp.obj",
 			"MeleeWeapon.cpp.obj",
 			"MyBTTask_Shoot.cpp.obj",
 			"MyPawn.cpp.obj",
 			"PoisonGas.cpp.obj",
-			"ShoorterCharater.cpp.obj",
+			"RoomButton.cpp.obj",
 			"ShooterAIController.cpp.obj",
 			"ShooterPlayerController.cpp.obj",
 			"SimpleShooter.cpp.obj",
 			"SimpleShooterGameModeBase.cpp.obj",
 			"testactor.cpp.obj",
-			"SimpleShooter.init.gen.cpp.obj",
-			"LoginWidget.cpp.obj",
-			"LoomList.cpp.obj",
-			"RoomButton.cpp.obj"
+			"ShoorterCharater.cpp.obj"
 		]
 	}
 }
