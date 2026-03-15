@@ -12,6 +12,7 @@ class AMeleeWeapon;
 class AShooterPlayerController;
 class UHUDWidget;
 class ABomb;
+class AHeart;
 
 UENUM(BlueprintType)
 enum class ECharState : uint8
@@ -53,6 +54,9 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
 
+	UFUNCTION(BlueprintCallable, Category="MySettings")
+	bool Heal(float Amount);
+
 	UFUNCTION(BlueprintPure)
 	float HealthPercent() const;
 
@@ -68,6 +72,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
 	void Shoot();
+
 	
 	void PunchAttack();
 
@@ -87,7 +92,30 @@ public:
 	UAnimMontage* JumpMontage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stun")
-float RagdollRecoverTime = 3.f;
+	float RagdollRecoverTime = 3.f;
+
+	UPROPERTY(EditDefaultsOnly, Category="Drop")
+	bool bEnableDropOnDeath = false; // NPC BP에서만 true로
+
+	UPROPERTY(EditDefaultsOnly, Category="Drop")
+	TSubclassOf<AHeart> HeartDropClass;
+
+	UPROPERTY(EditDefaultsOnly, Category="Drop", meta=(ClampMin="0.0", ClampMax="1.0"))
+	float HeartDropChance = 0.5f;
+
+	UPROPERTY(EditDefaultsOnly, Category="Drop")
+	TSubclassOf<ABomb> BombDropClass;
+
+	UPROPERTY(EditDefaultsOnly, Category="Drop", meta=(ClampMin="0.0", ClampMax="1.0"))
+	float BombDropChance = 0.5f;
+
+	UPROPERTY(EditDefaultsOnly, Category="Drop")
+	bool bDropOnlyOneItem = true;
+
+	UPROPERTY(VisibleAnywhere, Category="Drop")
+	bool bDroppedItem = false;
+
+void TryDropOnDeath();
 
 private:
 

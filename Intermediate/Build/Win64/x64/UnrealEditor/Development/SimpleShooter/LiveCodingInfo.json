@@ -8,6 +8,7 @@
 			"BTService_PlayerLocationIfSeen.gen.cpp.obj",
 			"BTTask_ClearBlackboardValue.gen.cpp.obj",
 			"Gun.gen.cpp.obj",
+			"Heart.gen.cpp.obj",
 			"HUDWidget.gen.cpp.obj",
 			"KillEmAllGameMode.gen.cpp.obj",
 			"LoginWidget.gen.cpp.obj",
@@ -17,10 +18,8 @@
 			"MyPawn.gen.cpp.obj",
 			"PoisonGas.gen.cpp.obj",
 			"RoomButton.gen.cpp.obj",
-			"ShoorterCharater.gen.cpp.obj",
 			"ShooterAIController.gen.cpp.obj",
 			"ShooterPlayerController.gen.cpp.obj",
-			"SimpleShooter.init.gen.cpp.obj",
 			"SimpleShooterGameModeBase.gen.cpp.obj",
 			"testactor.gen.cpp.obj",
 			"PerModuleInline.gen.cpp.obj",
@@ -44,6 +43,9 @@
 			"SimpleShooter.cpp.obj",
 			"SimpleShooterGameModeBase.cpp.obj",
 			"testactor.cpp.obj",
+			"ShoorterCharater.gen.cpp.obj",
+			"SimpleShooter.init.gen.cpp.obj",
+			"Heart.cpp.obj",
 			"ShoorterCharater.cpp.obj"
 		]
 	}

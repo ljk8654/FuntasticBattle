@@ -12,6 +12,8 @@
 #include "ShooterPlayerController.h"
 #include "HUDWidget.h"
 #include "Bomb.h"
+#include "Heart.h"
+#include "AIController.h"
 
 // Sets default values
 AShoorterCharater::AShoorterCharater()
@@ -131,7 +133,8 @@ float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent cons
 
 	if (IsDead())
 	{
-			ASimpleShooterGameModeBase* GameMode = GetWorld()->GetAuthGameMode<ASimpleShooterGameModeBase>();
+		TryDropOnDeath();
+		ASimpleShooterGameModeBase* GameMode = GetWorld()->GetAuthGameMode<ASimpleShooterGameModeBase>();
 		if (GameMode != nullptr)
 		{
 			GameMode->PawnKilled(this);
@@ -449,4 +452,72 @@ void AShoorterCharater::ThrowBomb()
         HeldBomb->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
         HeldBomb = nullptr;
     }
+}
+
+bool AShoorterCharater::Heal(float Amount)
+{
+    if (Amount <= 0.f) return false;
+    if (IsDead()) return false;
+    if (Health >= MaxHealth) return false; // 풀피면 실패
+
+    Health = FMath::Clamp(Health + Amount, 0.f, MaxHealth);
+
+    // HUD 업데이트
+    if (APlayerController* PC0 = Cast<APlayerController>(GetController()))
+    {
+        if (AShooterPlayerController* PC = Cast<AShooterPlayerController>(PC0))
+        {
+            if (UHUDWidget* HUD = PC->GetHUDWidget())
+            {
+                HUD->SetHpNormalized(Health / MaxHealth);
+            }
+        }
+    }
+
+    // 50% 이상이면 기절 플래그 리셋
+    if (Health > MaxHealth * 0.5f)
+    {
+        bHasTriggeredStun = false;
+    }
+
+    return true; // 회복 성공
+}
+
+void AShoorterCharater::TryDropOnDeath()
+{
+	UE_LOG(LogTemp, Warning, TEXT("[DROP] TryDropOnDeath called. Enable=%d PlayerControlled=%d Dropped=%d HeartClass=%s BombClass=%s"),
+        bEnableDropOnDeath,
+        IsPlayerControlled(),
+        bDroppedItem,
+        *GetNameSafe(HeartDropClass),
+        *GetNameSafe(BombDropClass));
+    if (!bEnableDropOnDeath) return;
+    if (IsPlayerControlled()) return;        
+    if (bDroppedItem) return;             
+    bDroppedItem = true;
+
+    UWorld* World = GetWorld();
+    if (!World) return;
+
+    const FVector BaseLoc = GetActorLocation() + FVector(0.f, 0.f, 60.f);
+
+    FActorSpawnParameters Params;
+    Params.SpawnCollisionHandlingOverride =
+        ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+    if (bDropOnlyOneItem)
+{
+    float R = FMath::FRand();
+
+    if (HeartDropClass && R < HeartDropChance)
+    {
+        World->SpawnActor<AHeart>(HeartDropClass, BaseLoc, FRotator::ZeroRotator, Params);
+    }
+    else if (BombDropClass && R < HeartDropChance + BombDropChance)
+    {
+        World->SpawnActor<ABomb>(BombDropClass, BaseLoc + FVector(20,0,10), FRotator::ZeroRotator, Params);
+    }
+
+    return;
+}
 }

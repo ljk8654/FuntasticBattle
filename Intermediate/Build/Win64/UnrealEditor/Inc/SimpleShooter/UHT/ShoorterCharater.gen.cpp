@@ -15,6 +15,7 @@ ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 SIMPLESHOOTER_API UClass* Z_Construct_UClass_ABomb_NoRegister();
 SIMPLESHOOTER_API UClass* Z_Construct_UClass_AGun_NoRegister();
+SIMPLESHOOTER_API UClass* Z_Construct_UClass_AHeart_NoRegister();
 SIMPLESHOOTER_API UClass* Z_Construct_UClass_AMeleeWeapon_NoRegister();
 SIMPLESHOOTER_API UClass* Z_Construct_UClass_AShoorterCharater();
 SIMPLESHOOTER_API UClass* Z_Construct_UClass_AShoorterCharater_NoRegister();
@@ -170,6 +171,58 @@ DEFINE_FUNCTION(AShoorterCharater::execExitRagdoll)
 }
 // End Class AShoorterCharater Function ExitRagdoll
 
+// Begin Class AShoorterCharater Function Heal
+struct Z_Construct_UFunction_AShoorterCharater_Heal_Statics
+{
+	struct ShoorterCharater_eventHeal_Parms
+	{
+		float Amount;
+		bool ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "MySettings" },
+		{ "ModuleRelativePath", "ShoorterCharater.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Amount;
+	static void NewProp_ReturnValue_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AShoorterCharater_Heal_Statics::NewProp_Amount = { "Amount", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShoorterCharater_eventHeal_Parms, Amount), METADATA_PARAMS(0, nullptr) };
+void Z_Construct_UFunction_AShoorterCharater_Heal_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+{
+	((ShoorterCharater_eventHeal_Parms*)Obj)->ReturnValue = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AShoorterCharater_Heal_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ShoorterCharater_eventHeal_Parms), &Z_Construct_UFunction_AShoorterCharater_Heal_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AShoorterCharater_Heal_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShoorterCharater_Heal_Statics::NewProp_Amount,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShoorterCharater_Heal_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AShoorterCharater_Heal_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShoorterCharater_Heal_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShoorterCharater, nullptr, "Heal", nullptr, nullptr, Z_Construct_UFunction_AShoorterCharater_Heal_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AShoorterCharater_Heal_Statics::PropPointers), sizeof(Z_Construct_UFunction_AShoorterCharater_Heal_Statics::ShoorterCharater_eventHeal_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShoorterCharater_Heal_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShoorterCharater_Heal_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AShoorterCharater_Heal_Statics::ShoorterCharater_eventHeal_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AShoorterCharater_Heal()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShoorterCharater_Heal_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AShoorterCharater::execHeal)
+{
+	P_GET_PROPERTY(FFloatProperty,Z_Param_Amount);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(bool*)Z_Param__Result=P_THIS->Heal(Z_Param_Amount);
+	P_NATIVE_END;
+}
+// End Class AShoorterCharater Function Heal
+
 // Begin Class AShoorterCharater Function HealthPercent
 struct Z_Construct_UFunction_AShoorterCharater_HealthPercent_Statics
 {
@@ -306,6 +359,7 @@ void AShoorterCharater::StaticRegisterNativesAShoorterCharater()
 		{ "EnableMovement", &AShoorterCharater::execEnableMovement },
 		{ "EnterRagdoll", &AShoorterCharater::execEnterRagdoll },
 		{ "ExitRagdoll", &AShoorterCharater::execExitRagdoll },
+		{ "Heal", &AShoorterCharater::execHeal },
 		{ "HealthPercent", &AShoorterCharater::execHealthPercent },
 		{ "IsDead", &AShoorterCharater::execIsDead },
 		{ "StaminaPercent", &AShoorterCharater::execStaminaPercent },
@@ -355,6 +409,44 @@ struct Z_Construct_UClass_AShoorterCharater_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RagdollRecoverTime_MetaData[] = {
 		{ "Category", "Stun" },
+		{ "ModuleRelativePath", "ShoorterCharater.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bEnableDropOnDeath_MetaData[] = {
+		{ "Category", "Drop" },
+		{ "ModuleRelativePath", "ShoorterCharater.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HeartDropClass_MetaData[] = {
+		{ "Category", "Drop" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// NPC BP\xec\x97\x90\xec\x84\x9c\xeb\xa7\x8c true\xeb\xa1\x9c\n" },
+#endif
+		{ "ModuleRelativePath", "ShoorterCharater.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "NPC BP\xec\x97\x90\xec\x84\x9c\xeb\xa7\x8c true\xeb\xa1\x9c" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HeartDropChance_MetaData[] = {
+		{ "Category", "Drop" },
+		{ "ClampMax", "1.0" },
+		{ "ClampMin", "0.0" },
+		{ "ModuleRelativePath", "ShoorterCharater.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BombDropClass_MetaData[] = {
+		{ "Category", "Drop" },
+		{ "ModuleRelativePath", "ShoorterCharater.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BombDropChance_MetaData[] = {
+		{ "Category", "Drop" },
+		{ "ClampMax", "1.0" },
+		{ "ClampMin", "0.0" },
+		{ "ModuleRelativePath", "ShoorterCharater.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bDropOnlyOneItem_MetaData[] = {
+		{ "Category", "Drop" },
+		{ "ModuleRelativePath", "ShoorterCharater.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bDroppedItem_MetaData[] = {
+		{ "Category", "Drop" },
 		{ "ModuleRelativePath", "ShoorterCharater.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HeldBomb_MetaData[] = {
@@ -441,6 +533,16 @@ struct Z_Construct_UClass_AShoorterCharater_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AttackMontage;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_JumpMontage;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_RagdollRecoverTime;
+	static void NewProp_bEnableDropOnDeath_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bEnableDropOnDeath;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_HeartDropClass;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_HeartDropChance;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_BombDropClass;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_BombDropChance;
+	static void NewProp_bDropOnlyOneItem_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bDropOnlyOneItem;
+	static void NewProp_bDroppedItem_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bDroppedItem;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_HeldBomb;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_PlayerDamage;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_PlayerStunDamage;
@@ -466,6 +568,7 @@ struct Z_Construct_UClass_AShoorterCharater_Statics
 		{ &Z_Construct_UFunction_AShoorterCharater_EnableMovement, "EnableMovement" }, // 4208461270
 		{ &Z_Construct_UFunction_AShoorterCharater_EnterRagdoll, "EnterRagdoll" }, // 1819184751
 		{ &Z_Construct_UFunction_AShoorterCharater_ExitRagdoll, "ExitRagdoll" }, // 3082542266
+		{ &Z_Construct_UFunction_AShoorterCharater_Heal, "Heal" }, // 1564785485
 		{ &Z_Construct_UFunction_AShoorterCharater_HealthPercent, "HealthPercent" }, // 2728961126
 		{ &Z_Construct_UFunction_AShoorterCharater_IsDead, "IsDead" }, // 1386243381
 		{ &Z_Construct_UFunction_AShoorterCharater_StaminaPercent, "StaminaPercent" }, // 3147513359
@@ -489,6 +592,25 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterChara
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_AttackMontage = { "AttackMontage", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, AttackMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AttackMontage_MetaData), NewProp_AttackMontage_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_JumpMontage = { "JumpMontage", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, JumpMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_JumpMontage_MetaData), NewProp_JumpMontage_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_RagdollRecoverTime = { "RagdollRecoverTime", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, RagdollRecoverTime), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RagdollRecoverTime_MetaData), NewProp_RagdollRecoverTime_MetaData) };
+void Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bEnableDropOnDeath_SetBit(void* Obj)
+{
+	((AShoorterCharater*)Obj)->bEnableDropOnDeath = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bEnableDropOnDeath = { "bEnableDropOnDeath", nullptr, (EPropertyFlags)0x0010000000010001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AShoorterCharater), &Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bEnableDropOnDeath_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bEnableDropOnDeath_MetaData), NewProp_bEnableDropOnDeath_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_HeartDropClass = { "HeartDropClass", nullptr, (EPropertyFlags)0x0014000000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, HeartDropClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AHeart_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HeartDropClass_MetaData), NewProp_HeartDropClass_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_HeartDropChance = { "HeartDropChance", nullptr, (EPropertyFlags)0x0010000000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, HeartDropChance), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HeartDropChance_MetaData), NewProp_HeartDropChance_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_BombDropClass = { "BombDropClass", nullptr, (EPropertyFlags)0x0014000000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, BombDropClass), Z_Construct_UClass_UClass, Z_Construct_UClass_ABomb_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BombDropClass_MetaData), NewProp_BombDropClass_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_BombDropChance = { "BombDropChance", nullptr, (EPropertyFlags)0x0010000000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, BombDropChance), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BombDropChance_MetaData), NewProp_BombDropChance_MetaData) };
+void Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bDropOnlyOneItem_SetBit(void* Obj)
+{
+	((AShoorterCharater*)Obj)->bDropOnlyOneItem = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bDropOnlyOneItem = { "bDropOnlyOneItem", nullptr, (EPropertyFlags)0x0010000000010001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AShoorterCharater), &Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bDropOnlyOneItem_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bDropOnlyOneItem_MetaData), NewProp_bDropOnlyOneItem_MetaData) };
+void Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bDroppedItem_SetBit(void* Obj)
+{
+	((AShoorterCharater*)Obj)->bDroppedItem = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bDroppedItem = { "bDroppedItem", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AShoorterCharater), &Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bDroppedItem_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bDroppedItem_MetaData), NewProp_bDroppedItem_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_HeldBomb = { "HeldBomb", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, HeldBomb), Z_Construct_UClass_ABomb_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HeldBomb_MetaData), NewProp_HeldBomb_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_PlayerDamage = { "PlayerDamage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, PlayerDamage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerDamage_MetaData), NewProp_PlayerDamage_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShoorterCharater_Statics::NewProp_PlayerStunDamage = { "PlayerStunDamage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShoorterCharater, PlayerStunDamage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerStunDamage_MetaData), NewProp_PlayerStunDamage_MetaData) };
@@ -518,6 +640,13 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShoorter
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_AttackMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_JumpMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_RagdollRecoverTime,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bEnableDropOnDeath,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_HeartDropClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_HeartDropChance,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_BombDropClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_BombDropChance,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bDropOnlyOneItem,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_bDroppedItem,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_HeldBomb,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_PlayerDamage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShoorterCharater_Statics::NewProp_PlayerStunDamage,
@@ -582,10 +711,10 @@ struct Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCh
 		{ ECharState_StaticEnum, TEXT("ECharState"), &Z_Registration_Info_UEnum_ECharState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1499059422U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AShoorterCharater, AShoorterCharater::StaticClass, TEXT("AShoorterCharater"), &Z_Registration_Info_UClass_AShoorterCharater, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShoorterCharater), 3574397502U) },
+		{ Z_Construct_UClass_AShoorterCharater, AShoorterCharater::StaticClass, TEXT("AShoorterCharater"), &Z_Registration_Info_UClass_AShoorterCharater, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShoorterCharater), 1968580373U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_4136014288(TEXT("/Script/SimpleShooter"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_2044513764(TEXT("/Script/SimpleShooter"),
 	Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShoorterCharater_h_Statics::EnumInfo));
