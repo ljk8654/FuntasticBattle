@@ -100,30 +100,37 @@ void AShooterPlayerController::OnLoginSuccess()
 
 void AShooterPlayerController::OnEnterRoomSuccess()
 {
-    SetShowMouseCursor(false);
-    FInputModeGameOnly InputMode;
-    SetInputMode(InputMode);
-    UGameplayStatics::SetGamePaused(GetWorld(), false);
-
+    // 방 선택 화면 닫기
     if (RoomList)
     {
         RoomList->RemoveFromParent();
         RoomList = nullptr;
     }
 
-    if (HUD)
-        HUD->SetVisibility(ESlateVisibility::Visible);
+    // 게임 언팍즈 + 게임 입력 활성화 (맵 자유 이동)
+    UGameplayStatics::SetGamePaused(GetWorld(), false);
+    SetShowMouseCursor(false);
+    FInputModeGameOnly InputMode;
+    SetInputMode(InputMode);
+
+    // 대기 UI 표시 (방장이면 시작 버튼 보임)
+    if (WaitingRoomWidgetClass)
+    {
+        WaitingRoomWidget = CreateWidget<UWaitingRoomWidget>(this, WaitingRoomWidgetClass);
+        if (WaitingRoomWidget)
+        {
+            WaitingRoomWidget->AddToViewport();
+            WaitingRoomWidget->SetOwnerMode(bIsOwner);
+        }
+    }
 
     if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
     {
         if (APawn* MyPawn = GetPawn())
         {
-            // 입장 직후 위치 전송
             FVector Pos = MyPawn->GetActorLocation();
             float Yaw = MyPawn->GetActorRotation().Yaw;
             Net->SendMove(Pos, Yaw, FVector::ZeroVector);
-
-            // 초기 아이템 상태(총) 전송 — BeginPlay에서 Gun이 이미 스폰되어 있음
             Net->SendItemState(1);
         }
     }
@@ -269,6 +276,17 @@ void AShooterPlayerController::OnEnterGameReceived(int64 MyPlayerId, int32 Other
 
 void AShooterPlayerController::OnGameStartReceived(uint8 SpawnIndex, int32 ItemSeed)
 {
+    // 대기 UI 닫기
+    if (WaitingRoomWidget)
+    {
+        WaitingRoomWidget->RemoveFromParent();
+        WaitingRoomWidget = nullptr;
+    }
+
+    // 게임 HUD 표시
+    if (HUD)
+        HUD->SetVisibility(ESlateVisibility::Visible);
+
     // PlayerStart 배열에서 SpawnIndex에 해당하는 위치로 이동
     TArray<AActor*> StartPoints;
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), APlayerStart::StaticClass(), StartPoints);
@@ -301,7 +319,7 @@ void AShooterPlayerController::OnGameStartReceived(uint8 SpawnIndex, int32 ItemS
             {
                 int32 Pick = FMath::RandRange(i, Indices.Num() - 1);
                 Indices.Swap(i, Pick);
-                uint8 DropType = (i % 2 == 0) ? 1 : 2; // Heart, Bomb 교대
+                uint8 DropType = (i % 2 == 0) ? 1 : 2;
                 Net->SendItemDrop(DropType, ItemDropSpawnPoints[Indices[i]]);
             }
         }

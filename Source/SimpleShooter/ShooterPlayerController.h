@@ -5,6 +5,7 @@
 #include "HUDWidget.h"
 #include "LoomList.h"
 #include "LoginWidget.h"
+#include "WaitingRoomWidget.h"
 #include "ShooterPlayerController.generated.h"
 
 class ARemotePlayer;
@@ -27,6 +28,9 @@ public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="UI")
     TSubclassOf<ULoomList> RoomListClass;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="UI")
+    TSubclassOf<UWaitingRoomWidget> WaitingRoomWidgetClass;
 
     // 원격 플레이어 BP 클래스 (BP_RemotePlayer를 BP에서 지정)
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Network")
@@ -70,6 +74,9 @@ private:
 
     UPROPERTY()
     ULoomList* RoomList;
+
+    UPROPERTY()
+    UWaitingRoomWidget* WaitingRoomWidget;
 
     // 원격 플레이어 맵
     UPROPERTY()
