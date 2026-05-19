@@ -107,14 +107,17 @@ void AShooterPlayerController::OnEnterRoomSuccess()
     if (HUD)
         HUD->SetVisibility(ESlateVisibility::Visible);
 
-    // 입장 즉시 현재 위치를 서버에 전송 → 다른 플레이어에게 (0,0,0) 대신 실제 위치가 전달됨
     if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
     {
         if (APawn* MyPawn = GetPawn())
         {
+            // 입장 직후 위치 전송
             FVector Pos = MyPawn->GetActorLocation();
             float Yaw = MyPawn->GetActorRotation().Yaw;
             Net->SendMove(Pos, Yaw, FVector::ZeroVector);
+
+            // 초기 아이템 상태(총) 전송 — BeginPlay에서 Gun이 이미 스폰되어 있음
+            Net->SendItemState(1);
         }
     }
 }
