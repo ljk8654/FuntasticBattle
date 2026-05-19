@@ -365,6 +365,14 @@ void AShoorterCharater::PunchAttack()
 	}
 }
 
+void AShoorterCharater::BroadcastItemState(uint8 ItemType)
+{
+    if (!IsPlayerControlled()) return;
+    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+        if (Net->IsConnected())
+            Net->SendItemState(ItemType);
+}
+
 void AShoorterCharater::GunMode()
 {
 	ItemMode = 0;
@@ -381,6 +389,7 @@ void AShoorterCharater::GunMode()
         Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
         Gun->SetOwner(this);
     }
+    BroadcastItemState(1); // Gun
 }
 
 void AShoorterCharater::EquipBat()
@@ -415,6 +424,7 @@ void AShoorterCharater::EquipWeapon(TSubclassOf<AMeleeWeapon> NewWeaponClass)
         AmountStunDamage = PlayerStunDamage + MeleeWeapon->StunDamage;
         AmountForce = PlayerForce + MeleeWeapon->AddForce;
     }
+    BroadcastItemState(NewWeaponClass == HockeyClass ? 3 : 2); // Hockey=3, Bat=2
 }
 
 void AShoorterCharater::EnterRagdoll()
@@ -476,10 +486,9 @@ void AShoorterCharater::PickupBomb(ABomb* Bomb)
     if (HeldBomb == nullptr && Bomb)
     {
         HeldBomb = Bomb;
-
         HeldBomb->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("BombSocket"));
         HeldBomb->SetOwner(this);
-
+        BroadcastItemState(4); // Bomb
     }
 }
 
@@ -489,15 +498,24 @@ void AShoorterCharater::ThrowBomb()
     {
         FVector HandLoc = GetMesh()->GetSocketLocation(FName("BombSocket"));
 
-        FVector SpawnLoc = HandLoc 
-            + GetActorForwardVector() * 70.f   // 앞으로 70cm
-            + FVector(0,0,40.f);               // 위로 40cm
+        FVector SpawnLoc = HandLoc
+            + GetActorForwardVector() * 70.f
+            + FVector(0,0,40.f);
 
         HeldBomb->SetActorLocation(SpawnLoc);
         HeldBomb->SetActorRotation(GetControlRotation());
         HeldBomb->OnThrown();
         HeldBomb->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
         HeldBomb = nullptr;
+
+        // 서버에 투척 위치/방향 전송
+        if (IsPlayerControlled())
+            if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+                if (Net->IsConnected())
+                {
+                    Net->SendThrowBomb(SpawnLoc, GetActorRotation().Yaw);
+                    Net->SendItemState(0); // 폭탄 투척 후 아이템 없음
+                }
     }
 }
 

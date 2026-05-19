@@ -67,6 +67,8 @@ void AShooterPlayerController::BeginPlay()
         Net->OnHit.AddDynamic(this, &AShooterPlayerController::OnHitReceived);
         Net->OnGameEnd.AddDynamic(this, &AShooterPlayerController::OnGameEndReceived);
         Net->OnDisconnected.AddDynamic(this, &AShooterPlayerController::OnServerDisconnected);
+        Net->OnRemoteItemState.AddDynamic(this, &AShooterPlayerController::OnRemoteItemStateReceived);
+        Net->OnRemoteThrowBomb.AddDynamic(this, &AShooterPlayerController::OnRemoteThrowBombReceived);
     }
 }
 
@@ -203,4 +205,22 @@ void AShooterPlayerController::OnServerDisconnected()
             Remote->Destroy();
     }
     RemotePlayers.Empty();
+}
+
+void AShooterPlayerController::OnRemoteItemStateReceived(int64 PlayerId, uint8 ItemType)
+{
+    if (ARemotePlayer** Found = RemotePlayers.Find(PlayerId))
+    {
+        if (*Found)
+            (*Found)->SetItemState(ItemType);
+    }
+}
+
+void AShooterPlayerController::OnRemoteThrowBombReceived(int64 PlayerId, FVector Pos, float Yaw)
+{
+    if (ARemotePlayer** Found = RemotePlayers.Find(PlayerId))
+    {
+        if (*Found)
+            (*Found)->SpawnSyncBomb(Pos, Yaw);
+    }
 }

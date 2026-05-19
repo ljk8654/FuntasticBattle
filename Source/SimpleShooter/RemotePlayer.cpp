@@ -2,6 +2,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Animation/AnimInstance.h"
+#include "Gun.h"
+#include "MeleeWeapon.h"
+#include "Bomb.h"
 
 ARemotePlayer::ARemotePlayer()
 {
@@ -63,4 +66,63 @@ void ARemotePlayer::ApplyAnimState(uint8 State)
 
     if (Montage)
         AnimInst->Montage_Play(Montage);
+}
+
+void ARemotePlayer::SetItemState(uint8 ItemType)
+{
+    if (CurrentGun)       { CurrentGun->Destroy();       CurrentGun = nullptr; }
+    if (CurrentMeleeWeapon){ CurrentMeleeWeapon->Destroy(); CurrentMeleeWeapon = nullptr; }
+
+    EFBItemType Item = static_cast<EFBItemType>(ItemType);
+    switch (Item)
+    {
+    case EFBItemType::Gun:
+        if (GunClass)
+        {
+            CurrentGun = GetWorld()->SpawnActor<AGun>(GunClass);
+            if (CurrentGun)
+            {
+                CurrentGun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+                CurrentGun->SetOwner(this);
+            }
+        }
+        break;
+    case EFBItemType::Bat:
+        if (BatClass)
+        {
+            CurrentMeleeWeapon = GetWorld()->SpawnActor<AMeleeWeapon>(BatClass);
+            if (CurrentMeleeWeapon)
+            {
+                CurrentMeleeWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+                CurrentMeleeWeapon->SetOwner(this);
+            }
+        }
+        break;
+    case EFBItemType::Hockey:
+        if (HockeyClass)
+        {
+            CurrentMeleeWeapon = GetWorld()->SpawnActor<AMeleeWeapon>(HockeyClass);
+            if (CurrentMeleeWeapon)
+            {
+                CurrentMeleeWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("HockeySocket"));
+                CurrentMeleeWeapon->SetOwner(this);
+            }
+        }
+        break;
+    case EFBItemType::None:
+    default:
+        break;
+    }
+}
+
+void ARemotePlayer::SpawnSyncBomb(FVector Pos, float Yaw)
+{
+    if (!BombClass) return;
+
+    ABomb* SyncBomb = GetWorld()->SpawnActor<ABomb>(BombClass, Pos, FRotator(0.f, Yaw, 0.f));
+    if (SyncBomb)
+    {
+        SyncBomb->SetAsSyncBomb();
+        SyncBomb->OnThrown();
+    }
 }

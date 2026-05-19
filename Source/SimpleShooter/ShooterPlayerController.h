@@ -87,4 +87,10 @@ private:
 
     UFUNCTION()
     void OnServerDisconnected();
+
+    UFUNCTION()
+    void OnRemoteItemStateReceived(int64 PlayerId, uint8 ItemType);
+
+    UFUNCTION()
+    void OnRemoteThrowBombReceived(int64 PlayerId, FVector Pos, float Yaw);
 };

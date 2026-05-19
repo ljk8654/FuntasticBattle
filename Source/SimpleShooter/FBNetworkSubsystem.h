@@ -37,6 +37,8 @@ public:
     void SendMove(const FVector& Pos, float Yaw, const FVector& Vel);
     void SendAnimState(uint8 State);
     void SendDamage(int64 TargetId, float Amount);
+    void SendItemState(uint8 ItemType);
+    void SendThrowBomb(const FVector& Pos, float Yaw);
     void SendChat(const FString& Msg);
 
     // 게임 스레드 이벤트 델리게이트
@@ -67,6 +69,14 @@ public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnRemotePlayerChat, int64, PlayerId, FString, Message);
     UPROPERTY(BlueprintAssignable)
     FOnRemotePlayerChat OnRemotePlayerChat;
+
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnRemoteItemState, int64, PlayerId, uint8, ItemType);
+    UPROPERTY(BlueprintAssignable)
+    FOnRemoteItemState OnRemoteItemState;
+
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnRemoteThrowBomb, int64, PlayerId, FVector, Pos, float, Yaw);
+    UPROPERTY(BlueprintAssignable)
+    FOnRemoteThrowBomb OnRemoteThrowBomb;
 
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnHit, int64, AttackerId, int64, TargetId, float, Amount, float, RemainHp);
     UPROPERTY(BlueprintAssignable)

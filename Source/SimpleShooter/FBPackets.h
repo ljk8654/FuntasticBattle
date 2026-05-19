@@ -15,6 +15,8 @@ enum class EFBPacketId : uint16
     CS_MOVE         = 10,
     CS_ANIM_STATE   = 11,
     CS_DAMAGE       = 12,
+    CS_ITEM_STATE   = 13,
+    CS_THROW_BOMB   = 14,
     CS_CHAT         = 20,
 
     SC_LOGIN_RES        = 1001,
@@ -24,6 +26,8 @@ enum class EFBPacketId : uint16
     SC_PLAYER_MOVE      = 1010,
     SC_ANIM_STATE       = 1011,
     SC_HIT              = 1012,
+    SC_ITEM_STATE       = 1013,
+    SC_THROW_BOMB       = 1014,
     SC_CHAT             = 1020,
     SC_GAME_END         = 1030,
 };
@@ -70,6 +74,19 @@ struct FB_CS_DAMAGE_PKT
     FB_PacketHeader h;
     uint64 targetId;
     float  amount;
+};
+
+struct FB_CS_ITEM_STATE_PKT
+{
+    FB_PacketHeader h;
+    uint8 itemType; // 0=없음, 1=총, 2=배트, 3=하키, 4=폭탄
+};
+
+struct FB_CS_THROW_BOMB_PKT
+{
+    FB_PacketHeader h;
+    float x, y, z;
+    float yaw;
 };
 
 struct FB_CS_CHAT_PKT
@@ -143,6 +160,21 @@ struct FB_SC_GAME_END_PKT
     uint64 winnerId; // 0 이면 무승부
 };
 
+struct FB_SC_ITEM_STATE_PKT
+{
+    FB_PacketHeader h;
+    uint64 playerId;
+    uint8  itemType;
+};
+
+struct FB_SC_THROW_BOMB_PKT
+{
+    FB_PacketHeader h;
+    uint64 playerId;
+    float  x, y, z;
+    float  yaw;
+};
+
 struct FB_SC_CHAT_PKT
 {
     FB_PacketHeader h;
@@ -151,6 +183,15 @@ struct FB_SC_CHAT_PKT
 };
 
 #pragma pack(pop)
+
+enum class EFBItemType : uint8
+{
+    None   = 0,
+    Gun    = 1,
+    Bat    = 2,
+    Hockey = 3,
+    Bomb   = 4,
+};
 
 enum class EFBAnimState : uint8
 {

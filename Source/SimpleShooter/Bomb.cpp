@@ -135,6 +135,12 @@ void ABomb::StartFuse()
     }
 }
 
+void ABomb::SetAsSyncBomb()
+{
+    bIsSyncBomb = true;
+    PickupSphere->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+}
+
 void ABomb::StopFuse()
 {
     bFuseStarted = false;
@@ -180,61 +186,65 @@ void ABomb::Explode()
         );
     }
 
-    // 데미지/넉백 처리
-    TArray<AActor*> IgnoredActors;
-    UGameplayStatics::ApplyRadialDamage(
-        this,
-        ExplosionDamage,
-        GetActorLocation(),
-        ExplosionRadius,
-        nullptr,
-        IgnoredActors,
-        this,
-        GetInstigatorController(),
-        true
-    );
-
-    // 범위 내 원격 플레이어에게 CS_DAMAGE 전송
-    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+    // SyncBomb(원격 시각 전용)은 데미지/네트워크 전송 없이 이펙트만
+    if (!bIsSyncBomb)
     {
-        if (Net->IsConnected())
+        // 데미지/넉백 처리
+        TArray<AActor*> IgnoredActors;
+        UGameplayStatics::ApplyRadialDamage(
+            this,
+            ExplosionDamage,
+            GetActorLocation(),
+            ExplosionRadius,
+            nullptr,
+            IgnoredActors,
+            this,
+            GetInstigatorController(),
+            true
+        );
+
+        // 범위 내 원격 플레이어에게 CS_DAMAGE 전송
+        if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
         {
-            TArray<AActor*> RemoteActors;
-            UGameplayStatics::GetAllActorsOfClass(GetWorld(), ARemotePlayer::StaticClass(), RemoteActors);
-            for (AActor* Actor : RemoteActors)
+            if (Net->IsConnected())
             {
-                if (FVector::Dist(Actor->GetActorLocation(), GetActorLocation()) <= ExplosionRadius)
+                TArray<AActor*> RemoteActors;
+                UGameplayStatics::GetAllActorsOfClass(GetWorld(), ARemotePlayer::StaticClass(), RemoteActors);
+                for (AActor* Actor : RemoteActors)
                 {
-                    ARemotePlayer* Remote = Cast<ARemotePlayer>(Actor);
-                    Net->SendDamage(Remote->PlayerId, ExplosionDamage);
+                    if (FVector::Dist(Actor->GetActorLocation(), GetActorLocation()) <= ExplosionRadius)
+                    {
+                        ARemotePlayer* Remote = Cast<ARemotePlayer>(Actor);
+                        Net->SendDamage(Remote->PlayerId, ExplosionDamage);
+                    }
                 }
             }
         }
-    }
 
-    // 넉백(캐릭터)
-    TArray<AActor*> OverlappedActors;
-    UGameplayStatics::GetAllActorsOfClass(GetWorld(), AShoorterCharater::StaticClass(), OverlappedActors);
+        // 넉백(캐릭터)
+        TArray<AActor*> OverlappedActors;
+        UGameplayStatics::GetAllActorsOfClass(GetWorld(), AShoorterCharater::StaticClass(), OverlappedActors);
 
-    FVector ExplosionLocation = GetActorLocation();
-    for (AActor* Actor : OverlappedActors)
-    {
-        float Distance = FVector::Dist(Actor->GetActorLocation(), ExplosionLocation);
-        if (Distance <= ExplosionRadius)
+        FVector ExplosionLocation = GetActorLocation();
+        for (AActor* Actor : OverlappedActors)
         {
-            ACharacter* Char = Cast<ACharacter>(Actor);
-            if (Char)
+            float Distance = FVector::Dist(Actor->GetActorLocation(), ExplosionLocation);
+            if (Distance <= ExplosionRadius)
             {
-                FVector Dir = (Char->GetActorLocation() - ExplosionLocation).GetSafeNormal();
-                FVector Knockback = Dir * 1200.f + FVector(0,0,400.f); // 위쪽 힘 포함
-                Char->LaunchCharacter(Knockback, true, true);
-            }
-            else
-            {
-                UPrimitiveComponent* Prim = Cast<UPrimitiveComponent>(Actor->GetRootComponent());
-                if (Prim && Prim->IsSimulatingPhysics())
+                ACharacter* Char = Cast<ACharacter>(Actor);
+                if (Char)
                 {
-                    Prim->AddRadialImpulse(ExplosionLocation, ExplosionRadius, 1500.f, ERadialImpulseFalloff::RIF_Linear, true);
+                    FVector Dir = (Char->GetActorLocation() - ExplosionLocation).GetSafeNormal();
+                    FVector Knockback = Dir * 1200.f + FVector(0,0,400.f);
+                    Char->LaunchCharacter(Knockback, true, true);
+                }
+                else
+                {
+                    UPrimitiveComponent* Prim = Cast<UPrimitiveComponent>(Actor->GetRootComponent());
+                    if (Prim && Prim->IsSimulatingPhysics())
+                    {
+                        Prim->AddRadialImpulse(ExplosionLocation, ExplosionRadius, 1500.f, ERadialImpulseFalloff::RIF_Linear, true);
+                    }
                 }
             }
         }

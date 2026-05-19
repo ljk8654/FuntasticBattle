@@ -5,6 +5,10 @@
 #include "FBPackets.h"
 #include "RemotePlayer.generated.h"
 
+class AGun;
+class AMeleeWeapon;
+class ABomb;
+
 UCLASS()
 class SIMPLESHOOTER_API ARemotePlayer : public ACharacter
 {
@@ -18,6 +22,8 @@ public:
 
     void SetTargetTransform(const FVector& NewPos, float NewYaw, const FVector& NewVel = FVector::ZeroVector);
     void ApplyAnimState(uint8 State);
+    void SetItemState(uint8 ItemType);
+    void SpawnSyncBomb(FVector Pos, float Yaw);
 
     int64 PlayerId = 0;
 
@@ -44,7 +50,26 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat")
     UAnimMontage* DeadMontage = nullptr;
 
+    // 원격 플레이어 무기 BP 클래스 (BP_RemotePlayer에서 지정)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Weapon")
+    TSubclassOf<AGun> GunClass;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Weapon")
+    TSubclassOf<AMeleeWeapon> BatClass;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Weapon")
+    TSubclassOf<AMeleeWeapon> HockeyClass;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Weapon")
+    TSubclassOf<ABomb> BombClass;
+
 private:
     FVector  TargetLocation;
     float    TargetYaw = 0.f;
+
+    UPROPERTY()
+    AGun* CurrentGun = nullptr;
+
+    UPROPERTY()
+    AMeleeWeapon* CurrentMeleeWeapon = nullptr;
 };

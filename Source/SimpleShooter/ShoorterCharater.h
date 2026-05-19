@@ -122,6 +122,7 @@ private:
     static constexpr float NetSendInterval = 0.1f;
 
     void BroadcastAnimState(uint8 State);
+    void BroadcastItemState(uint8 ItemType);
 
 UPROPERTY(VisibleAnywhere)
     class ABomb* HeldBomb;

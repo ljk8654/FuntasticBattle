@@ -38,6 +38,9 @@ public:
     void OnPickedUp();
     void OnThrown();
 
+    // 원격 클라이언트 시각 동기화 전용 폭탄으로 설정 (데미지 없음)
+    void SetAsSyncBomb();
+
 protected:
     virtual void BeginPlay() override;
     void Explode();
@@ -77,7 +80,8 @@ public:
 private:
     FTimerHandle ExplosionTimerHandle;
     bool bFuseStarted = false;
-    
+    bool bIsSyncBomb  = false;
+
     UPROPERTY()
     UAudioComponent* FuseAudioComponent;
 };

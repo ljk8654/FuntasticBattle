@@ -241,6 +241,19 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
         OnGameEnd.Broadcast(static_cast<int64>(Pkt->winnerId), bIsWinner);
         break;
     }
+    case EFBPacketId::SC_ITEM_STATE:
+    {
+        const FB_SC_ITEM_STATE_PKT* Pkt = reinterpret_cast<const FB_SC_ITEM_STATE_PKT*>(Data);
+        OnRemoteItemState.Broadcast(static_cast<int64>(Pkt->playerId), Pkt->itemType);
+        break;
+    }
+    case EFBPacketId::SC_THROW_BOMB:
+    {
+        const FB_SC_THROW_BOMB_PKT* Pkt = reinterpret_cast<const FB_SC_THROW_BOMB_PKT*>(Data);
+        FVector Pos(Pkt->x, Pkt->y, Pkt->z);
+        OnRemoteThrowBomb.Broadcast(static_cast<int64>(Pkt->playerId), Pos, Pkt->yaw);
+        break;
+    }
     case EFBPacketId::SC_CHAT:
     {
         const FB_SC_CHAT_PKT* Pkt = reinterpret_cast<const FB_SC_CHAT_PKT*>(Data);
@@ -308,6 +321,25 @@ void UFBNetworkSubsystem::SendDamage(int64 TargetId, float Amount)
     Pkt.h.id      = static_cast<uint16>(EFBPacketId::CS_DAMAGE);
     Pkt.targetId  = static_cast<uint64>(TargetId);
     Pkt.amount    = Amount;
+    SendRaw(&Pkt, sizeof(Pkt));
+}
+
+void UFBNetworkSubsystem::SendItemState(uint8 ItemType)
+{
+    FB_CS_ITEM_STATE_PKT Pkt{};
+    Pkt.h.size   = sizeof(Pkt);
+    Pkt.h.id     = static_cast<uint16>(EFBPacketId::CS_ITEM_STATE);
+    Pkt.itemType = ItemType;
+    SendRaw(&Pkt, sizeof(Pkt));
+}
+
+void UFBNetworkSubsystem::SendThrowBomb(const FVector& Pos, float Yaw)
+{
+    FB_CS_THROW_BOMB_PKT Pkt{};
+    Pkt.h.size = sizeof(Pkt);
+    Pkt.h.id   = static_cast<uint16>(EFBPacketId::CS_THROW_BOMB);
+    Pkt.x = Pos.X; Pkt.y = Pos.Y; Pkt.z = Pos.Z;
+    Pkt.yaw = Yaw;
     SendRaw(&Pkt, sizeof(Pkt));
 }
 
