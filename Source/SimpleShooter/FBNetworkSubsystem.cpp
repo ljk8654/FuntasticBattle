@@ -251,7 +251,7 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
     {
         const FB_SC_THROW_BOMB_PKT* Pkt = reinterpret_cast<const FB_SC_THROW_BOMB_PKT*>(Data);
         FVector Pos(Pkt->x, Pkt->y, Pkt->z);
-        OnRemoteThrowBomb.Broadcast(static_cast<int64>(Pkt->playerId), Pos, Pkt->yaw);
+        OnRemoteThrowBomb.Broadcast(static_cast<int64>(Pkt->playerId), Pos, Pkt->yaw, Pkt->pitch);
         break;
     }
     case EFBPacketId::SC_CHAT:
@@ -333,13 +333,14 @@ void UFBNetworkSubsystem::SendItemState(uint8 ItemType)
     SendRaw(&Pkt, sizeof(Pkt));
 }
 
-void UFBNetworkSubsystem::SendThrowBomb(const FVector& Pos, float Yaw)
+void UFBNetworkSubsystem::SendThrowBomb(const FVector& Pos, float Yaw, float Pitch)
 {
     FB_CS_THROW_BOMB_PKT Pkt{};
     Pkt.h.size = sizeof(Pkt);
     Pkt.h.id   = static_cast<uint16>(EFBPacketId::CS_THROW_BOMB);
     Pkt.x = Pos.X; Pkt.y = Pos.Y; Pkt.z = Pos.Z;
-    Pkt.yaw = Yaw;
+    Pkt.yaw   = Yaw;
+    Pkt.pitch = Pitch;
     SendRaw(&Pkt, sizeof(Pkt));
 }
 

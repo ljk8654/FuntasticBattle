@@ -513,7 +513,8 @@ void AShoorterCharater::ThrowBomb()
             if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
                 if (Net->IsConnected())
                 {
-                    Net->SendThrowBomb(SpawnLoc, GetActorRotation().Yaw);
+                    FRotator AimRot = GetControlRotation();
+                    Net->SendThrowBomb(SpawnLoc, AimRot.Yaw, AimRot.Pitch);
                     Net->SendItemState(0); // 폭탄 투척 후 아이템 없음
                 }
     }

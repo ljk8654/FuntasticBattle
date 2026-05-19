@@ -23,7 +23,7 @@ public:
     void SetTargetTransform(const FVector& NewPos, float NewYaw, const FVector& NewVel = FVector::ZeroVector);
     void ApplyAnimState(uint8 State);
     void SetItemState(uint8 ItemType);
-    void SpawnSyncBomb(FVector Pos, float Yaw);
+    void SpawnSyncBomb(FVector Pos, float Yaw, float Pitch);
 
     int64 PlayerId = 0;
 

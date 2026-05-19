@@ -219,11 +219,11 @@ void AShooterPlayerController::OnRemoteItemStateReceived(int64 PlayerId, uint8 I
     }
 }
 
-void AShooterPlayerController::OnRemoteThrowBombReceived(int64 PlayerId, FVector Pos, float Yaw)
+void AShooterPlayerController::OnRemoteThrowBombReceived(int64 PlayerId, FVector Pos, float Yaw, float Pitch)
 {
     if (ARemotePlayer** Found = RemotePlayers.Find(PlayerId))
     {
         if (*Found)
-            (*Found)->SpawnSyncBomb(Pos, Yaw);
+            (*Found)->SpawnSyncBomb(Pos, Yaw, Pitch);
     }
 }

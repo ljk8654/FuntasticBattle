@@ -87,6 +87,7 @@ struct FB_CS_THROW_BOMB_PKT
     FB_PacketHeader h;
     float x, y, z;
     float yaw;
+    float pitch;
 };
 
 struct FB_CS_CHAT_PKT
@@ -173,6 +174,7 @@ struct FB_SC_THROW_BOMB_PKT
     uint64 playerId;
     float  x, y, z;
     float  yaw;
+    float  pitch;
 };
 
 struct FB_SC_CHAT_PKT

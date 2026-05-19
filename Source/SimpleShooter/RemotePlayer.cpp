@@ -129,14 +129,14 @@ void ARemotePlayer::SetItemState(uint8 ItemType)
     }
 }
 
-void ARemotePlayer::SpawnSyncBomb(FVector Pos, float Yaw)
+void ARemotePlayer::SpawnSyncBomb(FVector Pos, float Yaw, float Pitch)
 {
     // 손에 들고 있던 폭탄 제거 (던졌으므로)
     if (CurrentBomb) { CurrentBomb->Destroy(); CurrentBomb = nullptr; }
 
     if (!BombClass) return;
 
-    ABomb* SyncBomb = GetWorld()->SpawnActor<ABomb>(BombClass, Pos, FRotator(0.f, Yaw, 0.f));
+    ABomb* SyncBomb = GetWorld()->SpawnActor<ABomb>(BombClass, Pos, FRotator(Pitch, Yaw, 0.f));
     if (SyncBomb)
     {
         SyncBomb->SetAsSyncBomb();
