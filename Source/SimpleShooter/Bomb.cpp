@@ -6,6 +6,8 @@
 #include "TimerManager.h"
 #include "ShoorterCharater.h"
 #include "NiagaraComponent.h"
+#include "RemotePlayer.h"
+#include "FBNetworkSubsystem.h"
 
 ABomb::ABomb()
 {
@@ -191,6 +193,24 @@ void ABomb::Explode()
         GetInstigatorController(),
         true
     );
+
+    // 범위 내 원격 플레이어에게 CS_DAMAGE 전송
+    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+    {
+        if (Net->IsConnected())
+        {
+            TArray<AActor*> RemoteActors;
+            UGameplayStatics::GetAllActorsOfClass(GetWorld(), ARemotePlayer::StaticClass(), RemoteActors);
+            for (AActor* Actor : RemoteActors)
+            {
+                if (FVector::Dist(Actor->GetActorLocation(), GetActorLocation()) <= ExplosionRadius)
+                {
+                    ARemotePlayer* Remote = Cast<ARemotePlayer>(Actor);
+                    Net->SendDamage(Remote->PlayerId, ExplosionDamage);
+                }
+            }
+        }
+    }
 
     // 넉백(캐릭터)
     TArray<AActor*> OverlappedActors;

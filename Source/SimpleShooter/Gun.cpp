@@ -6,6 +6,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/DamageEvents.h"
+#include "RemotePlayer.h"
+#include "FBNetworkSubsystem.h"
 
 // Sets default values
 AGun::AGun()
@@ -36,9 +38,19 @@ void AGun::PullTrigger()
 		AActor* HitActor = Hit.GetActor();
 		if(HitActor != nullptr)
 		{
-			FPointDamageEvent DamageEvent(Damage, Hit, ShotDirection, nullptr);
-			AController *OwnerController = GetOwnerController();
-			HitActor->TakeDamage(Damage,DamageEvent,OwnerController, this);
+			if (ARemotePlayer* Remote = Cast<ARemotePlayer>(HitActor))
+			{
+				// 네트워크 상의 다른 플레이어 → 서버에 데미지 전송
+				if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+					if (Net->IsConnected())
+						Net->SendDamage(Remote->PlayerId, Damage);
+			}
+			else
+			{
+				FPointDamageEvent DamageEvent(Damage, Hit, ShotDirection, nullptr);
+				AController* OwnerController = GetOwnerController();
+				HitActor->TakeDamage(Damage, DamageEvent, OwnerController, this);
+			}
 		}
 	}
 	//DrawDebugCamera(GetWorld(), Location,Rotation, 90, 2, FColor::Red, true);
