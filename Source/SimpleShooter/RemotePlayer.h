@@ -22,6 +22,15 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Network")
     float InterpSpeed = 15.f;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	UAnimMontage* HitMontage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	UAnimMontage* AttackMontage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	UAnimMontage* JumpMontage;
+
 private:
     FVector  TargetLocation;
     float    TargetYaw = 0.f;
