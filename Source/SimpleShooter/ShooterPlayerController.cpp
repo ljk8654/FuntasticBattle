@@ -66,6 +66,7 @@ void AShooterPlayerController::BeginPlay()
         Net->OnRemotePlayerAnim.AddDynamic(this, &AShooterPlayerController::OnRemoteAnimState);
         Net->OnHit.AddDynamic(this, &AShooterPlayerController::OnHitReceived);
         Net->OnGameEnd.AddDynamic(this, &AShooterPlayerController::OnGameEndReceived);
+        Net->OnDisconnected.AddDynamic(this, &AShooterPlayerController::OnServerDisconnected);
     }
 }
 
@@ -190,4 +191,16 @@ void AShooterPlayerController::OnHitReceived(int64 AttackerId, int64 TargetId, f
 void AShooterPlayerController::OnGameEndReceived(int64 WinnerId, bool bIsWinner)
 {
     GameHasEnded(nullptr, bIsWinner);
+}
+
+void AShooterPlayerController::OnServerDisconnected()
+{
+    UE_LOG(LogTemp, Warning, TEXT("[Network] 서버 연결 끊김 — RemotePlayer 정리"));
+
+    for (auto& [Id, Remote] : RemotePlayers)
+    {
+        if (Remote)
+            Remote->Destroy();
+    }
+    RemotePlayers.Empty();
 }

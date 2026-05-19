@@ -27,7 +27,11 @@ public:
             bool bOk = Socket->Recv(Buf.GetData(), Buf.Num(), BytesRead);
 
             if (!bOk || BytesRead == 0)
+            {
+                if (!bStopping)
+                    bPeerDisconnected = true;
                 break;
+            }
 
             Assembly.Append(Buf.GetData(), BytesRead);
 
@@ -56,11 +60,13 @@ public:
     }
 
     virtual void Stop() override { bStopping = true; }
+    bool IsPeerDisconnected() const { return bPeerDisconnected; }
 
 private:
     FSocket* Socket;
     TQueue<TArray<uint8>, EQueueMode::Mpsc>& Queue;
     TAtomic<bool> bStopping { false };
+    TAtomic<bool> bPeerDisconnected { false };
 };
 
 // ---------- UFBNetworkSubsystem ----------
@@ -152,6 +158,12 @@ void UFBNetworkSubsystem::Disconnect()
 
 void UFBNetworkSubsystem::Tick(float DeltaTime)
 {
+    if (bConnected && RecvWorker && RecvWorker->IsPeerDisconnected())
+    {
+        Disconnect();
+        OnDisconnected.Broadcast();
+    }
+
     ProcessIncomingQueue();
 }
 

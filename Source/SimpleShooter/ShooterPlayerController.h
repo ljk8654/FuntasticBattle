@@ -84,4 +84,7 @@ private:
 
     UFUNCTION()
     void OnGameEndReceived(int64 WinnerId, bool bIsWinner);
+
+    UFUNCTION()
+    void OnServerDisconnected();
 };

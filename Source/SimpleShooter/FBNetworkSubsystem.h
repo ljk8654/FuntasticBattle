@@ -76,6 +76,10 @@ public:
     UPROPERTY(BlueprintAssignable)
     FOnGameEnd OnGameEnd;
 
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDisconnected);
+    UPROPERTY(BlueprintAssignable)
+    FOnDisconnected OnDisconnected;
+
 private:
     FSocket*             Socket     = nullptr;
     FNetworkRecvWorker*  RecvWorker = nullptr;
