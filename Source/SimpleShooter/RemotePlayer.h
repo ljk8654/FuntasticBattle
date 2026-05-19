@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "FBPackets.h"
 #include "RemotePlayer.generated.h"
 
 UCLASS()
@@ -16,20 +17,33 @@ public:
     virtual void Tick(float DeltaTime) override;
 
     void SetTargetTransform(const FVector& NewPos, float NewYaw);
+    void ApplyAnimState(uint8 State);
 
     int64 PlayerId = 0;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Network")
+    EFBAnimState CurrentAnimState = EFBAnimState::Normal;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Network")
     float InterpSpeed = 15.f;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-	UAnimMontage* HitMontage;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat")
+    UAnimMontage* AttackMontage = nullptr;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-	UAnimMontage* AttackMontage;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat")
+    UAnimMontage* HitMontage = nullptr;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-	UAnimMontage* JumpMontage;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat")
+    UAnimMontage* JumpMontage = nullptr;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat")
+    UAnimMontage* StunMontage = nullptr;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat")
+    UAnimMontage* RecoverMontage = nullptr;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat")
+    UAnimMontage* DeadMontage = nullptr;
 
 private:
     FVector  TargetLocation;

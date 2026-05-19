@@ -63,6 +63,7 @@ void AShooterPlayerController::BeginPlay()
         Net->OnRemotePlayerEnter.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerEnter);
         Net->OnRemotePlayerLeave.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerLeave);
         Net->OnRemotePlayerMove.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerMove);
+        Net->OnRemotePlayerAnim.AddDynamic(this, &AShooterPlayerController::OnRemoteAnimState);
         Net->OnHit.AddDynamic(this, &AShooterPlayerController::OnHitReceived);
         Net->OnGameEnd.AddDynamic(this, &AShooterPlayerController::OnGameEndReceived);
     }
@@ -147,6 +148,15 @@ void AShooterPlayerController::OnRemotePlayerMove(int64 PlayerId, FVector NewPos
     {
         if (*Found)
             (*Found)->SetTargetTransform(NewPos, NewYaw);
+    }
+}
+
+void AShooterPlayerController::OnRemoteAnimState(int64 PlayerId, uint8 State)
+{
+    if (ARemotePlayer** Found = RemotePlayers.Find(PlayerId))
+    {
+        if (*Found)
+            (*Found)->ApplyAnimState(State);
     }
 }
 

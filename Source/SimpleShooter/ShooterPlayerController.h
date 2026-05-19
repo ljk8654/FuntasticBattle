@@ -77,6 +77,9 @@ private:
     void OnRemotePlayerMove(int64 PlayerId, FVector NewPos, float NewYaw);
 
     UFUNCTION()
+    void OnRemoteAnimState(int64 PlayerId, uint8 State);
+
+    UFUNCTION()
     void OnHitReceived(int64 AttackerId, int64 TargetId, float Amount, float RemainHp);
 
     UFUNCTION()

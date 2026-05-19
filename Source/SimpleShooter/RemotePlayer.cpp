@@ -1,6 +1,7 @@
 #include "RemotePlayer.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Animation/AnimInstance.h"
 
 ARemotePlayer::ARemotePlayer()
 {
@@ -38,4 +39,26 @@ void ARemotePlayer::SetTargetTransform(const FVector& NewPos, float NewYaw)
 {
     TargetLocation = NewPos;
     TargetYaw = NewYaw;
+}
+
+void ARemotePlayer::ApplyAnimState(uint8 State)
+{
+    CurrentAnimState = static_cast<EFBAnimState>(State);
+
+    UAnimInstance* AnimInst = GetMesh() ? GetMesh()->GetAnimInstance() : nullptr;
+    if (!AnimInst) return;
+
+    UAnimMontage* Montage = nullptr;
+    switch (CurrentAnimState)
+    {
+    case EFBAnimState::Attack:  Montage = AttackMontage;  break;
+    case EFBAnimState::Hit:     Montage = HitMontage;     break;
+    case EFBAnimState::Stunned: Montage = StunMontage;    break;
+    case EFBAnimState::Recover: Montage = RecoverMontage; break;
+    case EFBAnimState::Dead:    Montage = DeadMontage;    break;
+    default: break;
+    }
+
+    if (Montage)
+        AnimInst->Montage_Play(Montage);
 }
