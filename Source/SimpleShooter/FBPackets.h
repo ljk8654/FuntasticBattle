@@ -14,6 +14,7 @@ enum class EFBPacketId : uint16
     CS_LEAVE_ROOM   = 3,
     CS_MOVE         = 10,
     CS_ANIM_STATE   = 11,
+    CS_DAMAGE       = 12,
     CS_CHAT         = 20,
 
     SC_LOGIN_RES        = 1001,
@@ -22,6 +23,7 @@ enum class EFBPacketId : uint16
     SC_PLAYER_LEAVE     = 1004,
     SC_PLAYER_MOVE      = 1010,
     SC_ANIM_STATE       = 1011,
+    SC_HIT              = 1012,
     SC_CHAT             = 1020,
 };
 
@@ -60,6 +62,13 @@ struct FB_CS_ANIM_STATE_PKT
 {
     FB_PacketHeader h;
     uint8 state;
+};
+
+struct FB_CS_DAMAGE_PKT
+{
+    FB_PacketHeader h;
+    uint64 targetId;
+    float  amount;
 };
 
 struct FB_CS_CHAT_PKT
@@ -116,6 +125,15 @@ struct FB_SC_ANIM_STATE_PKT
     FB_PacketHeader h;
     uint64 playerId;
     uint8  state;
+};
+
+struct FB_SC_HIT_PKT
+{
+    FB_PacketHeader h;
+    uint64 attackerId;
+    uint64 targetId;
+    float  amount;
+    float  remainHp;
 };
 
 struct FB_SC_CHAT_PKT

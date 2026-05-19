@@ -63,6 +63,7 @@ void AShooterPlayerController::BeginPlay()
         Net->OnRemotePlayerEnter.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerEnter);
         Net->OnRemotePlayerLeave.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerLeave);
         Net->OnRemotePlayerMove.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerMove);
+        Net->OnHit.AddDynamic(this, &AShooterPlayerController::OnHitReceived);
     }
 }
 
@@ -145,5 +146,21 @@ void AShooterPlayerController::OnRemotePlayerMove(int64 PlayerId, FVector NewPos
     {
         if (*Found)
             (*Found)->SetTargetTransform(NewPos, NewYaw);
+    }
+}
+
+void AShooterPlayerController::OnHitReceived(int64 AttackerId, int64 TargetId, float Amount, float RemainHp)
+{
+    UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>();
+    if (!Net) return;
+
+    if (TargetId == Net->GetMyPlayerId())
+    {
+        // 내가 맞은 경우 → 로컬 캐릭터에 직접 데미지 적용
+        if (APawn* MyPawn = GetPawn())
+        {
+            FDamageEvent DmgEvent;
+            MyPawn->TakeDamage(Amount, DmgEvent, nullptr, nullptr);
+        }
     }
 }

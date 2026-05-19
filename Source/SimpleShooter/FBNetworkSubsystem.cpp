@@ -211,6 +211,16 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
         OnRemotePlayerAnim.Broadcast(static_cast<int64>(Pkt->playerId), Pkt->state);
         break;
     }
+    case EFBPacketId::SC_HIT:
+    {
+        const FB_SC_HIT_PKT* Pkt = reinterpret_cast<const FB_SC_HIT_PKT*>(Data);
+        OnHit.Broadcast(
+            static_cast<int64>(Pkt->attackerId),
+            static_cast<int64>(Pkt->targetId),
+            Pkt->amount,
+            Pkt->remainHp);
+        break;
+    }
     case EFBPacketId::SC_CHAT:
     {
         const FB_SC_CHAT_PKT* Pkt = reinterpret_cast<const FB_SC_CHAT_PKT*>(Data);
@@ -268,6 +278,16 @@ void UFBNetworkSubsystem::SendAnimState(uint8 State)
     Pkt.h.size  = sizeof(Pkt);
     Pkt.h.id    = static_cast<uint16>(EFBPacketId::CS_ANIM_STATE);
     Pkt.state   = State;
+    SendRaw(&Pkt, sizeof(Pkt));
+}
+
+void UFBNetworkSubsystem::SendDamage(int64 TargetId, float Amount)
+{
+    FB_CS_DAMAGE_PKT Pkt{};
+    Pkt.h.size    = sizeof(Pkt);
+    Pkt.h.id      = static_cast<uint16>(EFBPacketId::CS_DAMAGE);
+    Pkt.targetId  = static_cast<uint64>(TargetId);
+    Pkt.amount    = Amount;
     SendRaw(&Pkt, sizeof(Pkt));
 }
 

@@ -15,6 +15,7 @@
 #include "Heart.h"
 #include "AIController.h"
 #include "FBNetworkSubsystem.h"
+#include "RemotePlayer.h"
 
 // Sets default values
 AShoorterCharater::AShoorterCharater()
@@ -326,8 +327,19 @@ void AShoorterCharater::PunchAttack()
 		for (const FHitResult& Hit : HitResults)
 		{
 			AActor* HitActor = Hit.GetActor();
-			if (HitActor && HitActor != this && HitActor->IsA<ACharacter>())
+			if (!HitActor || HitActor == this || !HitActor->IsA<ACharacter>()) continue;
+
+			if (ARemotePlayer* Remote = Cast<ARemotePlayer>(HitActor))
 			{
+				// 네트워크 상의 다른 플레이어 → 서버에 데미지 전송
+				if (UGameInstance* GI = GetGameInstance())
+					if (UFBNetworkSubsystem* Net = GI->GetSubsystem<UFBNetworkSubsystem>())
+						if (Net->IsConnected())
+							Net->SendDamage(Remote->PlayerId, AmountDamage);
+			}
+			else
+			{
+				// 로컬 NPC 등
 				FDamageEvent DamageEvent;
 				HitActor->TakeDamage(AmountDamage, DamageEvent, GetController(), this);
 			}

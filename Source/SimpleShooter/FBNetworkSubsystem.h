@@ -36,6 +36,7 @@ public:
     void SendEnterRoom(uint32 RoomId);
     void SendMove(const FVector& Pos, float Yaw, const FVector& Vel);
     void SendAnimState(uint8 State);
+    void SendDamage(int64 TargetId, float Amount);
     void SendChat(const FString& Msg);
 
     // 게임 스레드 이벤트 델리게이트
@@ -66,6 +67,10 @@ public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnRemotePlayerChat, int64, PlayerId, FString, Message);
     UPROPERTY(BlueprintAssignable)
     FOnRemotePlayerChat OnRemotePlayerChat;
+
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnHit, int64, AttackerId, int64, TargetId, float, Amount, float, RemainHp);
+    UPROPERTY(BlueprintAssignable)
+    FOnHit OnHit;
 
 private:
     FSocket*             Socket     = nullptr;
