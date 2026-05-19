@@ -202,7 +202,8 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
     {
         const FB_SC_PLAYER_MOVE_PKT* Pkt = reinterpret_cast<const FB_SC_PLAYER_MOVE_PKT*>(Data);
         FVector Pos(Pkt->x, Pkt->y, Pkt->z);
-        OnRemotePlayerMove.Broadcast(static_cast<int64>(Pkt->playerId), Pos, Pkt->yaw);
+        FVector Vel(Pkt->vx, Pkt->vy, Pkt->vz);
+        OnRemotePlayerMove.Broadcast(static_cast<int64>(Pkt->playerId), Pos, Pkt->yaw, Vel);
         break;
     }
     case EFBPacketId::SC_ANIM_STATE:

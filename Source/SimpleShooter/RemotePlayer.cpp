@@ -35,10 +35,12 @@ void ARemotePlayer::Tick(float DeltaTime)
     SetActorRotation(FRotator(0.f, NewYaw, 0.f));
 }
 
-void ARemotePlayer::SetTargetTransform(const FVector& NewPos, float NewYaw)
+void ARemotePlayer::SetTargetTransform(const FVector& NewPos, float NewYaw, const FVector& NewVel)
 {
     TargetLocation = NewPos;
     TargetYaw = NewYaw;
+    // CharacterMovement가 비활성화되어 있어도 Velocity는 AnimBP가 읽을 수 있음
+    GetCharacterMovement()->Velocity = NewVel;
 }
 
 void ARemotePlayer::ApplyAnimState(uint8 State)

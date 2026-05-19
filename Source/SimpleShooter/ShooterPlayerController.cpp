@@ -142,12 +142,12 @@ void AShooterPlayerController::OnRemotePlayerLeave(int64 PlayerId)
     }
 }
 
-void AShooterPlayerController::OnRemotePlayerMove(int64 PlayerId, FVector NewPos, float NewYaw)
+void AShooterPlayerController::OnRemotePlayerMove(int64 PlayerId, FVector NewPos, float NewYaw, FVector NewVel)
 {
     if (ARemotePlayer** Found = RemotePlayers.Find(PlayerId))
     {
         if (*Found)
-            (*Found)->SetTargetTransform(NewPos, NewYaw);
+            (*Found)->SetTargetTransform(NewPos, NewYaw, NewVel);
     }
 }
 

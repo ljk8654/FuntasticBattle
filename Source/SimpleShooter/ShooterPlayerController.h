@@ -74,7 +74,7 @@ private:
     void OnRemotePlayerLeave(int64 PlayerId);
 
     UFUNCTION()
-    void OnRemotePlayerMove(int64 PlayerId, FVector NewPos, float NewYaw);
+    void OnRemotePlayerMove(int64 PlayerId, FVector NewPos, float NewYaw, FVector NewVel);
 
     UFUNCTION()
     void OnRemoteAnimState(int64 PlayerId, uint8 State);

@@ -56,7 +56,7 @@ public:
     UPROPERTY(BlueprintAssignable)
     FOnRemotePlayerLeave OnRemotePlayerLeave;
 
-    DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnRemotePlayerMove, int64, PlayerId, FVector, NewPos, float, NewYaw);
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRemotePlayerMove, int64, PlayerId, FVector, NewPos, float, NewYaw, FVector, NewVel);
     UPROPERTY(BlueprintAssignable)
     FOnRemotePlayerMove OnRemotePlayerMove;
 

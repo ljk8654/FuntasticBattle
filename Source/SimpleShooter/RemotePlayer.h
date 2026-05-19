@@ -16,12 +16,11 @@ public:
     virtual void BeginPlay() override;
     virtual void Tick(float DeltaTime) override;
 
-    void SetTargetTransform(const FVector& NewPos, float NewYaw);
+    void SetTargetTransform(const FVector& NewPos, float NewYaw, const FVector& NewVel = FVector::ZeroVector);
     void ApplyAnimState(uint8 State);
 
     int64 PlayerId = 0;
 
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Network")
     EFBAnimState CurrentAnimState = EFBAnimState::Normal;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Network")
