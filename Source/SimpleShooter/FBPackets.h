@@ -25,6 +25,7 @@ enum class EFBPacketId : uint16
     SC_ANIM_STATE       = 1011,
     SC_HIT              = 1012,
     SC_CHAT             = 1020,
+    SC_GAME_END         = 1030,
 };
 
 struct FB_PacketHeader
@@ -134,6 +135,12 @@ struct FB_SC_HIT_PKT
     uint64 targetId;
     float  amount;
     float  remainHp;
+};
+
+struct FB_SC_GAME_END_PKT
+{
+    FB_PacketHeader h;
+    uint64 winnerId; // 0 이면 무승부
 };
 
 struct FB_SC_CHAT_PKT

@@ -72,6 +72,10 @@ public:
     UPROPERTY(BlueprintAssignable)
     FOnHit OnHit;
 
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnGameEnd, int64, WinnerId, bool, bIsWinner);
+    UPROPERTY(BlueprintAssignable)
+    FOnGameEnd OnGameEnd;
+
 private:
     FSocket*             Socket     = nullptr;
     FNetworkRecvWorker*  RecvWorker = nullptr;

@@ -221,6 +221,13 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
             Pkt->remainHp);
         break;
     }
+    case EFBPacketId::SC_GAME_END:
+    {
+        const FB_SC_GAME_END_PKT* Pkt = reinterpret_cast<const FB_SC_GAME_END_PKT*>(Data);
+        bool bIsWinner = (static_cast<int64>(Pkt->winnerId) == MyPlayerId);
+        OnGameEnd.Broadcast(static_cast<int64>(Pkt->winnerId), bIsWinner);
+        break;
+    }
     case EFBPacketId::SC_CHAT:
     {
         const FB_SC_CHAT_PKT* Pkt = reinterpret_cast<const FB_SC_CHAT_PKT*>(Data);

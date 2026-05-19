@@ -78,4 +78,7 @@ private:
 
     UFUNCTION()
     void OnHitReceived(int64 AttackerId, int64 TargetId, float Amount, float RemainHp);
+
+    UFUNCTION()
+    void OnGameEndReceived(int64 WinnerId, bool bIsWinner);
 };

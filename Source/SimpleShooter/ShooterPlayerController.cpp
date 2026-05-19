@@ -64,6 +64,7 @@ void AShooterPlayerController::BeginPlay()
         Net->OnRemotePlayerLeave.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerLeave);
         Net->OnRemotePlayerMove.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerMove);
         Net->OnHit.AddDynamic(this, &AShooterPlayerController::OnHitReceived);
+        Net->OnGameEnd.AddDynamic(this, &AShooterPlayerController::OnGameEndReceived);
     }
 }
 
@@ -163,4 +164,9 @@ void AShooterPlayerController::OnHitReceived(int64 AttackerId, int64 TargetId, f
             MyPawn->TakeDamage(Amount, DmgEvent, nullptr, nullptr);
         }
     }
+}
+
+void AShooterPlayerController::OnGameEndReceived(int64 WinnerId, bool bIsWinner)
+{
+    GameHasEnded(nullptr, bIsWinner);
 }
