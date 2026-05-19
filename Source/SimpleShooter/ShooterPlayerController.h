@@ -8,6 +8,8 @@
 #include "ShooterPlayerController.generated.h"
 
 class ARemotePlayer;
+class AHeart;
+class ABomb;
 
 UCLASS()
 class SIMPLESHOOTER_API AShooterPlayerController : public APlayerController
@@ -29,6 +31,13 @@ public:
     // 원격 플레이어 BP 클래스 (BP_RemotePlayer를 BP에서 지정)
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Network")
     TSubclassOf<ARemotePlayer> RemotePlayerClass;
+
+    // NPC 드롭 아이템 클래스 (BP_ShooterPlayerController에서 지정)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Drop")
+    TSubclassOf<AHeart> HeartDropClass;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Drop")
+    TSubclassOf<ABomb> BombDropClass;
 
     UPROPERTY()
     ULoginWidget* CurrentLoginWidget;
@@ -93,4 +102,7 @@ private:
 
     UFUNCTION()
     void OnRemoteThrowBombReceived(int64 PlayerId, FVector Pos, float Yaw, float Pitch);
+
+    UFUNCTION()
+    void OnRemoteItemDropReceived(uint8 ItemType, FVector Pos);
 };

@@ -551,39 +551,44 @@ bool AShoorterCharater::Heal(float Amount)
 
 void AShoorterCharater::TryDropOnDeath()
 {
-	UE_LOG(LogTemp, Warning, TEXT("[DROP] TryDropOnDeath called. Enable=%d PlayerControlled=%d Dropped=%d HeartClass=%s BombClass=%s"),
-        bEnableDropOnDeath,
-        IsPlayerControlled(),
-        bDroppedItem,
-        *GetNameSafe(HeartDropClass),
-        *GetNameSafe(BombDropClass));
     if (!bEnableDropOnDeath) return;
-    if (IsPlayerControlled()) return;        
-    if (bDroppedItem) return;             
+    if (IsPlayerControlled()) return;
+    if (bDroppedItem) return;
     bDroppedItem = true;
-
-    UWorld* World = GetWorld();
-    if (!World) return;
 
     const FVector BaseLoc = GetActorLocation() + FVector(0.f, 0.f, 60.f);
 
+    // 네트워크 연결 시 서버를 통해 드롭 동기화 (중복 방지)
+    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+    {
+        if (Net->IsConnected() && bDropOnlyOneItem)
+        {
+            float R = FMath::FRand();
+            uint8 DropType = 0;
+            if (HeartDropClass && R < HeartDropChance)
+                DropType = 1;
+            else if (BombDropClass && R < HeartDropChance + BombDropChance)
+                DropType = 2;
+
+            if (DropType > 0)
+                Net->SendItemDrop(DropType, BaseLoc);
+            return;
+        }
+    }
+
+    // 오프라인(싱글플레이) 폴백: 로컬 스폰
+    UWorld* World = GetWorld();
+    if (!World) return;
+
     FActorSpawnParameters Params;
-    Params.SpawnCollisionHandlingOverride =
-        ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+    Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
     if (bDropOnlyOneItem)
-{
-    float R = FMath::FRand();
-
-    if (HeartDropClass && R < HeartDropChance)
     {
-        World->SpawnActor<AHeart>(HeartDropClass, BaseLoc, FRotator::ZeroRotator, Params);
+        float R = FMath::FRand();
+        if (HeartDropClass && R < HeartDropChance)
+            World->SpawnActor<AHeart>(HeartDropClass, BaseLoc, FRotator::ZeroRotator, Params);
+        else if (BombDropClass && R < HeartDropChance + BombDropChance)
+            World->SpawnActor<ABomb>(BombDropClass, BaseLoc + FVector(20,0,10), FRotator::ZeroRotator, Params);
     }
-    else if (BombDropClass && R < HeartDropChance + BombDropChance)
-    {
-        World->SpawnActor<ABomb>(BombDropClass, BaseLoc + FVector(20,0,10), FRotator::ZeroRotator, Params);
-    }
-
-    return;
-}
 }

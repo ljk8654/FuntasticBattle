@@ -261,6 +261,13 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
         OnRemotePlayerChat.Broadcast(static_cast<int64>(Pkt->playerId), Msg);
         break;
     }
+    case EFBPacketId::SC_ITEM_DROP:
+    {
+        const FB_SC_ITEM_DROP_PKT* Pkt = reinterpret_cast<const FB_SC_ITEM_DROP_PKT*>(Data);
+        FVector Pos(Pkt->x, Pkt->y, Pkt->z);
+        OnRemoteItemDrop.Broadcast(Pkt->itemType, Pos);
+        break;
+    }
     default:
         UE_LOG(LogTemp, Warning, TEXT("[Network] 알 수 없는 패킷 id=%d"), Header->id);
         break;
@@ -341,6 +348,16 @@ void UFBNetworkSubsystem::SendThrowBomb(const FVector& Pos, float Yaw, float Pit
     Pkt.x = Pos.X; Pkt.y = Pos.Y; Pkt.z = Pos.Z;
     Pkt.yaw   = Yaw;
     Pkt.pitch = Pitch;
+    SendRaw(&Pkt, sizeof(Pkt));
+}
+
+void UFBNetworkSubsystem::SendItemDrop(uint8 ItemType, const FVector& Pos)
+{
+    FB_CS_ITEM_DROP_PKT Pkt{};
+    Pkt.h.size   = sizeof(Pkt);
+    Pkt.h.id     = static_cast<uint16>(EFBPacketId::CS_ITEM_DROP);
+    Pkt.itemType = ItemType;
+    Pkt.x = Pos.X; Pkt.y = Pos.Y; Pkt.z = Pos.Z;
     SendRaw(&Pkt, sizeof(Pkt));
 }
 

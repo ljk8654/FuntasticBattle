@@ -1,6 +1,8 @@
 #include "ShooterPlayerController.h"
 #include "FBNetworkSubsystem.h"
 #include "RemotePlayer.h"
+#include "Heart.h"
+#include "Bomb.h"
 #include "TimerManager.h"
 #include "Blueprint/UserWidget.h"
 #include "HUDWidget.h"
@@ -69,6 +71,7 @@ void AShooterPlayerController::BeginPlay()
         Net->OnDisconnected.AddDynamic(this, &AShooterPlayerController::OnServerDisconnected);
         Net->OnRemoteItemState.AddDynamic(this, &AShooterPlayerController::OnRemoteItemStateReceived);
         Net->OnRemoteThrowBomb.AddDynamic(this, &AShooterPlayerController::OnRemoteThrowBombReceived);
+        Net->OnRemoteItemDrop.AddDynamic(this, &AShooterPlayerController::OnRemoteItemDropReceived);
     }
 }
 
@@ -208,6 +211,27 @@ void AShooterPlayerController::OnServerDisconnected()
             Remote->Destroy();
     }
     RemotePlayers.Empty();
+}
+
+void AShooterPlayerController::OnRemoteItemDropReceived(uint8 ItemType, FVector Pos)
+{
+    UWorld* World = GetWorld();
+    if (!World) return;
+
+    FActorSpawnParameters Params;
+    Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+    switch (ItemType)
+    {
+    case 1:
+        if (HeartDropClass)
+            World->SpawnActor<AHeart>(HeartDropClass, Pos, FRotator::ZeroRotator, Params);
+        break;
+    case 2:
+        if (BombDropClass)
+            World->SpawnActor<ABomb>(BombDropClass, Pos + FVector(20.f, 0.f, 10.f), FRotator::ZeroRotator, Params);
+        break;
+    }
 }
 
 void AShooterPlayerController::OnRemoteItemStateReceived(int64 PlayerId, uint8 ItemType)
