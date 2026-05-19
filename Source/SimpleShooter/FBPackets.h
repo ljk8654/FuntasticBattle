@@ -19,6 +19,7 @@ enum class EFBPacketId : uint16
     CS_THROW_BOMB   = 14,
     CS_CHAT         = 20,
     CS_ITEM_DROP    = 21,
+    CS_ITEM_PICKUP  = 22,
 
     SC_LOGIN_RES        = 1001,
     SC_ENTER_GAME       = 1002,
@@ -32,6 +33,7 @@ enum class EFBPacketId : uint16
     SC_CHAT             = 1020,
     SC_GAME_END         = 1030,
     SC_ITEM_DROP        = 1021,
+    SC_ITEM_PICKUP      = 1022,
 };
 
 struct FB_PacketHeader
@@ -109,6 +111,18 @@ struct FB_SC_ITEM_DROP_PKT
 {
     FB_PacketHeader h;
     uint8 itemType;
+    float x, y, z;
+};
+
+struct FB_CS_ITEM_PICKUP_PKT
+{
+    FB_PacketHeader h;
+    float x, y, z;
+};
+
+struct FB_SC_ITEM_PICKUP_PKT
+{
+    FB_PacketHeader h;
     float x, y, z;
 };
 

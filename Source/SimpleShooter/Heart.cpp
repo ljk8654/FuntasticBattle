@@ -4,6 +4,7 @@
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "ShoorterCharater.h"
+#include "FBNetworkSubsystem.h"
 
 AHeart::AHeart()
 {
@@ -50,10 +51,16 @@ void AHeart::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
                            bool bFromSweep, const FHitResult& SweepResult)
 {
 	AShoorterCharater* Player = Cast<AShoorterCharater>(OtherActor);
-	if (!Player) return;
+	if (!Player || !Player->IsPlayerControlled()) return;
 
 	if (Player->Heal(HealAmount))
 	{
+		// 다른 클라이언트에 픽업 동기화
+		if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+		{
+			if (Net->IsConnected())
+				Net->SendItemPickup(GetActorLocation());
+		}
 		Destroy();
 	}
 }

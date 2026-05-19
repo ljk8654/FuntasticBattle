@@ -268,6 +268,13 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
         OnRemoteItemDrop.Broadcast(Pkt->itemType, Pos);
         break;
     }
+    case EFBPacketId::SC_ITEM_PICKUP:
+    {
+        const FB_SC_ITEM_PICKUP_PKT* Pkt = reinterpret_cast<const FB_SC_ITEM_PICKUP_PKT*>(Data);
+        FVector Pos(Pkt->x, Pkt->y, Pkt->z);
+        OnRemoteItemPickup.Broadcast(Pos);
+        break;
+    }
     default:
         UE_LOG(LogTemp, Warning, TEXT("[Network] 알 수 없는 패킷 id=%d"), Header->id);
         break;
@@ -357,6 +364,15 @@ void UFBNetworkSubsystem::SendItemDrop(uint8 ItemType, const FVector& Pos)
     Pkt.h.size   = sizeof(Pkt);
     Pkt.h.id     = static_cast<uint16>(EFBPacketId::CS_ITEM_DROP);
     Pkt.itemType = ItemType;
+    Pkt.x = Pos.X; Pkt.y = Pos.Y; Pkt.z = Pos.Z;
+    SendRaw(&Pkt, sizeof(Pkt));
+}
+
+void UFBNetworkSubsystem::SendItemPickup(const FVector& Pos)
+{
+    FB_CS_ITEM_PICKUP_PKT Pkt{};
+    Pkt.h.size = sizeof(Pkt);
+    Pkt.h.id   = static_cast<uint16>(EFBPacketId::CS_ITEM_PICKUP);
     Pkt.x = Pos.X; Pkt.y = Pos.Y; Pkt.z = Pos.Z;
     SendRaw(&Pkt, sizeof(Pkt));
 }

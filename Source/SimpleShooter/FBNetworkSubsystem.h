@@ -41,6 +41,7 @@ public:
     void SendThrowBomb(const FVector& Pos, float Yaw, float Pitch);
     void SendChat(const FString& Msg);
     void SendItemDrop(uint8 ItemType, const FVector& Pos);
+    void SendItemPickup(const FVector& Pos);
 
     // 게임 스레드 이벤트 델리게이트
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLoginResult, int64, PlayerId, bool, bSuccess);
@@ -90,6 +91,10 @@ public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnRemoteItemDrop, uint8, ItemType, FVector, Pos);
     UPROPERTY(BlueprintAssignable)
     FOnRemoteItemDrop OnRemoteItemDrop;
+
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRemoteItemPickup, FVector, Pos);
+    UPROPERTY(BlueprintAssignable)
+    FOnRemoteItemPickup OnRemoteItemPickup;
 
     DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDisconnected);
     UPROPERTY(BlueprintAssignable)

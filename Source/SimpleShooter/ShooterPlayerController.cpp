@@ -72,6 +72,7 @@ void AShooterPlayerController::BeginPlay()
         Net->OnRemoteItemState.AddDynamic(this, &AShooterPlayerController::OnRemoteItemStateReceived);
         Net->OnRemoteThrowBomb.AddDynamic(this, &AShooterPlayerController::OnRemoteThrowBombReceived);
         Net->OnRemoteItemDrop.AddDynamic(this, &AShooterPlayerController::OnRemoteItemDropReceived);
+        Net->OnRemoteItemPickup.AddDynamic(this, &AShooterPlayerController::OnRemoteItemPickupReceived);
     }
 }
 
@@ -231,6 +232,21 @@ void AShooterPlayerController::OnRemoteItemDropReceived(uint8 ItemType, FVector 
         if (BombDropClass)
             World->SpawnActor<ABomb>(BombDropClass, Pos + FVector(20.f, 0.f, 10.f), FRotator::ZeroRotator, Params);
         break;
+    }
+}
+
+void AShooterPlayerController::OnRemoteItemPickupReceived(FVector Pos)
+{
+    // 해당 위치 근처의 Heart를 제거
+    TArray<AActor*> HeartActors;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), AHeart::StaticClass(), HeartActors);
+    for (AActor* Actor : HeartActors)
+    {
+        if (FVector::Dist(Actor->GetActorLocation(), Pos) < 150.f)
+        {
+            Actor->Destroy();
+            return;
+        }
     }
 }
 

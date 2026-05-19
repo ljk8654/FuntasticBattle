@@ -105,4 +105,7 @@ private:
 
     UFUNCTION()
     void OnRemoteItemDropReceived(uint8 ItemType, FVector Pos);
+
+    UFUNCTION()
+    void OnRemoteItemPickupReceived(FVector Pos);
 };
