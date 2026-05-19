@@ -72,4 +72,7 @@ private:
 
     UPROPERTY()
     AMeleeWeapon* CurrentMeleeWeapon = nullptr;
+
+    UPROPERTY()
+    ABomb* CurrentBomb = nullptr;
 };

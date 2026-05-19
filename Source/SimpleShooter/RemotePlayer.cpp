@@ -70,8 +70,9 @@ void ARemotePlayer::ApplyAnimState(uint8 State)
 
 void ARemotePlayer::SetItemState(uint8 ItemType)
 {
-    if (CurrentGun)       { CurrentGun->Destroy();       CurrentGun = nullptr; }
+    if (CurrentGun)        { CurrentGun->Destroy();        CurrentGun = nullptr; }
     if (CurrentMeleeWeapon){ CurrentMeleeWeapon->Destroy(); CurrentMeleeWeapon = nullptr; }
+    if (CurrentBomb)       { CurrentBomb->Destroy();        CurrentBomb = nullptr; }
 
     EFBItemType Item = static_cast<EFBItemType>(ItemType);
     switch (Item)
@@ -109,6 +110,19 @@ void ARemotePlayer::SetItemState(uint8 ItemType)
             }
         }
         break;
+    case EFBItemType::Bomb:
+        if (BombClass)
+        {
+            CurrentBomb = GetWorld()->SpawnActor<ABomb>(BombClass);
+            if (CurrentBomb)
+            {
+                CurrentBomb->SetAsSyncBomb();
+                CurrentBomb->OnPickedUp();
+                CurrentBomb->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("BombSocket"));
+                CurrentBomb->SetOwner(this);
+            }
+        }
+        break;
     case EFBItemType::None:
     default:
         break;
@@ -117,6 +131,9 @@ void ARemotePlayer::SetItemState(uint8 ItemType)
 
 void ARemotePlayer::SpawnSyncBomb(FVector Pos, float Yaw)
 {
+    // 손에 들고 있던 폭탄 제거 (던졌으므로)
+    if (CurrentBomb) { CurrentBomb->Destroy(); CurrentBomb = nullptr; }
+
     if (!BombClass) return;
 
     ABomb* SyncBomb = GetWorld()->SpawnActor<ABomb>(BombClass, Pos, FRotator(0.f, Yaw, 0.f));
