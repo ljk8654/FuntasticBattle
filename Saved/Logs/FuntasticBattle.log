@@ -1594,3 +1594,743 @@ LogConfig: Set CVar [[r.VRS.ContrastAdaptiveShading:1]]
 [2026.05.19-07.18.05:112][564]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 702.756531
 [2026.05.19-07.18.06:113][567]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
 [2026.05.19-07.18.06:113][567]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 703.423035, Update Interval: 359.274872
+[2026.05.19-07.24.12:247][785]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 1069.891113
+[2026.05.19-07.24.13:247][788]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2026.05.19-07.24.13:247][788]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 1070.556030, Update Interval: 349.895935
+[2026.05.19-07.25.55:042][184]LogTemp: [Network] 서버 연결 성공 127.0.0.1:7777
+[2026.05.19-07.25.55:052][185]LogTemp: [Login] 성공 playerId=1
+[2026.05.19-07.25.56:381][338]LogTemp: 방 입장 시도: FuntasticBattle Room 1
+[2026.05.19-07.25.56:381][338]LogTemp: 방 입장 완료 playerId=1 기존인원=0
+[2026.05.19-07.25.56:381][338]LogViewport: Display: Player bShowMouseCursor Changed, True -> False
+[2026.05.19-07.25.56:381][338]LogViewport: Display: Viewport MouseLockMode Changed, LockInFullscreen -> LockOnCapture
+[2026.05.19-07.25.56:381][338]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2026.05.19-07.25.56:394][339]LogRenderer: Display: Invalidated clipmap due to WPO threshold change. This can occur due to resolution or FOV changes.
+[2026.05.19-07.25.58:597][561]LogTemp: Warning: 플레이어가 폭탄에 닿음!
+[2026.05.19-07.26.02:813][ 13]LogTemp: Warning: Sweep hit 1 actors
+[2026.05.19-07.26.02:813][ 13]LogTemp: Warning: Hit actor: MeleeWeapon_C_0
+[2026.05.19-07.26.04:169][163]LogTemp: Warning: Sweep hit 1 actors
+[2026.05.19-07.26.04:169][163]LogTemp: Warning: Hit actor: MeleeWeapon_C_0
+[2026.05.19-07.26.05:538][315]LogTemp: Warning: Sweep hit 1 actors
+[2026.05.19-07.26.05:538][315]LogTemp: Warning: Hit actor: MeleeWeapon_C_0
+[2026.05.19-07.26.09:504][756]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2026.05.19-07.26.09:504][756]LogWorld: BeginTearingDown for /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap
+[2026.05.19-07.26.09:507][756]LogTemp: [Network] 연결 해제
+[2026.05.19-07.26.09:507][756]LogWorld: UWorld::CleanupWorld for FuntasticMap, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.26.09:508][756]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.26.09:514][756]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2026.05.19-07.26.09:516][756]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.26.09:528][756]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2026.05.19-07.26.09:529][756]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 2
+[2026.05.19-07.26.09:529][756]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=2
+[2026.05.19-07.26.09:531][756]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=2
+[2026.05.19-07.26.09:538][756]LogUObjectHash: Compacting FUObjectHashTables data took   0.58ms
+[2026.05.19-07.26.09:574][757]LogRenderer: Display: Invalidated clipmap due to WPO threshold change. This can occur due to resolution or FOV changes.
+[2026.05.19-07.26.09:598][758]LogPlayLevel: Display: Destroying online subsystem :Context_2
+[2026.05.19-07.26.12:338][ 69]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2026.05.19-07.26.12:350][ 69]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2026.05.19-07.26.12:383][ 69]LogPlayLevel: Creating play world package: /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap
+[2026.05.19-07.26.12:391][ 69]LogPlayLevel: PIE: StaticDuplicateObject took: (0.006413s)
+[2026.05.19-07.26.12:391][ 69]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/FuntasticMap/Map/FuntasticMap.FuntasticMap to /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap.FuntasticMap (0.006457s)
+[2026.05.19-07.26.12:398][ 69]LogUObjectHash: Compacting FUObjectHashTables data took   0.60ms
+[2026.05.19-07.26.12:400][ 69]LogChaosDD: Creating Chaos Debug Draw Scene for world FuntasticMap
+[2026.05.19-07.26.12:402][ 69]LogPlayLevel: PIE: World Init took: (0.001589s)
+[2026.05.19-07.26.12:402][ 69]LogAudio: Display: Creating Audio Device:                 Id: 3, Scope: Unique, Realtime: True
+[2026.05.19-07.26.12:402][ 69]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2026.05.19-07.26.12:402][ 69]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2026.05.19-07.26.12:402][ 69]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2026.05.19-07.26.12:402][ 69]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2026.05.19-07.26.12:402][ 69]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2026.05.19-07.26.12:402][ 69]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2026.05.19-07.26.12:402][ 69]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2026.05.19-07.26.12:402][ 69]LogAudio: Display: AudioDevice MaxSources: 32
+[2026.05.19-07.26.12:402][ 69]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2026.05.19-07.26.12:402][ 69]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2026.05.19-07.26.12:402][ 69]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2026.05.19-07.26.12:405][ 69]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2026.05.19-07.26.12:416][ 69]LogAudioMixer: Display: Using Audio Hardware Device 스피커(High Definition Audio Device)
+[2026.05.19-07.26.12:416][ 69]LogAudioMixer: Display: Initializing Sound Submixes...
+[2026.05.19-07.26.12:416][ 69]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2026.05.19-07.26.12:416][ 69]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2026.05.19-07.26.12:417][ 69]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=3
+[2026.05.19-07.26.12:417][ 69]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=3
+[2026.05.19-07.26.12:420][ 69]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=3
+[2026.05.19-07.26.12:421][ 69]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=3
+[2026.05.19-07.26.12:421][ 69]LogInit: FAudioDevice initialized with ID 3.
+[2026.05.19-07.26.12:421][ 69]LogAudio: Display: Audio Device (ID: 3) registered with world 'FuntasticMap'.
+[2026.05.19-07.26.12:421][ 69]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 3
+[2026.05.19-07.26.12:423][ 69]LogLoad: Game class is 'BP_KillEmAllGameMode_C'
+[2026.05.19-07.26.12:427][ 69]LogWorld: Bringing World /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap.FuntasticMap up for play (max tick rate 0) at 2026.05.19-16.26.12
+[2026.05.19-07.26.12:428][ 69]LogWorld: Bringing up level for play took: 0.005466
+[2026.05.19-07.26.12:430][ 69]LogOnline: OSS: Created online subsystem instance for: :Context_3
+[2026.05.19-07.26.12:433][ 69]LogTemp: Warning: Collision: 3, Physics: 1
+[2026.05.19-07.26.12:434][ 69]LogViewport: Display: Player bShowMouseCursor Changed, False -> True
+[2026.05.19-07.26.12:434][ 69]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> LockInFullscreen
+[2026.05.19-07.26.12:434][ 69]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently_IncludingInitialMouseDown -> NoCapture
+[2026.05.19-07.26.12:436][ 69]PIE: Server logged in
+[2026.05.19-07.26.12:437][ 69]PIE: Play in editor total start time 0.087 seconds.
+[2026.05.19-07.26.12:440][ 69]LogAudio: Warning: Detected orphaned looping sound 'BGM'.
+[2026.05.19-07.26.18:100][720]LogTemp: [Network] 서버 연결 성공 127.0.0.1:7777
+[2026.05.19-07.26.18:101][720]LogTemp: [Login] 성공 playerId=2
+[2026.05.19-07.26.18:909][814]LogTemp: 방 입장 시도: FuntasticBattle Room 1
+[2026.05.19-07.26.18:910][814]LogTemp: 방 입장 완료 playerId=2 기존인원=0
+[2026.05.19-07.26.18:910][814]LogViewport: Display: Player bShowMouseCursor Changed, True -> False
+[2026.05.19-07.26.18:910][814]LogViewport: Display: Viewport MouseLockMode Changed, LockInFullscreen -> LockOnCapture
+[2026.05.19-07.26.18:910][814]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2026.05.19-07.26.18:921][815]LogRenderer: Display: Invalidated clipmap due to WPO threshold change. This can occur due to resolution or FOV changes.
+[2026.05.19-07.26.19:997][931]LogTemp: Warning: 플레이어가 폭탄에 닿음!
+[2026.05.19-07.26.23:495][321]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2026.05.19-07.26.23:495][321]LogWorld: BeginTearingDown for /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap
+[2026.05.19-07.26.23:500][321]LogTemp: [Network] 연결 해제
+[2026.05.19-07.26.23:500][321]LogWorld: UWorld::CleanupWorld for FuntasticMap, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.26.23:501][321]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.26.23:506][321]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2026.05.19-07.26.23:509][321]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.26.23:521][321]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2026.05.19-07.26.23:521][321]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 3
+[2026.05.19-07.26.23:521][321]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=3
+[2026.05.19-07.26.23:523][321]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=3
+[2026.05.19-07.26.23:530][321]LogUObjectHash: Compacting FUObjectHashTables data took   0.50ms
+[2026.05.19-07.26.23:587][323]LogPlayLevel: Display: Destroying online subsystem :Context_3
+[2026.05.19-07.26.29:343][891]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_1
+[2026.05.19-07.26.29:400][893]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_2
+[2026.05.19-07.26.29:434][895]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_3
+[2026.05.19-07.26.29:451][896]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_4
+[2026.05.19-07.26.29:469][897]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_5
+[2026.05.19-07.26.29:523][900]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_6
+[2026.05.19-07.26.29:529][900]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_0
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.29:529][900]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_0
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.29:529][900]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_0
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.30:879][ 32]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_1
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.30:879][ 32]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_1
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.30:879][ 32]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_1
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.30:913][ 33]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_2
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.30:913][ 33]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_2
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.30:913][ 33]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_2
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.30:923][ 34]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_3
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.30:923][ 34]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_3
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.30:923][ 34]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_3
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.30:960][ 35]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_4
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.30:960][ 35]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_4
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.30:960][ 35]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_4
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:641][261]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_5
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:641][261]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_5
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:641][261]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_5
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:676][262]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_6
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:677][262]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_6
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:677][262]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_6
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:689][263]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_7
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:689][263]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_7
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:689][263]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_7
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:703][264]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_8
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:703][264]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_8
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:703][264]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_8
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:713][265]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_9
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:713][265]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_9
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:713][265]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_9
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:723][266]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_10
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:723][266]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_10
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:723][266]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_10
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:734][267]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_11
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:735][267]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_11
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:735][267]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_11
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:786][268]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_12
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:786][268]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_12
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:786][268]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_12
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:802][269]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_13
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:802][269]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_13
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:802][269]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_13
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:813][270]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_14
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:813][270]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_14
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:813][270]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_14
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:826][271]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_15
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:826][271]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_15
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:826][271]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_15
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:837][272]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_16
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:837][272]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_16
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:837][272]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_16
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:849][273]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_17
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:849][273]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_17
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:849][273]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_17
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:860][274]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_18
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:860][274]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_18
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:860][274]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_18
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:871][275]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_19
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:871][275]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_19
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:871][275]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_19
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:883][276]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_20
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:883][276]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_20
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:883][276]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_20
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:894][277]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_21
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:895][277]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_21
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:895][277]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_21
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:906][278]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_22
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:906][278]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_22
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:906][278]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_22
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:920][279]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_23
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:920][279]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_23
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:920][279]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_23
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:931][280]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_24
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:931][280]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_24
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:931][280]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_24
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:944][281]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_25
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:944][281]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_25
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:944][281]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_25
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:956][282]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_26
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:956][282]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_26
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:956][282]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_26
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:968][283]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_27
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:968][283]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_27
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:968][283]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_27
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:978][284]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_28
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:978][284]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_28
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:978][284]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_28
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.33:989][285]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_29
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.33:989][285]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_29
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.33:989][285]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_29
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.34:001][286]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_30
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.34:001][286]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_30
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.34:001][286]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_30
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.34:011][287]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_31
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.34:011][287]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_31
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.34:011][287]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_31
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.34:024][288]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_32
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.34:024][288]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_32
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.34:024][288]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_32
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.34:035][289]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_33
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.34:035][289]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_33
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.34:035][289]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_33
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.34:045][290]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_34
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.34:045][290]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_34
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.34:045][290]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_34
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.34:055][291]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_35
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.34:055][291]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_35
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.34:055][291]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_35
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.34:066][292]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_36
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.34:066][292]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_36
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.34:066][292]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_36
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.34:076][293]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_37
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.34:076][293]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_37
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.34:076][293]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_37
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.34:087][294]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_38
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.34:087][294]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_38
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.34:087][294]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_38
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.34:097][295]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_39
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.34:097][295]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_39
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.34:097][295]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_39
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.34:109][296]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_40
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.34:109][296]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_40
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.34:109][296]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_40
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.34:121][297]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_41
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:030C
+[2026.05.19-07.26.34:121][297]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_41
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01CC
+[2026.05.19-07.26.34:121][297]LogScript: Warning: Accessed None trying to read property CallFunc_TryGetPawnOwner_ReturnValue
+	ABP_BoyCharater_C /Engine/Transient.World_6:PersistentLevel.SkeletalMeshActor_0.SkeletalMeshComponent0.ABP_BoyCharater_C_41
+	Function /Game/ABP_BoyCharater.ABP_BoyCharater_C:ExecuteUbergraph_ABP_BoyCharater:01FE
+[2026.05.19-07.26.38:206][655]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_7
+[2026.05.19-07.26.38:223][656]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_8
+[2026.05.19-07.26.39:838][794]LogAssetEditorSubsystem: Opening Asset editor for Blueprint /Game/Weapons/BP_Bomb.BP_Bomb
+[2026.05.19-07.26.39:839][794]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_9
+[2026.05.19-07.26.39:887][794]LogStreaming: Display: FlushAsyncLoading(347): 1 QueuedPackages, 0 AsyncPackages
+[2026.05.19-07.26.42:867][ 80]LogSlate: Took 0.000146 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
+[2026.05.19-07.26.43:992][177]SourceControl: fatal: E:/UE_5.5/Engine/Plugins/FX/Niagara/Content/DefaultAssets/Templates/Systems: 'E:/UE_5.5/Engine/Plugins/FX/Niagara/Content/DefaultAssets/Templates/Systems' is outside repository at 'D:/Ureal/FuntasticBattle'
+[2026.05.19-07.26.43:992][177]SourceControl: fatal: E:/UE_5.5/Engine/Plugins/FX/Niagara/Content/DefaultAssets/DefaultSystem.uasset: 'E:/UE_5.5/Engine/Plugins/FX/Niagara/Content/DefaultAssets/DefaultSystem.uasset' is outside repository at 'D:/Ureal/FuntasticBattle'
+[2026.05.19-07.26.43:992][177]SourceControl: fatal: E:/UE_5.5/Engine/Plugins/FX/NiagaraFluids/Content/Templates/Liquid/2D/Systems/Grid2D_FLIP_Hose.uasset: 'E:/UE_5.5/Engine/Plugins/FX/NiagaraFluids/Content/Templates/Liquid/2D/Systems/Grid2D_FLIP_Hose.uasset' is outside repository at 'D:/Ureal/FuntasticBattle'
+[2026.05.19-07.26.46:217][320]LogStreaming: Display: FlushAsyncLoading(522): 1 QueuedPackages, 0 AsyncPackages
+[2026.05.19-07.26.48:341][536]LogUObjectHash: Compacting FUObjectHashTables data took   0.48ms
+[2026.05.19-07.26.49:634][639]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2026.05.19-07.26.49:647][639]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2026.05.19-07.26.49:673][639]LogPlayLevel: Creating play world package: /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap
+[2026.05.19-07.26.49:679][639]LogPlayLevel: PIE: StaticDuplicateObject took: (0.006057s)
+[2026.05.19-07.26.49:679][639]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/FuntasticMap/Map/FuntasticMap.FuntasticMap to /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap.FuntasticMap (0.006104s)
+[2026.05.19-07.26.49:694][639]LogUObjectHash: Compacting FUObjectHashTables data took   0.86ms
+[2026.05.19-07.26.49:696][639]LogChaosDD: Creating Chaos Debug Draw Scene for world FuntasticMap
+[2026.05.19-07.26.49:697][639]LogPlayLevel: PIE: World Init took: (0.001291s)
+[2026.05.19-07.26.49:698][639]LogAudio: Display: Creating Audio Device:                 Id: 4, Scope: Unique, Realtime: True
+[2026.05.19-07.26.49:699][639]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2026.05.19-07.26.49:699][639]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2026.05.19-07.26.49:699][639]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2026.05.19-07.26.49:699][639]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2026.05.19-07.26.49:699][639]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2026.05.19-07.26.49:699][639]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2026.05.19-07.26.49:699][639]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2026.05.19-07.26.49:699][639]LogAudio: Display: AudioDevice MaxSources: 32
+[2026.05.19-07.26.49:699][639]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2026.05.19-07.26.49:699][639]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2026.05.19-07.26.49:699][639]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2026.05.19-07.26.49:703][639]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2026.05.19-07.26.49:716][639]LogAudioMixer: Display: Using Audio Hardware Device 스피커(High Definition Audio Device)
+[2026.05.19-07.26.49:716][639]LogAudioMixer: Display: Initializing Sound Submixes...
+[2026.05.19-07.26.49:716][639]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2026.05.19-07.26.49:716][639]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2026.05.19-07.26.49:716][639]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=4
+[2026.05.19-07.26.49:716][639]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=4
+[2026.05.19-07.26.49:719][639]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=4
+[2026.05.19-07.26.49:719][639]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=4
+[2026.05.19-07.26.49:719][639]LogInit: FAudioDevice initialized with ID 4.
+[2026.05.19-07.26.49:719][639]LogAudio: Display: Audio Device (ID: 4) registered with world 'FuntasticMap'.
+[2026.05.19-07.26.49:719][639]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 4
+[2026.05.19-07.26.49:722][639]LogLoad: Game class is 'BP_KillEmAllGameMode_C'
+[2026.05.19-07.26.49:727][639]LogWorld: Bringing World /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap.FuntasticMap up for play (max tick rate 0) at 2026.05.19-16.26.49
+[2026.05.19-07.26.49:728][639]LogWorld: Bringing up level for play took: 0.006578
+[2026.05.19-07.26.49:730][639]LogOnline: OSS: Created online subsystem instance for: :Context_13
+[2026.05.19-07.26.49:731][639]LogTemp: Warning: Collision: 3, Physics: 1
+[2026.05.19-07.26.49:734][639]LogViewport: Display: Player bShowMouseCursor Changed, False -> True
+[2026.05.19-07.26.49:734][639]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> LockInFullscreen
+[2026.05.19-07.26.49:734][639]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently_IncludingInitialMouseDown -> NoCapture
+[2026.05.19-07.26.49:735][639]PIE: Server logged in
+[2026.05.19-07.26.49:737][639]PIE: Play in editor total start time 0.09 seconds.
+[2026.05.19-07.26.49:739][639]LogAudio: Warning: Detected orphaned looping sound 'BGM'.
+[2026.05.19-07.26.54:735][211]LogTemp: [Network] 서버 연결 성공 127.0.0.1:7777
+[2026.05.19-07.26.54:736][211]LogTemp: [Login] 성공 playerId=3
+[2026.05.19-07.26.55:852][343]LogTemp: 방 입장 시도: FuntasticBattle Room 1
+[2026.05.19-07.26.55:853][343]LogTemp: 방 입장 완료 playerId=3 기존인원=0
+[2026.05.19-07.26.55:853][343]LogViewport: Display: Player bShowMouseCursor Changed, True -> False
+[2026.05.19-07.26.55:853][343]LogViewport: Display: Viewport MouseLockMode Changed, LockInFullscreen -> LockOnCapture
+[2026.05.19-07.26.55:853][343]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2026.05.19-07.26.55:865][344]LogRenderer: Display: Invalidated clipmap due to WPO threshold change. This can occur due to resolution or FOV changes.
+[2026.05.19-07.26.56:790][439]LogTemp: Warning: 플레이어가 폭탄에 닿음!
+[2026.05.19-07.27.00:454][822]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2026.05.19-07.27.00:454][822]LogWorld: BeginTearingDown for /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap
+[2026.05.19-07.27.00:456][822]LogTemp: [Network] 연결 해제
+[2026.05.19-07.27.00:456][822]LogWorld: UWorld::CleanupWorld for FuntasticMap, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.27.00:457][822]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.27.00:460][822]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2026.05.19-07.27.00:460][822]LogNiagaraEditor: onPieEnd
+[2026.05.19-07.27.00:463][822]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.27.00:477][822]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2026.05.19-07.27.00:477][822]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 4
+[2026.05.19-07.27.00:478][822]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=4
+[2026.05.19-07.27.00:479][822]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=4
+[2026.05.19-07.27.00:487][822]LogUObjectHash: Compacting FUObjectHashTables data took   0.57ms
+[2026.05.19-07.27.00:520][823]LogPlayLevel: Display: Destroying online subsystem :Context_13
+[2026.05.19-07.27.07:405][516]LogAssetEditorSubsystem: Opening Asset editor for NiagaraSystem /Game/Effect/NS_Bombtrail.NS_Bombtrail
+[2026.05.19-07.27.07:473][516]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_10
+[2026.05.19-07.27.07:477][516]LogStreaming: Display: FlushAsyncLoading(523): 1 QueuedPackages, 0 AsyncPackages
+[2026.05.19-07.27.07:724][516]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_11
+[2026.05.19-07.27.08:221][516]LogSlate: Took 0.007582 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-BoldCondensed.ttf' (158K)
+[2026.05.19-07.27.08:229][516]LogSlate: Took 0.006499 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/FontAwesome.ttf' (139K)
+[2026.05.19-07.27.08:464][522]61561_NS_Bombtrail_MessageLog: System successfully compiled.
+[2026.05.19-07.27.31:248][807]61561_NS_Bombtrail_MessageLog: System successfully compiled.
+[2026.05.19-07.27.32:537][865]LogSlate: Window 'NS_Bombtrail' being destroyed
+[2026.05.19-07.27.34:661][981]LogSlate: Window 'NS_Bombtrail' being destroyed
+[2026.05.19-07.27.36:078][ 65]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2026.05.19-07.27.36:091][ 65]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2026.05.19-07.27.36:093][ 65]LogPlayLevel: Creating play world package: /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap
+[2026.05.19-07.27.36:098][ 65]LogPlayLevel: PIE: StaticDuplicateObject took: (0.006168s)
+[2026.05.19-07.27.36:098][ 65]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/FuntasticMap/Map/FuntasticMap.FuntasticMap to /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap.FuntasticMap (0.006199s)
+[2026.05.19-07.27.36:117][ 65]LogUObjectHash: Compacting FUObjectHashTables data took   0.44ms
+[2026.05.19-07.27.36:118][ 65]LogChaosDD: Creating Chaos Debug Draw Scene for world FuntasticMap
+[2026.05.19-07.27.36:120][ 65]LogPlayLevel: PIE: World Init took: (0.001244s)
+[2026.05.19-07.27.36:121][ 65]LogAudio: Display: Creating Audio Device:                 Id: 5, Scope: Unique, Realtime: True
+[2026.05.19-07.27.36:121][ 65]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2026.05.19-07.27.36:121][ 65]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2026.05.19-07.27.36:121][ 65]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2026.05.19-07.27.36:121][ 65]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2026.05.19-07.27.36:121][ 65]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2026.05.19-07.27.36:121][ 65]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2026.05.19-07.27.36:121][ 65]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2026.05.19-07.27.36:121][ 65]LogAudio: Display: AudioDevice MaxSources: 32
+[2026.05.19-07.27.36:121][ 65]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2026.05.19-07.27.36:121][ 65]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2026.05.19-07.27.36:121][ 65]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2026.05.19-07.27.36:123][ 65]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2026.05.19-07.27.36:134][ 65]LogAudioMixer: Display: Using Audio Hardware Device 스피커(High Definition Audio Device)
+[2026.05.19-07.27.36:135][ 65]LogAudioMixer: Display: Initializing Sound Submixes...
+[2026.05.19-07.27.36:135][ 65]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2026.05.19-07.27.36:135][ 65]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2026.05.19-07.27.36:135][ 65]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=5
+[2026.05.19-07.27.36:135][ 65]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=5
+[2026.05.19-07.27.36:137][ 65]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=5
+[2026.05.19-07.27.36:137][ 65]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=5
+[2026.05.19-07.27.36:137][ 65]LogInit: FAudioDevice initialized with ID 5.
+[2026.05.19-07.27.36:137][ 65]LogAudio: Display: Audio Device (ID: 5) registered with world 'FuntasticMap'.
+[2026.05.19-07.27.36:137][ 65]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 5
+[2026.05.19-07.27.36:140][ 65]LogLoad: Game class is 'BP_KillEmAllGameMode_C'
+[2026.05.19-07.27.36:144][ 65]LogWorld: Bringing World /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap.FuntasticMap up for play (max tick rate 60) at 2026.05.19-16.27.36
+[2026.05.19-07.27.36:145][ 65]LogWorld: Bringing up level for play took: 0.005961
+[2026.05.19-07.27.36:148][ 65]LogOnline: OSS: Created online subsystem instance for: :Context_16
+[2026.05.19-07.27.36:149][ 65]LogTemp: Warning: Collision: 3, Physics: 1
+[2026.05.19-07.27.36:151][ 65]LogViewport: Display: Player bShowMouseCursor Changed, False -> True
+[2026.05.19-07.27.36:151][ 65]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> LockInFullscreen
+[2026.05.19-07.27.36:151][ 65]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently_IncludingInitialMouseDown -> NoCapture
+[2026.05.19-07.27.36:153][ 65]PIE: Server logged in
+[2026.05.19-07.27.36:154][ 65]PIE: Play in editor total start time 0.062 seconds.
+[2026.05.19-07.27.36:157][ 65]LogAudio: Warning: Detected orphaned looping sound 'BGM'.
+[2026.05.19-07.27.40:117][300]LogTemp: [Network] 서버 연결 성공 127.0.0.1:7777
+[2026.05.19-07.27.40:118][300]LogTemp: [Login] 성공 playerId=4
+[2026.05.19-07.27.40:998][353]LogTemp: 방 입장 시도: FuntasticBattle Room 1
+[2026.05.19-07.27.41:001][353]LogTemp: 방 입장 완료 playerId=4 기존인원=0
+[2026.05.19-07.27.41:001][353]LogViewport: Display: Player bShowMouseCursor Changed, True -> False
+[2026.05.19-07.27.41:001][353]LogViewport: Display: Viewport MouseLockMode Changed, LockInFullscreen -> LockOnCapture
+[2026.05.19-07.27.41:001][353]LogViewport: Display: Viewport MouseCaptureMode Changed, NoCapture -> CapturePermanently
+[2026.05.19-07.27.41:020][354]LogRenderer: Display: Invalidated clipmap due to WPO threshold change. This can occur due to resolution or FOV changes.
+[2026.05.19-07.27.42:066][417]LogTemp: Warning: 플레이어가 폭탄에 닿음!
+[2026.05.19-07.27.47:125][719]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2026.05.19-07.27.47:125][719]LogWorld: BeginTearingDown for /Game/FuntasticMap/Map/UEDPIE_0_FuntasticMap
+[2026.05.19-07.27.47:129][719]LogTemp: [Network] 연결 해제
+[2026.05.19-07.27.47:129][719]LogWorld: UWorld::CleanupWorld for FuntasticMap, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.27.47:130][719]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.27.47:134][719]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2026.05.19-07.27.47:134][719]LogNiagaraEditor: onPieEnd
+[2026.05.19-07.27.47:136][719]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.27.47:147][719]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2026.05.19-07.27.47:147][719]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 5
+[2026.05.19-07.27.47:147][719]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=5
+[2026.05.19-07.27.47:150][719]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=5
+[2026.05.19-07.27.47:154][719]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2026.05.19-07.27.47:157][719]LogUObjectHash: Compacting FUObjectHashTables data took   0.56ms
+[2026.05.19-07.27.47:218][721]LogPlayLevel: Display: Destroying online subsystem :Context_16
+[2026.05.19-07.28.09:007][136]LogUObjectHash: Compacting FUObjectHashTables data took   0.51ms
+[2026.05.19-07.28.10:357][136]LogSlate: Window 'Save Content' being destroyed
+[2026.05.19-07.28.10:374][136]LogUObjectHash: Compacting FUObjectHashTables data took   0.24ms
+[2026.05.19-07.28.12:129][237]LogUObjectHash: Compacting FUObjectHashTables data took   0.26ms
+[2026.05.19-07.28.12:307][237]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2026.05.19-07.28.12:385][237]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Weapons/BP_Bomb] ([2] browsable assets)...
+[2026.05.19-07.28.12:398][237]OBJ SavePackage:     Rendered thumbnail for [Blueprint /Game/Weapons/BP_Bomb.BP_Bomb]
+[2026.05.19-07.28.12:398][237]OBJ SavePackage: Finished generating thumbnails for package [/Game/Weapons/BP_Bomb]
+[2026.05.19-07.28.12:398][237]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Weapons/BP_Bomb" FILE="D:/Ureal/FuntasticBattle/Content/Weapons/BP_Bomb.uasset" SILENT=true
+[2026.05.19-07.28.12:401][237]LogSavePackage: Moving output files for package: /Game/Weapons/BP_Bomb
+[2026.05.19-07.28.12:401][237]LogSavePackage: Moving 'D:/Ureal/FuntasticBattle/Saved/BP_Bomb1FA906004F6C2D036BB5CBAED53566A5.tmp' to 'D:/Ureal/FuntasticBattle/Content/Weapons/BP_Bomb.uasset'
+[2026.05.19-07.28.12:445][237]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Effect/NS_Bombtrail] ([1] browsable assets)...
+[2026.05.19-07.28.12:445][237]OBJ SavePackage: Finished generating thumbnails for package [/Game/Effect/NS_Bombtrail]
+[2026.05.19-07.28.12:445][237]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Effect/NS_Bombtrail" FILE="D:/Ureal/FuntasticBattle/Content/Effect/NS_Bombtrail.uasset" SILENT=true
+[2026.05.19-07.28.12:467][237]LogSavePackage: Moving output files for package: /Game/Effect/NS_Bombtrail
+[2026.05.19-07.28.12:468][237]LogSavePackage: Moving 'D:/Ureal/FuntasticBattle/Saved/NS_Bombtrail317C92214EBB6405395B50BA2451EA7A.tmp' to 'D:/Ureal/FuntasticBattle/Content/Effect/NS_Bombtrail.uasset'
+[2026.05.19-07.28.12:477][237]LogFileHelpers: InternalPromptForCheckoutAndSave took 170.166 ms
+[2026.05.19-07.28.12:531][237]LogContentValidation: Display: Starting to validate 2 assets
+[2026.05.19-07.28.12:533][237]LogContentValidation: Enabled validators:
+[2026.05.19-07.28.12:533][237]LogContentValidation: 	/Script/DataValidation.EditorValidator_Material
+[2026.05.19-07.28.12:533][237]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2026.05.19-07.28.12:533][237]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2026.05.19-07.28.12:533][237]LogContentValidation: 	/Script/DataValidation.PackageFileValidator
+[2026.05.19-07.28.12:533][237]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2026.05.19-07.28.12:533][237]LogContentValidation: 	/Script/InputBlueprintNodes.EnhancedInputUserWidgetValidator
+[2026.05.19-07.28.12:533][237]AssetCheck: /Game/Weapons/BP_Bomb Validating asset
+[2026.05.19-07.28.12:533][237]AssetCheck: /Game/Effect/NS_Bombtrail Validating asset
+[2026.05.19-07.28.14:603][360]LogUObjectHash: Compacting FUObjectHashTables data took   0.26ms
+[2026.05.19-07.28.14:700][360]LogStall: Shutdown...
+[2026.05.19-07.28.14:700][360]LogStall: Shutdown complete.
+[2026.05.19-07.28.14:757][360]LogWorld: UWorld::CleanupWorld for World_9, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.14:757][360]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.14:844][360]LogWorld: UWorld::CleanupWorld for World_10, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.14:845][360]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.14:847][360]LogWorld: UWorld::CleanupWorld for World_11, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.14:847][360]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.14:929][360]LogSlate: Window 'FuntasticBattle - Unreal Editor' being destroyed
+[2026.05.19-07.28.15:021][360]LogUObjectHash: Compacting FUObjectHashTables data took   0.45ms
+[2026.05.19-07.28.15:029][360]Cmd: QUIT_EDITOR
+[2026.05.19-07.28.15:029][361]LogCore: Engine exit requested (reason: UUnrealEdEngine::CloseEditor())
+[2026.05.19-07.28.15:044][361]LogCore: Engine exit requested (reason: EngineExit() was called; note: exit was already requested)
+[2026.05.19-07.28.15:044][361]LogStaticMesh: Abandoning remaining async distance field tasks for shutdown
+[2026.05.19-07.28.15:044][361]LogStaticMesh: Abandoning remaining async card representation tasks for shutdown
+[2026.05.19-07.28.15:046][361]LogWorld: UWorld::CleanupWorld for FuntasticMap, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.15:047][361]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.15:067][361]LogStylusInput: Shutting down StylusInput subsystem.
+[2026.05.19-07.28.15:074][361]LogLevelSequenceEditor: LevelSequenceEditor subsystem deinitialized.
+[2026.05.19-07.28.15:078][361]LogWorld: UWorld::CleanupWorld for World_6, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.15:078][361]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.15:079][361]LogWorld: UWorld::CleanupWorld for World_5, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.15:079][361]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.15:079][361]LogWorld: UWorld::CleanupWorld for World_4, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.15:079][361]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.15:079][361]LogWorld: UWorld::CleanupWorld for World_3, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.15:079][361]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.15:079][361]LogWorld: UWorld::CleanupWorld for World_2, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.15:079][361]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.15:079][361]LogWorld: UWorld::CleanupWorld for World_1, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.15:079][361]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.15:079][361]LogWorld: UWorld::CleanupWorld for World_0, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.15:079][361]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.15:080][361]LogWorld: UWorld::CleanupWorld for World_7, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.15:080][361]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.15:080][361]LogWorld: UWorld::CleanupWorld for World_8, bSessionEnded=true, bCleanupResources=true
+[2026.05.19-07.28.15:080][361]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2026.05.19-07.28.15:086][361]LogStudioTelemetry: Ended StudioTelemetry Session
+[2026.05.19-07.28.15:091][361]LogAnalytics: Display: [UEEditor.Rocket.Release] Destroying ET Analytics provider
+[2026.05.19-07.28.15:093][361]LogAnalytics: Display: [UEEditor.Rocket.Release] Ended ET Analytics provider session
+[2026.05.19-07.28.15:093][361]LogAnalytics: Display: [UEEditor.Rocket.Release] Destroyed ET Analytics provider
+[2026.05.19-07.28.15:923][361]LogAudio: Display: Beginning Audio Device Manager Shutdown (Module: AudioMixerXAudio2)...
+[2026.05.19-07.28.15:923][361]LogAudio: Display: Destroying 1 Remaining Audio Device(s)...
+[2026.05.19-07.28.15:923][361]LogAudio: Display: Audio Device unregistered from world 'FuntasticMap'.
+[2026.05.19-07.28.15:923][361]LogAudio: Display: Shutting down audio device while 1 references to it are still alive. For more information, compile with INSTRUMENT_AUDIODEVICE_HANDLES.
+[2026.05.19-07.28.15:923][361]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1
+[2026.05.19-07.28.15:926][361]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1
+[2026.05.19-07.28.15:932][361]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID -1
+[2026.05.19-07.28.15:932][361]LogAudio: Display: Audio Device Manager Shutdown
+[2026.05.19-07.28.15:934][361]LogSlate: Slate User Destroyed.  User Index 0, Is Virtual User: 0
+[2026.05.19-07.28.15:935][361]LogExit: Preparing to exit.
+[2026.05.19-07.28.15:967][361]LogUObjectHash: Compacting FUObjectHashTables data took   0.70ms
+[2026.05.19-07.28.16:298][361]LogEditorDataStorage: Deinitializing
+[2026.05.19-07.28.16:414][361]LogDemo: Cleaned up 0 splitscreen connections, owner deletion: enabled
+[2026.05.19-07.28.16:439][361]LogExit: Editor shut down
+[2026.05.19-07.28.16:443][361]LogExit: Transaction tracking system shut down
+[2026.05.19-07.28.16:701][361]LogExit: Object subsystem successfully closed.
+[2026.05.19-07.28.16:795][361]LogShaderCompilers: Display: Shaders left to compile 0
+[2026.05.19-07.28.17:139][361]LogMemoryProfiler: Shutdown
+[2026.05.19-07.28.17:139][361]LogNetworkingProfiler: Shutdown
+[2026.05.19-07.28.17:139][361]LoadingProfiler: Shutdown
+[2026.05.19-07.28.17:139][361]LogTimingProfiler: Shutdown
+[2026.05.19-07.28.17:155][361]LogWebBrowser: Deleting browser for Url=https://www.fab.com/plugins/ue5/.
+[2026.05.19-07.28.17:541][361]LogChaosDD: Chaos Debug Draw Shutdown
+[2026.05.19-07.28.17:548][361]RenderDocPlugin: plugin has been unloaded.
+[2026.05.19-07.28.17:559][361]LogHttp: Warning: [FHttpManager::Shutdown] Unbinding delegates for 1 outstanding Http Requests:
+[2026.05.19-07.28.17:559][361]LogHttp: Warning: 	verb=[POST] url=[https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7BEDEF5AE9-46A5-5BF5-D9C2-73B7F063AA3C%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.5.4-40574608%2B%2B%2BUE5%2BRelease-5.5&UserID=ee441b544173186dbcdc4898dd685c3b%7C16a0f731a1cd4f8c8ebe6712c3078df3%7Ce395f36d-da11-4c34-bf1d-c2f80c13d2e4&AppEnvironment=datacollector-binary&UploadType=eteventstream] refs=[2] status=Processing
+[2026.05.19-07.28.18:120][361]LogEOSSDK: FEOSSDKManager::Shutdown EOS_Shutdown Result=[EOS_Success]
+[2026.05.19-07.28.18:120][361]LogStudioTelemetry: Display: Shutdown StudioTelemetry Module
+[2026.05.19-07.28.18:120][361]LogNFORDenoise: NFORDenoise function shutting down
+[2026.05.19-07.28.18:129][361]LogXGEController: Cleaning working directory: C:/Users/ljk/AppData/Local/Temp/UnrealXGEWorkingDir/
+[2026.05.19-07.28.18:137][361]LogIris: FNetObjectFactoryRegistry::UnregisterFactory is unregistering factory: None name: NetActorFactory id: 0
+[2026.05.19-07.28.18:137][361]LogIris: FNetObjectFactoryRegistry::UnregisterFactory is unregistering factory: None name: NetSubObjectFactory id: 1
+[2026.05.19-07.28.18:138][361]LogPakFile: Destroying PakPlatformFile
+[2026.05.19-07.28.18:355][361]LogD3D12RHI: ~FD3D12DynamicRHI
+[2026.05.19-07.28.18:389][361]LogExit: Exiting.
+[2026.05.19-07.28.18:410][361]Log file closed, 05/19/26 16:28:18
