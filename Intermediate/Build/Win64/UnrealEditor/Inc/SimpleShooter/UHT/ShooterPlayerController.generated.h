@@ -15,6 +15,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define SIMPLESHOOTER_ShooterPlayerController_generated_h
 
 #define FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execOnServerDisconnected); \
+	DECLARE_FUNCTION(execOnGameEndReceived); \
+	DECLARE_FUNCTION(execOnHitReceived); \
+	DECLARE_FUNCTION(execOnRemoteAnimState); \
 	DECLARE_FUNCTION(execOnRemotePlayerMove); \
 	DECLARE_FUNCTION(execOnRemotePlayerLeave); \
 	DECLARE_FUNCTION(execOnRemotePlayerEnter); \

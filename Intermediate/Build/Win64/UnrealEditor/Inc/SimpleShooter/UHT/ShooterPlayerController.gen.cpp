@@ -52,6 +52,115 @@ DEFINE_FUNCTION(AShooterPlayerController::execOnEnterRoomSuccess)
 }
 // End Class AShooterPlayerController Function OnEnterRoomSuccess
 
+// Begin Class AShooterPlayerController Function OnGameEndReceived
+struct Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics
+{
+	struct ShooterPlayerController_eventOnGameEndReceived_Parms
+	{
+		int64 WinnerId;
+		bool bIsWinner;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "ShooterPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FInt64PropertyParams NewProp_WinnerId;
+	static void NewProp_bIsWinner_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsWinner;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FInt64PropertyParams Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::NewProp_WinnerId = { "WinnerId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShooterPlayerController_eventOnGameEndReceived_Parms, WinnerId), METADATA_PARAMS(0, nullptr) };
+void Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::NewProp_bIsWinner_SetBit(void* Obj)
+{
+	((ShooterPlayerController_eventOnGameEndReceived_Parms*)Obj)->bIsWinner = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::NewProp_bIsWinner = { "bIsWinner", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ShooterPlayerController_eventOnGameEndReceived_Parms), &Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::NewProp_bIsWinner_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::NewProp_WinnerId,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::NewProp_bIsWinner,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShooterPlayerController, nullptr, "OnGameEndReceived", nullptr, nullptr, Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::PropPointers), sizeof(Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::ShooterPlayerController_eventOnGameEndReceived_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::ShooterPlayerController_eventOnGameEndReceived_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AShooterPlayerController::execOnGameEndReceived)
+{
+	P_GET_PROPERTY(FInt64Property,Z_Param_WinnerId);
+	P_GET_UBOOL(Z_Param_bIsWinner);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnGameEndReceived(Z_Param_WinnerId,Z_Param_bIsWinner);
+	P_NATIVE_END;
+}
+// End Class AShooterPlayerController Function OnGameEndReceived
+
+// Begin Class AShooterPlayerController Function OnHitReceived
+struct Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics
+{
+	struct ShooterPlayerController_eventOnHitReceived_Parms
+	{
+		int64 AttackerId;
+		int64 TargetId;
+		float Amount;
+		float RemainHp;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "ShooterPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FInt64PropertyParams NewProp_AttackerId;
+	static const UECodeGen_Private::FInt64PropertyParams NewProp_TargetId;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Amount;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_RemainHp;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FInt64PropertyParams Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::NewProp_AttackerId = { "AttackerId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShooterPlayerController_eventOnHitReceived_Parms, AttackerId), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FInt64PropertyParams Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::NewProp_TargetId = { "TargetId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShooterPlayerController_eventOnHitReceived_Parms, TargetId), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::NewProp_Amount = { "Amount", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShooterPlayerController_eventOnHitReceived_Parms, Amount), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::NewProp_RemainHp = { "RemainHp", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShooterPlayerController_eventOnHitReceived_Parms, RemainHp), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::NewProp_AttackerId,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::NewProp_TargetId,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::NewProp_Amount,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::NewProp_RemainHp,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShooterPlayerController, nullptr, "OnHitReceived", nullptr, nullptr, Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::PropPointers), sizeof(Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::ShooterPlayerController_eventOnHitReceived_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::ShooterPlayerController_eventOnHitReceived_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AShooterPlayerController_OnHitReceived()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShooterPlayerController_OnHitReceived_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AShooterPlayerController::execOnHitReceived)
+{
+	P_GET_PROPERTY(FInt64Property,Z_Param_AttackerId);
+	P_GET_PROPERTY(FInt64Property,Z_Param_TargetId);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_Amount);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_RemainHp);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnHitReceived(Z_Param_AttackerId,Z_Param_TargetId,Z_Param_Amount,Z_Param_RemainHp);
+	P_NATIVE_END;
+}
+// End Class AShooterPlayerController Function OnHitReceived
+
 // Begin Class AShooterPlayerController Function OnLoginSuccess
 struct Z_Construct_UFunction_AShooterPlayerController_OnLoginSuccess_Statics
 {
@@ -80,6 +189,53 @@ DEFINE_FUNCTION(AShooterPlayerController::execOnLoginSuccess)
 	P_NATIVE_END;
 }
 // End Class AShooterPlayerController Function OnLoginSuccess
+
+// Begin Class AShooterPlayerController Function OnRemoteAnimState
+struct Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics
+{
+	struct ShooterPlayerController_eventOnRemoteAnimState_Parms
+	{
+		int64 PlayerId;
+		uint8 State;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "ShooterPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FInt64PropertyParams NewProp_PlayerId;
+	static const UECodeGen_Private::FBytePropertyParams NewProp_State;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FInt64PropertyParams Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::NewProp_PlayerId = { "PlayerId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShooterPlayerController_eventOnRemoteAnimState_Parms, PlayerId), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::NewProp_State = { "State", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShooterPlayerController_eventOnRemoteAnimState_Parms, State), nullptr, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::NewProp_PlayerId,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::NewProp_State,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShooterPlayerController, nullptr, "OnRemoteAnimState", nullptr, nullptr, Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::PropPointers), sizeof(Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::ShooterPlayerController_eventOnRemoteAnimState_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::ShooterPlayerController_eventOnRemoteAnimState_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AShooterPlayerController::execOnRemoteAnimState)
+{
+	P_GET_PROPERTY(FInt64Property,Z_Param_PlayerId);
+	P_GET_PROPERTY(FByteProperty,Z_Param_State);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnRemoteAnimState(Z_Param_PlayerId,Z_Param_State);
+	P_NATIVE_END;
+}
+// End Class AShooterPlayerController Function OnRemoteAnimState
 
 // Begin Class AShooterPlayerController Function OnRemotePlayerEnter
 struct Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerEnter_Statics
@@ -189,6 +345,7 @@ struct Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics
 		int64 PlayerId;
 		FVector NewPos;
 		float NewYaw;
+		FVector NewVel;
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -198,16 +355,19 @@ struct Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics
 	static const UECodeGen_Private::FInt64PropertyParams NewProp_PlayerId;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_NewPos;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_NewYaw;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_NewVel;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
 const UECodeGen_Private::FInt64PropertyParams Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::NewProp_PlayerId = { "PlayerId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShooterPlayerController_eventOnRemotePlayerMove_Parms, PlayerId), METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::NewProp_NewPos = { "NewPos", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShooterPlayerController_eventOnRemotePlayerMove_Parms, NewPos), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::NewProp_NewYaw = { "NewYaw", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShooterPlayerController_eventOnRemotePlayerMove_Parms, NewYaw), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::NewProp_NewVel = { "NewVel", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShooterPlayerController_eventOnRemotePlayerMove_Parms, NewVel), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::NewProp_PlayerId,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::NewProp_NewPos,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::NewProp_NewYaw,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::NewProp_NewVel,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::PropPointers) < 2048);
 const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShooterPlayerController, nullptr, "OnRemotePlayerMove", nullptr, nullptr, Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::PropPointers), sizeof(Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::ShooterPlayerController_eventOnRemotePlayerMove_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00840401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove_Statics::Function_MetaDataParams) };
@@ -226,12 +386,42 @@ DEFINE_FUNCTION(AShooterPlayerController::execOnRemotePlayerMove)
 	P_GET_PROPERTY(FInt64Property,Z_Param_PlayerId);
 	P_GET_STRUCT(FVector,Z_Param_NewPos);
 	P_GET_PROPERTY(FFloatProperty,Z_Param_NewYaw);
+	P_GET_STRUCT(FVector,Z_Param_NewVel);
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->OnRemotePlayerMove(Z_Param_PlayerId,Z_Param_NewPos,Z_Param_NewYaw);
+	P_THIS->OnRemotePlayerMove(Z_Param_PlayerId,Z_Param_NewPos,Z_Param_NewYaw,Z_Param_NewVel);
 	P_NATIVE_END;
 }
 // End Class AShooterPlayerController Function OnRemotePlayerMove
+
+// Begin Class AShooterPlayerController Function OnServerDisconnected
+struct Z_Construct_UFunction_AShooterPlayerController_OnServerDisconnected_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "ShooterPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShooterPlayerController_OnServerDisconnected_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShooterPlayerController, nullptr, "OnServerDisconnected", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterPlayerController_OnServerDisconnected_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShooterPlayerController_OnServerDisconnected_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AShooterPlayerController_OnServerDisconnected()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShooterPlayerController_OnServerDisconnected_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AShooterPlayerController::execOnServerDisconnected)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnServerDisconnected();
+	P_NATIVE_END;
+}
+// End Class AShooterPlayerController Function OnServerDisconnected
 
 // Begin Class AShooterPlayerController
 void AShooterPlayerController::StaticRegisterNativesAShooterPlayerController()
@@ -239,10 +429,14 @@ void AShooterPlayerController::StaticRegisterNativesAShooterPlayerController()
 	UClass* Class = AShooterPlayerController::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
 		{ "OnEnterRoomSuccess", &AShooterPlayerController::execOnEnterRoomSuccess },
+		{ "OnGameEndReceived", &AShooterPlayerController::execOnGameEndReceived },
+		{ "OnHitReceived", &AShooterPlayerController::execOnHitReceived },
 		{ "OnLoginSuccess", &AShooterPlayerController::execOnLoginSuccess },
+		{ "OnRemoteAnimState", &AShooterPlayerController::execOnRemoteAnimState },
 		{ "OnRemotePlayerEnter", &AShooterPlayerController::execOnRemotePlayerEnter },
 		{ "OnRemotePlayerLeave", &AShooterPlayerController::execOnRemotePlayerLeave },
 		{ "OnRemotePlayerMove", &AShooterPlayerController::execOnRemotePlayerMove },
+		{ "OnServerDisconnected", &AShooterPlayerController::execOnServerDisconnected },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -332,10 +526,14 @@ struct Z_Construct_UClass_AShooterPlayerController_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AShooterPlayerController_OnEnterRoomSuccess, "OnEnterRoomSuccess" }, // 3933399492
+		{ &Z_Construct_UFunction_AShooterPlayerController_OnGameEndReceived, "OnGameEndReceived" }, // 1391297255
+		{ &Z_Construct_UFunction_AShooterPlayerController_OnHitReceived, "OnHitReceived" }, // 1792299011
 		{ &Z_Construct_UFunction_AShooterPlayerController_OnLoginSuccess, "OnLoginSuccess" }, // 519236268
+		{ &Z_Construct_UFunction_AShooterPlayerController_OnRemoteAnimState, "OnRemoteAnimState" }, // 1265479328
 		{ &Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerEnter, "OnRemotePlayerEnter" }, // 2026872459
 		{ &Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerLeave, "OnRemotePlayerLeave" }, // 751292196
-		{ &Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove, "OnRemotePlayerMove" }, // 2644595290
+		{ &Z_Construct_UFunction_AShooterPlayerController_OnRemotePlayerMove, "OnRemotePlayerMove" }, // 1111869212
+		{ &Z_Construct_UFunction_AShooterPlayerController_OnServerDisconnected, "OnServerDisconnected" }, // 3353226494
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -413,10 +611,10 @@ AShooterPlayerController::~AShooterPlayerController() {}
 struct Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AShooterPlayerController, AShooterPlayerController::StaticClass, TEXT("AShooterPlayerController"), &Z_Registration_Info_UClass_AShooterPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShooterPlayerController), 3257851932U) },
+		{ Z_Construct_UClass_AShooterPlayerController, AShooterPlayerController::StaticClass, TEXT("AShooterPlayerController"), &Z_Registration_Info_UClass_AShooterPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShooterPlayerController), 2369067475U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_1965430559(TEXT("/Script/SimpleShooter"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_357683488(TEXT("/Script/SimpleShooter"),
 	Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FuntasticBattle_Source_SimpleShooter_ShooterPlayerController_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

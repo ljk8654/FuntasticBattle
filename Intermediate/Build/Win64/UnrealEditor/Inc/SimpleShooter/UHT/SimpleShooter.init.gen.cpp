@@ -10,7 +10,10 @@ void EmptyLinkFunctionForGeneratedCodeSimpleShooter_init() {}
 	SIMPLESHOOTER_API UFunction* Z_Construct_UDelegateFunction_SimpleShooter_OnEnterRoomSuccess__DelegateSignature();
 	SIMPLESHOOTER_API UFunction* Z_Construct_UDelegateFunction_SimpleShooter_OnLoginSuccess__DelegateSignature();
 	SIMPLESHOOTER_API UFunction* Z_Construct_UDelegateFunction_SimpleShooter_OnRoomClicked__DelegateSignature();
+	SIMPLESHOOTER_API UFunction* Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnDisconnected__DelegateSignature();
 	SIMPLESHOOTER_API UFunction* Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnEnterGame__DelegateSignature();
+	SIMPLESHOOTER_API UFunction* Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnGameEnd__DelegateSignature();
+	SIMPLESHOOTER_API UFunction* Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnHit__DelegateSignature();
 	SIMPLESHOOTER_API UFunction* Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnLoginResult__DelegateSignature();
 	SIMPLESHOOTER_API UFunction* Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnRemotePlayerAnim__DelegateSignature();
 	SIMPLESHOOTER_API UFunction* Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnRemotePlayerChat__DelegateSignature();
@@ -26,7 +29,10 @@ void EmptyLinkFunctionForGeneratedCodeSimpleShooter_init() {}
 				(UObject* (*)())Z_Construct_UDelegateFunction_SimpleShooter_OnEnterRoomSuccess__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_SimpleShooter_OnLoginSuccess__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_SimpleShooter_OnRoomClicked__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnDisconnected__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnEnterGame__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnGameEnd__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnHit__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnLoginResult__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnRemotePlayerAnim__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_UFBNetworkSubsystem_OnRemotePlayerChat__DelegateSignature,
@@ -39,13 +45,13 @@ void EmptyLinkFunctionForGeneratedCodeSimpleShooter_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0xC18B41D0,
-				0x75CEA749,
+				0x862153AC,
+				0xC5235035,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_SimpleShooter.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_SimpleShooter.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_SimpleShooter(Z_Construct_UPackage__Script_SimpleShooter, TEXT("/Script/SimpleShooter"), Z_Registration_Info_UPackage__Script_SimpleShooter, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xC18B41D0, 0x75CEA749));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_SimpleShooter(Z_Construct_UPackage__Script_SimpleShooter, TEXT("/Script/SimpleShooter"), Z_Registration_Info_UPackage__Script_SimpleShooter, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x862153AC, 0xC5235035));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

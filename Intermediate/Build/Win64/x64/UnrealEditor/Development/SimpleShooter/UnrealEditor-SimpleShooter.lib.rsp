@@ -8,6 +8,7 @@
 /NODEFAULTLIB
 "D:\Ureal\FuntasticBattle\Intermediate\Build\Win64\x64\SimpleShooterEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
 "D:\Ureal\FuntasticBattle\Intermediate\Build\Win64\x64\UnrealEditor\Development\SimpleShooter\Module.SimpleShooter.cpp.obj"
-"D:\Ureal\FuntasticBattle\Intermediate\Build\Win64\x64\UnrealEditor\Development\SimpleShooter\RemotePlayer.cpp.obj"
+"D:\Ureal\FuntasticBattle\Intermediate\Build\Win64\x64\UnrealEditor\Development\SimpleShooter\ShooterPlayerController.gen.cpp.obj"
+"D:\Ureal\FuntasticBattle\Intermediate\Build\Win64\x64\UnrealEditor\Development\SimpleShooter\SimpleShooter.init.gen.cpp.obj"
 "D:\Ureal\FuntasticBattle\Intermediate\Build\Win64\x64\UnrealEditor\Development\SimpleShooter\Default.rc2.res"
 /OUT:"D:\Ureal\FuntasticBattle\Intermediate\Build\Win64\x64\UnrealEditor\Development\SimpleShooter\UnrealEditor-SimpleShooter.lib"
