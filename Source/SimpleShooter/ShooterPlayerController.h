@@ -2,13 +2,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-
-
 #include "HUDWidget.h"
 #include "LoomList.h"
 #include "LoginWidget.h"
-
 #include "ShooterPlayerController.generated.h"
+
+class ARemotePlayer;
 
 UCLASS()
 class SIMPLESHOOTER_API AShooterPlayerController : public APlayerController
@@ -27,6 +26,10 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="UI")
     TSubclassOf<ULoomList> RoomListClass;
 
+    // 원격 플레이어 BP 클래스 (BP_RemotePlayer를 BP에서 지정)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Network")
+    TSubclassOf<ARemotePlayer> RemotePlayerClass;
+
     UPROPERTY()
     ULoginWidget* CurrentLoginWidget;
 
@@ -36,7 +39,8 @@ public:
     UFUNCTION()
     void OnEnterRoomSuccess();
 
-	UHUDWidget* GetHUDWidget() const { return HUD; }
+    UHUDWidget* GetHUDWidget() const { return HUD; }
+
 protected:
     virtual void BeginPlay() override;
 
@@ -57,4 +61,18 @@ private:
 
     UPROPERTY()
     ULoomList* RoomList;
+
+    // 원격 플레이어 맵
+    UPROPERTY()
+    TMap<int64, ARemotePlayer*> RemotePlayers;
+
+    // 네트워크 이벤트 핸들러
+    UFUNCTION()
+    void OnRemotePlayerEnter(int64 PlayerId, FVector InitPos, float InitYaw);
+
+    UFUNCTION()
+    void OnRemotePlayerLeave(int64 PlayerId);
+
+    UFUNCTION()
+    void OnRemotePlayerMove(int64 PlayerId, FVector NewPos, float NewYaw);
 };

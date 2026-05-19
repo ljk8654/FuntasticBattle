@@ -14,6 +14,7 @@
 #include "Bomb.h"
 #include "Heart.h"
 #include "AIController.h"
+#include "FBNetworkSubsystem.h"
 
 // Sets default values
 AShoorterCharater::AShoorterCharater()
@@ -40,9 +41,19 @@ void AShoorterCharater::BeginPlay()
 	
 }
 
+void AShoorterCharater::BroadcastAnimState(uint8 State)
+{
+    if (!IsPlayerControlled()) return;
+    if (UGameInstance* GI = GetGameInstance())
+        if (UFBNetworkSubsystem* Net = GI->GetSubsystem<UFBNetworkSubsystem>())
+            if (Net->IsConnected())
+                Net->SendAnimState(State);
+}
+
 void AShoorterCharater::EnableMovement()
 {
 	bIsAttacking = false;
+    BroadcastAnimState((uint8)EFBAnimState::Normal);
 }
 
 bool AShoorterCharater::IsDead() const
@@ -95,6 +106,29 @@ void AShoorterCharater::Tick(float DeltaTime)
                 if (UHUDWidget* HUD = PC->GetHUDWidget())
                 {
                     HUD->SetStaminaNormalized(Stamina01);
+                }
+            }
+        }
+    }
+
+    // 100ms마다 서버로 위치 전송
+    if (IsPlayerControlled())
+    {
+        NetSendAccum += DeltaTime;
+        if (NetSendAccum >= NetSendInterval)
+        {
+            NetSendAccum = 0.f;
+            if (UGameInstance* GI = GetGameInstance())
+            {
+                if (UFBNetworkSubsystem* Net = GI->GetSubsystem<UFBNetworkSubsystem>())
+                {
+                    if (Net->IsConnected())
+                    {
+                        FVector Pos = GetActorLocation();
+                        float Yaw = GetActorRotation().Yaw;
+                        FVector Vel = GetCharacterMovement()->Velocity;
+                        Net->SendMove(Pos, Yaw, Vel);
+                    }
                 }
             }
         }
@@ -161,18 +195,17 @@ float AShoorterCharater::TakeDamage(float DamageAmount, struct FDamageEvent cons
 		GetCharacterMovement()->DisableMovement();;
 		GetMesh()->AddImpulse(KnockbackDirection * AmountForce, NAME_None, true);
 
+		BroadcastAnimState((uint8)EFBAnimState::Dead);
 		DetachFromControllerPendingDestroy();
-		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision); 
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	} else 
 	{
 		UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
         if (AnimInstance && HitMontage)
         {
-			// 피격 애니메이션
-            AnimInstance->Montage_Play(HitMontage);
-
-			// 일정 시간 후 이동 가능하게 복구
+			AnimInstance->Montage_Play(HitMontage);
+            BroadcastAnimState((uint8)EFBAnimState::Hit);
 			FTimerHandle UnfreezeHandle;
 			GetWorldTimerManager().SetTimer(UnfreezeHandle, this, &AShoorterCharater::EnableMovement, 0.7f, false);
 			UE_LOG(LogTemp, Warning, TEXT("Health left %f"),Health);
@@ -314,9 +347,9 @@ void AShoorterCharater::PunchAttack()
 	if (AnimInstance && AttackMontage)
 	{
 		AnimInstance->Montage_Play(AttackMontage);
-		
+        BroadcastAnimState((uint8)EFBAnimState::Attack);
 		FTimerHandle UnfreezeHandle;
-		GetWorldTimerManager().SetTimer(UnfreezeHandle, this, &AShoorterCharater::EnableMovement, 1.3f, false);	
+		GetWorldTimerManager().SetTimer(UnfreezeHandle, this, &AShoorterCharater::EnableMovement, 1.3f, false);
 	}
 }
 
@@ -388,6 +421,7 @@ void AShoorterCharater::EnterRagdoll()
     FTimerHandle RagdollTimerHandle;
     GetWorldTimerManager().SetTimer(RagdollTimerHandle, this, &AShoorterCharater::ExitRagdoll, RagdollRecoverTime, false);
 
+    BroadcastAnimState((uint8)EFBAnimState::Stunned);
     UE_LOG(LogTemp, Warning, TEXT(">> 기절 상태 진입 (Ragdoll)"));
 }
 
@@ -416,6 +450,7 @@ void AShoorterCharater::ExitRagdoll()
     // 시점 리셋 (선택)
 	SetActorRotation(SavedActorRotation); // 저장된 회전으로 복구
 	
+    BroadcastAnimState((uint8)EFBAnimState::Recover);
     UE_LOG(LogTemp, Warning, TEXT("기상 완료 (애니메이션 없음)"));
 }
 

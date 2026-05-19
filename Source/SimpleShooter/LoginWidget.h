@@ -45,9 +45,12 @@ protected:
     
 private:
     UFUNCTION()
-    void OnLoginClicked(); // 로그인 클릭
-    UFUNCTION() 
+    void OnLoginClicked();
+    UFUNCTION()
     void OnTextChanged(const FText& Text);
+    UFUNCTION()
+    void OnLoginResult(int64 PlayerId, bool bSuccess);
+
     float LastInputSoundTime = 0.f;
     float InputInterval = 0.0f;
 };

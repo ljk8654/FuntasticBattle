@@ -1,37 +1,27 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "ShooterPlayerController.h"
+#include "FBNetworkSubsystem.h"
+#include "RemotePlayer.h"
 #include "TimerManager.h"
 #include "Blueprint/UserWidget.h"
-#include "ShooterPlayerController.h"
 #include "HUDWidget.h"
 #include "Kismet/GameplayStatics.h"
 
 void AShooterPlayerController::GameHasEnded(class AActor* EndGameFocus, bool bIsWinner)
 {
-    Super::GameHasEnded(EndGameFocus,bIsWinner);
-    
+    Super::GameHasEnded(EndGameFocus, bIsWinner);
+
     if (HUD)
-    {
-        HUD->RemoveFromViewport();
-    }
+        HUD->RemoveFromParent();
 
     if (bIsWinner)
     {
         UUserWidget* WinnerScreen = CreateWidget(this, WinnerScreenClass);
-        if(WinnerScreen != nullptr)
-        {
-            WinnerScreen->AddToViewport();
-        }
+        if (WinnerScreen) WinnerScreen->AddToViewport();
     }
     else
     {
         UUserWidget* LoseScreen = CreateWidget(this, LoseScreenClass);
-        if(LoseScreen != nullptr)
-        {
-            LoseScreen->AddToViewport();
-        }
+        if (LoseScreen) LoseScreen->AddToViewport();
     }
     GetWorldTimerManager().SetTimer(RestartTimer, this, &APlayerController::RestartLevel, RestartDelay);
 }
@@ -40,8 +30,7 @@ void AShooterPlayerController::BeginPlay()
 {
     Super::BeginPlay();
 
-    // 게임 HUD 생성
-    HUD = nullptr;
+    // HUD 생성
     if (HUDClass)
     {
         HUD = CreateWidget<UHUDWidget>(this, HUDClass);
@@ -52,17 +41,12 @@ void AShooterPlayerController::BeginPlay()
         }
     }
 
-
-    // 입력/UI 모드
     SetShowMouseCursor(true);
-
     FInputModeUIOnly InputMode;
     SetInputMode(InputMode);
-
-    // 게임 일시정지
     UGameplayStatics::SetGamePaused(GetWorld(), true);
 
-    // 로그인 UI 표시
+    // 로그인 UI
     if (LoginWidgetClass)
     {
         CurrentLoginWidget = CreateWidget<ULoginWidget>(this, LoginWidgetClass);
@@ -72,18 +56,24 @@ void AShooterPlayerController::BeginPlay()
             CurrentLoginWidget->OnLoginSuccess.AddDynamic(this, &AShooterPlayerController::OnLoginSuccess);
         }
     }
+
+    // 네트워크 이벤트 바인딩
+    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+    {
+        Net->OnRemotePlayerEnter.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerEnter);
+        Net->OnRemotePlayerLeave.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerLeave);
+        Net->OnRemotePlayerMove.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerMove);
+    }
 }
 
 void AShooterPlayerController::OnLoginSuccess()
 {
-    // 1) 로그인 UI 제거
     if (CurrentLoginWidget)
     {
         CurrentLoginWidget->RemoveFromParent();
         CurrentLoginWidget = nullptr;
     }
 
-    // 2) 룸 리스트 표시
     if (RoomListClass)
     {
         RoomList = CreateWidget<ULoomList>(this, RoomListClass);
@@ -97,24 +87,63 @@ void AShooterPlayerController::OnLoginSuccess()
 
 void AShooterPlayerController::OnEnterRoomSuccess()
 {
-    // 게임 입력 모드로 전환
     SetShowMouseCursor(false);
-
     FInputModeGameOnly InputMode;
     SetInputMode(InputMode);
-
     UGameplayStatics::SetGamePaused(GetWorld(), false);
 
-    // 룸 리스트 제거
     if (RoomList)
     {
-        RoomList->RemoveFromViewport();
+        RoomList->RemoveFromParent();
         RoomList = nullptr;
     }
 
-    // HUD 보이기
     if (HUD)
-    {
         HUD->SetVisibility(ESlateVisibility::Visible);
+}
+
+void AShooterPlayerController::OnRemotePlayerEnter(int64 PlayerId, FVector InitPos, float InitYaw)
+{
+    if (!RemotePlayerClass) return;
+
+    UWorld* World = GetWorld();
+    if (!World) return;
+
+    FActorSpawnParameters Params;
+    Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+    ARemotePlayer* Remote = World->SpawnActor<ARemotePlayer>(
+        RemotePlayerClass,
+        InitPos,
+        FRotator(0.f, InitYaw, 0.f),
+        Params
+    );
+
+    if (Remote)
+    {
+        Remote->PlayerId = PlayerId;
+        Remote->SetTargetTransform(InitPos, InitYaw);
+        RemotePlayers.Add(PlayerId, Remote);
+        UE_LOG(LogTemp, Log, TEXT("[Controller] 원격 플레이어 스폰 id=%lld"), PlayerId);
+    }
+}
+
+void AShooterPlayerController::OnRemotePlayerLeave(int64 PlayerId)
+{
+    if (ARemotePlayer** Found = RemotePlayers.Find(PlayerId))
+    {
+        if (*Found)
+            (*Found)->Destroy();
+        RemotePlayers.Remove(PlayerId);
+        UE_LOG(LogTemp, Log, TEXT("[Controller] 원격 플레이어 제거 id=%lld"), PlayerId);
+    }
+}
+
+void AShooterPlayerController::OnRemotePlayerMove(int64 PlayerId, FVector NewPos, float NewYaw)
+{
+    if (ARemotePlayer** Found = RemotePlayers.Find(PlayerId))
+    {
+        if (*Found)
+            (*Found)->SetTargetTransform(NewPos, NewYaw);
     }
 }

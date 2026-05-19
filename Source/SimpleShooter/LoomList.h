@@ -44,4 +44,7 @@ protected:
 
     UFUNCTION()
     void OnRoomSelected(const FString& RoomName);
+
+    UFUNCTION()
+    void OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount);
 };

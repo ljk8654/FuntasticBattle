@@ -118,6 +118,10 @@ public:
 void TryDropOnDeath();
 
 private:
+    float NetSendAccum = 0.f;
+    static constexpr float NetSendInterval = 0.1f;
+
+    void BroadcastAnimState(uint8 State);
 
 UPROPERTY(VisibleAnywhere)
     class ABomb* HeldBomb;
