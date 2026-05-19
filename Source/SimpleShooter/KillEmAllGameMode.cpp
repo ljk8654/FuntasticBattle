@@ -4,30 +4,12 @@
 #include "KillEmAllGameMode.h"
 #include "EngineUtils.h"
 #include "GameFramework/Controller.h"
-#include "ShooterAIController.h"
 
 
 void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
 {
     Super::PawnKilled(PawnKilled);
-    
-    APlayerController* PlayerController =  Cast<APlayerController>(PawnKilled->GetController());
-    if (PlayerController != nullptr)
-    {
-        EndGame(false);
-    }
-
-    // 월드에서 죽은 ai 세기
-        // 안죽었니?
-            // 리턴
-    for (AShooterAIController* AIController : TActorRange<AShooterAIController>(GetWorld()))
-    {
-        if (!AIController->IsDead())
-        {
-            return;
-        }
-    }
-    EndGame(true);
+    // 네트워크 게임에서는 서버가 SC_GAME_END로 게임 종료를 처리
 }
 
 void AKillEmAllGameMode::BeginPlay()

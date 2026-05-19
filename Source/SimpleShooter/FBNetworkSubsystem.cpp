@@ -194,7 +194,7 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
     case EFBPacketId::SC_ENTER_GAME:
     {
         const FB_SC_ENTER_GAME_PKT* Pkt = reinterpret_cast<const FB_SC_ENTER_GAME_PKT*>(Data);
-        OnEnterGame.Broadcast(static_cast<int64>(Pkt->myPlayerId), static_cast<int32>(Pkt->otherCount));
+        OnEnterGame.Broadcast(static_cast<int64>(Pkt->myPlayerId), static_cast<int32>(Pkt->otherCount), Pkt->isOwner != 0);
         break;
     }
     case EFBPacketId::SC_PLAYER_ENTER:
@@ -273,6 +273,12 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
         const FB_SC_ITEM_PICKUP_PKT* Pkt = reinterpret_cast<const FB_SC_ITEM_PICKUP_PKT*>(Data);
         FVector Pos(Pkt->x, Pkt->y, Pkt->z);
         OnRemoteItemPickup.Broadcast(Pos);
+        break;
+    }
+    case EFBPacketId::SC_GAME_START:
+    {
+        const FB_SC_GAME_START_PKT* Pkt = reinterpret_cast<const FB_SC_GAME_START_PKT*>(Data);
+        OnGameStart.Broadcast(Pkt->spawnIndex, static_cast<int32>(Pkt->itemSeed));
         break;
     }
     default:
@@ -374,6 +380,14 @@ void UFBNetworkSubsystem::SendItemPickup(const FVector& Pos)
     Pkt.h.size = sizeof(Pkt);
     Pkt.h.id   = static_cast<uint16>(EFBPacketId::CS_ITEM_PICKUP);
     Pkt.x = Pos.X; Pkt.y = Pos.Y; Pkt.z = Pos.Z;
+    SendRaw(&Pkt, sizeof(Pkt));
+}
+
+void UFBNetworkSubsystem::SendStartGame()
+{
+    FB_CS_START_GAME_PKT Pkt{};
+    Pkt.h.size = sizeof(Pkt);
+    Pkt.h.id   = static_cast<uint16>(EFBPacketId::CS_START_GAME);
     SendRaw(&Pkt, sizeof(Pkt));
 }
 

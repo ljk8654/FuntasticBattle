@@ -31,6 +31,9 @@ protected:
     UPROPERTY(meta = (BindWidget))
     UButton* CreateRoomButton;
 
+    UPROPERTY(meta = (BindWidget))
+    UButton* StartGameButton;
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
     TSubclassOf<URoomButton> RoomButtonClass;
 
@@ -39,6 +42,8 @@ protected:
 
     int RoomCounter = 1;
 
+    bool bIsOwner = false;
+
     UFUNCTION()
     void OnCreateRoomClicked();
 
@@ -46,5 +51,11 @@ protected:
     void OnRoomSelected(const FString& RoomName);
 
     UFUNCTION()
-    void OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount);
+    void OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount, bool bOwner);
+
+    UFUNCTION()
+    void OnStartGameClicked();
+
+    UFUNCTION()
+    void OnGameStartReceived(uint8 SpawnIndex, int32 ItemSeed);
 };

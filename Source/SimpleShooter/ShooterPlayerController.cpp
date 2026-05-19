@@ -7,6 +7,7 @@
 #include "Blueprint/UserWidget.h"
 #include "HUDWidget.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameFramework/PlayerStart.h"
 
 void AShooterPlayerController::GameHasEnded(class AActor* EndGameFocus, bool bIsWinner)
 {
@@ -73,6 +74,8 @@ void AShooterPlayerController::BeginPlay()
         Net->OnRemoteThrowBomb.AddDynamic(this, &AShooterPlayerController::OnRemoteThrowBombReceived);
         Net->OnRemoteItemDrop.AddDynamic(this, &AShooterPlayerController::OnRemoteItemDropReceived);
         Net->OnRemoteItemPickup.AddDynamic(this, &AShooterPlayerController::OnRemoteItemPickupReceived);
+        Net->OnEnterGame.AddDynamic(this, &AShooterPlayerController::OnEnterGameReceived);
+        Net->OnGameStart.AddDynamic(this, &AShooterPlayerController::OnGameStartReceived);
     }
 }
 
@@ -256,6 +259,52 @@ void AShooterPlayerController::OnRemoteItemStateReceived(int64 PlayerId, uint8 I
     {
         if (*Found)
             (*Found)->SetItemState(ItemType);
+    }
+}
+
+void AShooterPlayerController::OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount, bool bOwner)
+{
+    bIsOwner = bOwner;
+}
+
+void AShooterPlayerController::OnGameStartReceived(uint8 SpawnIndex, int32 ItemSeed)
+{
+    // PlayerStart 배열에서 SpawnIndex에 해당하는 위치로 이동
+    TArray<AActor*> StartPoints;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), APlayerStart::StaticClass(), StartPoints);
+
+    if (StartPoints.Num() > 0)
+    {
+        int32 Idx = SpawnIndex % StartPoints.Num();
+        FVector SpawnPos = StartPoints[Idx]->GetActorLocation();
+        float   SpawnYaw = StartPoints[Idx]->GetActorRotation().Yaw;
+
+        if (APawn* MyPawn = GetPawn())
+        {
+            MyPawn->SetActorLocation(SpawnPos, false, nullptr, ETeleportType::TeleportPhysics);
+            MyPawn->SetActorRotation(FRotator(0.f, SpawnYaw, 0.f));
+        }
+    }
+
+    // 방장만 아이템 스폰 후 서버로 전송
+    if (bIsOwner)
+    {
+        UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>();
+        if (Net && Net->IsConnected() && ItemDropSpawnPoints.Num() > 0)
+        {
+            FMath::RandInit(ItemSeed);
+            int32 DropCount = FMath::Min(3, ItemDropSpawnPoints.Num());
+            TArray<int32> Indices;
+            for (int32 i = 0; i < ItemDropSpawnPoints.Num(); i++) Indices.Add(i);
+
+            for (int32 i = 0; i < DropCount; i++)
+            {
+                int32 Pick = FMath::RandRange(i, Indices.Num() - 1);
+                Indices.Swap(i, Pick);
+                uint8 DropType = (i % 2 == 0) ? 1 : 2; // Heart, Bomb 교대
+                Net->SendItemDrop(DropType, ItemDropSpawnPoints[Indices[i]]);
+            }
+        }
     }
 }
 

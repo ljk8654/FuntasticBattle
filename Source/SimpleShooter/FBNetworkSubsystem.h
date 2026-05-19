@@ -42,13 +42,14 @@ public:
     void SendChat(const FString& Msg);
     void SendItemDrop(uint8 ItemType, const FVector& Pos);
     void SendItemPickup(const FVector& Pos);
+    void SendStartGame();
 
     // 게임 스레드 이벤트 델리게이트
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLoginResult, int64, PlayerId, bool, bSuccess);
     UPROPERTY(BlueprintAssignable)
     FOnLoginResult OnLoginResult;
 
-    DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnEnterGame, int64, MyPlayerId, int32, OtherCount);
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnEnterGame, int64, MyPlayerId, int32, OtherCount, bool, bIsOwner);
     UPROPERTY(BlueprintAssignable)
     FOnEnterGame OnEnterGame;
 
@@ -95,6 +96,10 @@ public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRemoteItemPickup, FVector, Pos);
     UPROPERTY(BlueprintAssignable)
     FOnRemoteItemPickup OnRemoteItemPickup;
+
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnGameStart, uint8, SpawnIndex, int32, ItemSeed);
+    UPROPERTY(BlueprintAssignable)
+    FOnGameStart OnGameStart;
 
     DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDisconnected);
     UPROPERTY(BlueprintAssignable)

@@ -12,12 +12,20 @@ void ULoomList::NativeConstruct()
     if (CreateRoomButton)
         CreateRoomButton->OnClicked.AddDynamic(this, &ULoomList::OnCreateRoomClicked);
 
+    if (StartGameButton)
+    {
+        StartGameButton->OnClicked.AddDynamic(this, &ULoomList::OnStartGameClicked);
+        StartGameButton->SetVisibility(ESlateVisibility::Collapsed);
+    }
+
     // 기본 방 목록 (서버에는 roomId=1만 존재)
     AddRoom(TEXT("FuntasticBattle Room 1"));
 
-    // 방 입장 성공 이벤트 바인딩
     if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+    {
         Net->OnEnterGame.AddDynamic(this, &ULoomList::OnEnterGameReceived);
+        Net->OnGameStart.AddDynamic(this, &ULoomList::OnGameStartReceived);
+    }
 }
 
 void ULoomList::OnCreateRoomClicked()
@@ -45,9 +53,37 @@ void ULoomList::OnRoomSelected(const FString& RoomName)
     }
 }
 
-void ULoomList::OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount)
+void ULoomList::OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount, bool bOwner)
 {
-    UE_LOG(LogTemp, Log, TEXT("방 입장 완료 playerId=%lld 기존인원=%d"), MyPlayerId, OtherCount);
+    UE_LOG(LogTemp, Log, TEXT("방 입장 완료 playerId=%lld 기존인원=%d 방장=%d"), MyPlayerId, OtherCount, bOwner);
+    bIsOwner = bOwner;
+
+    // 방 목록 숨기고 대기실로 전환
+    if (RoomListBox)
+        RoomListBox->SetVisibility(ESlateVisibility::Collapsed);
+    if (CreateRoomButton)
+        CreateRoomButton->SetVisibility(ESlateVisibility::Collapsed);
+
+    // 방장에게만 시작 버튼 표시
+    if (StartGameButton)
+        StartGameButton->SetVisibility(bOwner ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
+}
+
+void ULoomList::OnStartGameClicked()
+{
+    if (!bIsOwner) return;
+
+    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+    {
+        if (Net->IsConnected())
+            Net->SendStartGame();
+    }
+}
+
+void ULoomList::OnGameStartReceived(uint8 SpawnIndex, int32 ItemSeed)
+{
+    // 게임 시작 — ShooterPlayerController가 OnGameStart를 직접 바인딩해 처리하므로
+    // 여기서는 UI만 닫고 OnEnterRoomSuccess 브로드캐스트
     OnEnterRoomSuccess.Broadcast();
 }
 

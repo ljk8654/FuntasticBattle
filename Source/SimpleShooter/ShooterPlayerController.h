@@ -108,4 +108,16 @@ private:
 
     UFUNCTION()
     void OnRemoteItemPickupReceived(FVector Pos);
+
+    UFUNCTION()
+    void OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount, bool bOwner);
+
+    UFUNCTION()
+    void OnGameStartReceived(uint8 SpawnIndex, int32 ItemSeed);
+
+    bool bIsOwner = false;
+
+    // 에디터에서 게임 시작 시 아이템을 스폰할 위치들을 등록
+    UPROPERTY(EditAnywhere, Category="GameStart")
+    TArray<FVector> ItemDropSpawnPoints;
 };
