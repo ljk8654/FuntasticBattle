@@ -52,7 +52,6 @@ void AHeart::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 	AShoorterCharater* Player = Cast<AShoorterCharater>(OtherActor);
 	if (!Player) return;
 
-	// ✅ “깔끔 버전”: 플레이어 Heal이 true일 때만 먹기(Destroy)
 	if (Player->Heal(HealAmount))
 	{
 		Destroy();

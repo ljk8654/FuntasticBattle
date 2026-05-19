@@ -58,6 +58,9 @@ public:
     UPROPERTY(VisibleAnywhere)
     class UProjectileMovementComponent* ProjectileMovement;
 
+    UPROPERTY(VisibleAnywhere)
+    class UNiagaraComponent* TrailEffect;
+
     UPROPERTY(EditAnywhere)
     class UNiagaraSystem* ExplosionEffect;
 
@@ -69,6 +72,7 @@ public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     float FuseTime = 3.0f;
+
 
 private:
     FTimerHandle ExplosionTimerHandle;

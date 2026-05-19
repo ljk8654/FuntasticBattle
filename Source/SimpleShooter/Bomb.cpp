@@ -5,6 +5,7 @@
 #include "Components/SphereComponent.h"
 #include "TimerManager.h"
 #include "ShoorterCharater.h"
+#include "NiagaraComponent.h"
 
 ABomb::ABomb()
 {
@@ -28,6 +29,11 @@ ABomb::ABomb()
     ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
     ProjectileMovement->bShouldBounce = true;
     ProjectileMovement->ProjectileGravityScale = 1.2f;
+
+    TrailEffect = CreateDefaultSubobject<UNiagaraComponent>(TEXT("TrailEffect"));
+    TrailEffect->SetupAttachment(RootComponent);
+    TrailEffect->bAutoActivate = true;
+
 }
 
 void ABomb::BeginPlay()
@@ -37,6 +43,11 @@ void ABomb::BeginPlay()
 	UE_LOG(LogTemp, Warning, TEXT("Collision: %d, Physics: %d"),
   (int)Mesh->GetCollisionEnabled(), 
   (int)Mesh->IsSimulatingPhysics());
+  if (TrailEffect)
+{
+    TrailEffect->Deactivate();
+}
+  
     StopFuse();
 }
 
@@ -107,6 +118,10 @@ void ABomb::StartFuse()
         );
     }
 
+    if (TrailEffect)
+    {
+        TrailEffect->Activate();
+    }
 
         GetWorld()->GetTimerManager().SetTimer(
             ExplosionTimerHandle,
