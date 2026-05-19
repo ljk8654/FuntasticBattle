@@ -5,6 +5,7 @@
 #include "Gun.h"
 #include "MeleeWeapon.h"
 #include "Bomb.h"
+#include "Kismet/GameplayStatics.h"
 
 ARemotePlayer::ARemotePlayer()
 {
@@ -111,11 +112,25 @@ void ARemotePlayer::SetItemState(uint8 ItemType)
         }
         break;
     case EFBItemType::Bomb:
-        if (BombClass)
         {
-            CurrentBomb = GetWorld()->SpawnActor<ABomb>(BombClass);
-            if (CurrentBomb)
+            // 새 폭탄 스폰 없이 레벨에 있는 가장 가까운 폭탄을 찾아 부착
+            // (새 폭탄을 스폰하면 원래 폭탄과 겹쳐 두 개로 보이는 문제 발생)
+            TArray<AActor*> BombActors;
+            UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABomb::StaticClass(), BombActors);
+            float MinDist = FLT_MAX;
+            ABomb* ClosestBomb = nullptr;
+            for (AActor* Actor : BombActors)
             {
+                ABomb* B = Cast<ABomb>(Actor);
+                if (B && !B->IsHidden())
+                {
+                    float Dist = FVector::Dist(B->GetActorLocation(), GetActorLocation());
+                    if (Dist < MinDist) { MinDist = Dist; ClosestBomb = B; }
+                }
+            }
+            if (ClosestBomb)
+            {
+                CurrentBomb = ClosestBomb;
                 CurrentBomb->SetAsSyncBomb();
                 CurrentBomb->OnPickedUp();
                 CurrentBomb->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("BombSocket"));
@@ -131,8 +146,13 @@ void ARemotePlayer::SetItemState(uint8 ItemType)
 
 void ARemotePlayer::SpawnSyncBomb(FVector Pos, float Yaw, float Pitch)
 {
-    // 손에 들고 있던 폭탄 제거 (던졌으므로)
-    if (CurrentBomb) { CurrentBomb->Destroy(); CurrentBomb = nullptr; }
+    // 손에 들고 있던 폭탄 분리 후 제거
+    if (CurrentBomb)
+    {
+        CurrentBomb->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+        CurrentBomb->Destroy();
+        CurrentBomb = nullptr;
+    }
 
     if (!BombClass) return;
 
