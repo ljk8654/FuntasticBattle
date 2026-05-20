@@ -9,6 +9,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/PlayerStart.h"
 
+
+
 void AShooterPlayerController::GameHasEnded(class AActor* EndGameFocus, bool bIsWinner)
 {
     Super::GameHasEnded(EndGameFocus, bIsWinner);
@@ -107,10 +109,12 @@ void AShooterPlayerController::OnEnterRoomSuccess()
         RoomList = nullptr;
     }
 
-    // 게임 언팍즈 + 게임 입력 활성화 (맵 자유 이동)
+    // 대기방: 이동 가능 + UI 버튼 클릭도 가능하도록 GameAndUI 모드
     UGameplayStatics::SetGamePaused(GetWorld(), false);
-    SetShowMouseCursor(false);
-    FInputModeGameOnly InputMode;
+    SetShowMouseCursor(true);
+    FInputModeGameAndUI InputMode;
+    InputMode.SetHideCursorDuringCapture(false);
+    InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
     SetInputMode(InputMode);
 
     // 대기 UI 표시 (방장이면 시작 버튼 보임)
@@ -272,6 +276,8 @@ void AShooterPlayerController::OnRemoteItemStateReceived(int64 PlayerId, uint8 I
 void AShooterPlayerController::OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount, bool bOwner)
 {
     bIsOwner = bOwner;
+    UE_LOG(LogTemp, Warning, TEXT("[OnEnterGame] PlayerId=%lld OtherCount=%d bIsOwner=%d"),
+        MyPlayerId, OtherCount, bIsOwner);
 }
 
 void AShooterPlayerController::OnGameStartReceived(uint8 SpawnIndex, int32 ItemSeed)
@@ -282,6 +288,11 @@ void AShooterPlayerController::OnGameStartReceived(uint8 SpawnIndex, int32 ItemS
         WaitingRoomWidget->RemoveFromParent();
         WaitingRoomWidget = nullptr;
     }
+
+    // 게임 입력 모드로 전환 (커서 숨김)
+    SetShowMouseCursor(false);
+    FInputModeGameOnly GameInput;
+    SetInputMode(GameInput);
 
     // 게임 HUD 표시
     if (HUD)

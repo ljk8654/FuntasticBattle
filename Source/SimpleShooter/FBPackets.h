@@ -248,4 +248,5 @@ enum class EFBAnimState : uint8
     Stunned = 3,
     Recover = 4,
     Dead    = 5,
+    Jump    = 6,
 };

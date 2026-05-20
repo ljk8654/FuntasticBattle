@@ -62,6 +62,15 @@ void ARemotePlayer::ApplyAnimState(uint8 State)
     case EFBAnimState::Stunned: Montage = StunMontage;    break;
     case EFBAnimState::Recover: Montage = RecoverMontage; break;
     case EFBAnimState::Dead:    Montage = DeadMontage;    break;
+    case EFBAnimState::Jump:
+        // IsFalling()을 true로 만들어 AnimBP가 점프 상태를 인식하게 함
+        GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Falling);
+        Montage = JumpMontage;
+        break;
+    case EFBAnimState::Normal:
+        // 착지 — MOVE_None으로 복구하여 IsFalling() = false
+        GetCharacterMovement()->DisableMovement();
+        break;
     default: break;
     }
 

@@ -42,6 +42,18 @@ void AShoorterCharater::BeginPlay()
 	
 }
 
+void AShoorterCharater::Jump()
+{
+    Super::Jump();
+    BroadcastAnimState((uint8)EFBAnimState::Jump);
+}
+
+void AShoorterCharater::Landed(const FHitResult& Hit)
+{
+    Super::Landed(Hit);
+    BroadcastAnimState((uint8)EFBAnimState::Normal);
+}
+
 void AShoorterCharater::BroadcastAnimState(uint8 State)
 {
     if (!IsPlayerControlled()) return;
@@ -226,6 +238,7 @@ void AShoorterCharater::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
     PlayerInputComponent->BindAction(TEXT("FastMoveForward"), IE_Released, this, &AShoorterCharater::StopSprint);
 	PlayerInputComponent->BindAxis(TEXT("MoveSide"), this, &AShoorterCharater::MoveSide);
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &AShoorterCharater::Jump);
+	PlayerInputComponent->BindKey(EKeys::Enter, IE_Pressed, this, &AShoorterCharater::TryStartGame);
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &AShoorterCharater::LookUpRate);
 	PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &APawn::AddControllerYawInput);
@@ -235,6 +248,16 @@ void AShoorterCharater::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAction(TEXT("BatMode"), EInputEvent::IE_Pressed, this, &AShoorterCharater::EquipBat);
 	PlayerInputComponent->BindAction(TEXT("HockeyMode"), EInputEvent::IE_Pressed, this, &AShoorterCharater::EquipHockey);
 	PlayerInputComponent->BindAction(TEXT("ThrowBomb"), IE_Pressed, this, &AShoorterCharater::ThrowBomb);
+}
+
+void AShoorterCharater::TryStartGame()
+{
+    AShooterPlayerController* PC = Cast<AShooterPlayerController>(GetController());
+    if (!PC || !PC->IsOwnerInWaitingRoom()) return;
+
+    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+        if (Net->IsConnected())
+            Net->SendStartGame();
 }
 
 void AShoorterCharater::Shoot()

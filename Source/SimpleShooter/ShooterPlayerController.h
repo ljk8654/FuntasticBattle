@@ -20,6 +20,8 @@ class SIMPLESHOOTER_API AShooterPlayerController : public APlayerController
 public:
     virtual void GameHasEnded(class AActor* EndGameFocus = nullptr, bool bIsWinner = false) override;
 
+    bool IsOwnerInWaitingRoom() const { return bIsOwner && WaitingRoomWidget != nullptr; }
+
     UPROPERTY(EditAnywhere, Category="UI")
     TSubclassOf<UHUDWidget> HUDClass;
 
