@@ -10,7 +10,7 @@
  * 
  */
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRoomClicked, const FString&, RoomName);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRoomClicked, int32, RoomId);
 
 UCLASS()
 class SIMPLESHOOTER_API URoomButton : public UUserWidget
@@ -20,7 +20,7 @@ class SIMPLESHOOTER_API URoomButton : public UUserWidget
 public:
 	virtual void NativeConstruct() override;
 
-	void Setup(const FString& InRoomName);
+	void Setup(const FString& InName, int32 InRoomId);
 
 	UPROPERTY(BlueprintAssignable)
 	FOnRoomClicked OnClicked;
@@ -33,9 +33,10 @@ protected:
 
     UPROPERTY(meta = (BindWidget))
     class UTextBlock* RoomNameText;
-	
+
 private:
     FString RoomName;
+    int32   RoomId = 0;
 
     UFUNCTION()
     void HandleClick();

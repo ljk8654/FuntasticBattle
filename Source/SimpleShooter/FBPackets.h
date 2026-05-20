@@ -20,7 +20,9 @@ enum class EFBPacketId : uint16
     CS_CHAT         = 20,
     CS_ITEM_DROP    = 21,
     CS_ITEM_PICKUP  = 22,
-    CS_START_GAME   = 23,
+    CS_START_GAME        = 23,
+    CS_CREATE_ROOM       = 24,
+    CS_REQUEST_ROOM_LIST = 25,
 
     SC_LOGIN_RES        = 1001,
     SC_ENTER_GAME       = 1002,
@@ -36,6 +38,7 @@ enum class EFBPacketId : uint16
     SC_ITEM_DROP        = 1021,
     SC_ITEM_PICKUP      = 1022,
     SC_GAME_START       = 1023,
+    SC_ROOM_LIST        = 1024,
 };
 
 struct FB_PacketHeader
@@ -129,6 +132,17 @@ struct FB_SC_ITEM_PICKUP_PKT
 };
 
 struct FB_CS_START_GAME_PKT
+{
+    FB_PacketHeader h;
+};
+
+struct FB_CS_CREATE_ROOM_PKT
+{
+    FB_PacketHeader h;
+    wchar_t name[32];
+};
+
+struct FB_CS_REQUEST_ROOM_LIST_PKT
 {
     FB_PacketHeader h;
 };
@@ -227,6 +241,21 @@ struct FB_SC_CHAT_PKT
     FB_PacketHeader h;
     uint64  playerId;
     wchar_t msg[128];
+};
+
+struct FB_RoomEntry
+{
+    uint32  roomId;
+    uint8   playerCount;
+    uint8   isStarted;
+    wchar_t name[32];
+};
+
+struct FB_SC_ROOM_LIST_PKT
+{
+    FB_PacketHeader h;
+    uint8        count;
+    FB_RoomEntry rooms[10];
 };
 
 #pragma pack(pop)

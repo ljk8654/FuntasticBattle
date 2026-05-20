@@ -281,6 +281,22 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
         OnGameStart.Broadcast(Pkt->spawnIndex, static_cast<int32>(Pkt->itemSeed));
         break;
     }
+    case EFBPacketId::SC_ROOM_LIST:
+    {
+        const FB_SC_ROOM_LIST_PKT* Pkt = reinterpret_cast<const FB_SC_ROOM_LIST_PKT*>(Data);
+        TArray<FRoomInfo> Rooms;
+        for (uint8 i = 0; i < Pkt->count; ++i)
+        {
+            const FB_RoomEntry& Entry = Pkt->rooms[i];
+            FRoomInfo Info;
+            Info.RoomId      = static_cast<int32>(Entry.roomId);
+            Info.PlayerCount = static_cast<int32>(Entry.playerCount);
+            Info.Name        = FString(Entry.name);
+            Rooms.Add(Info);
+        }
+        OnRoomListUpdate.Broadcast(Rooms);
+        break;
+    }
     default:
         UE_LOG(LogTemp, Warning, TEXT("[Network] 알 수 없는 패킷 id=%d"), Header->id);
         break;
@@ -397,5 +413,22 @@ void UFBNetworkSubsystem::SendChat(const FString& Msg)
     Pkt.h.size = sizeof(Pkt);
     Pkt.h.id   = static_cast<uint16>(EFBPacketId::CS_CHAT);
     FCString::Strncpy(Pkt.msg, *Msg, 128);
+    SendRaw(&Pkt, sizeof(Pkt));
+}
+
+void UFBNetworkSubsystem::SendCreateRoom(const FString& Name)
+{
+    FB_CS_CREATE_ROOM_PKT Pkt{};
+    Pkt.h.size = sizeof(Pkt);
+    Pkt.h.id   = static_cast<uint16>(EFBPacketId::CS_CREATE_ROOM);
+    FCString::Strncpy(Pkt.name, *Name, 32);
+    SendRaw(&Pkt, sizeof(Pkt));
+}
+
+void UFBNetworkSubsystem::SendRequestRoomList()
+{
+    FB_CS_REQUEST_ROOM_LIST_PKT Pkt{};
+    Pkt.h.size = sizeof(Pkt);
+    Pkt.h.id   = static_cast<uint16>(EFBPacketId::CS_REQUEST_ROOM_LIST);
     SendRaw(&Pkt, sizeof(Pkt));
 }

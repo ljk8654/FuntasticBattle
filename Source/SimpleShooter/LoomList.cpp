@@ -12,11 +12,11 @@ void ULoomList::NativeConstruct()
     if (CreateRoomButton)
         CreateRoomButton->OnClicked.AddDynamic(this, &ULoomList::OnCreateRoomClicked);
 
-    // 기본 방 목록 (서버에는 roomId=1만 존재)
-    AddRoom(TEXT("FuntasticBattle Room 1"));
-
     if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+    {
         Net->OnEnterGame.AddDynamic(this, &ULoomList::OnEnterGameReceived);
+        Net->OnRoomListUpdate.AddDynamic(this, &ULoomList::OnRoomListReceived);
+    }
 }
 
 void ULoomList::OnCreateRoomClicked()
@@ -24,16 +24,20 @@ void ULoomList::OnCreateRoomClicked()
     if (ClickSound)
         UGameplayStatics::PlaySound2D(this, ClickSound);
 
-    FString NewRoomName = FString::Printf(TEXT("Room %d"), RoomCounter++);
-    AddRoom(NewRoomName);
+    UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>();
+    if (Net && Net->IsConnected())
+    {
+        FString NewRoomName = FString::Printf(TEXT("방 %d"), RoomCounter++);
+        Net->SendCreateRoom(NewRoomName);
+    }
 }
 
-void ULoomList::OnRoomSelected(const FString& RoomName)
+void ULoomList::OnRoomSelected(int32 RoomId)
 {
     UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>();
     if (Net && Net->IsConnected())
     {
-        Net->SendEnterRoom(1);
+        Net->SendEnterRoom(static_cast<uint32>(RoomId));
     }
     else
     {
@@ -47,14 +51,28 @@ void ULoomList::OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount, bool bIs
     OnEnterRoomSuccess.Broadcast();
 }
 
-void ULoomList::AddRoom(const FString& RoomName)
+void ULoomList::OnRoomListReceived(TArray<FRoomInfo> Rooms)
+{
+    if (!RoomListBox) return;
+
+    // 기존 버튼 전부 제거
+    RoomListBox->ClearChildren();
+
+    // 수신된 방 목록으로 버튼 생성
+    for (const FRoomInfo& Room : Rooms)
+    {
+        AddRoom(Room.Name, Room.RoomId);
+    }
+}
+
+void ULoomList::AddRoom(const FString& Name, int32 RoomId)
 {
     if (!RoomButtonClass || !RoomListBox) return;
 
     URoomButton* NewRoom = CreateWidget<URoomButton>(GetOwningPlayer(), RoomButtonClass);
     if (NewRoom)
     {
-        NewRoom->Setup(RoomName);
+        NewRoom->Setup(Name, RoomId);
         NewRoom->OnClicked.AddDynamic(this, &ULoomList::OnRoomSelected);
         RoomListBox->AddChild(NewRoom);
     }

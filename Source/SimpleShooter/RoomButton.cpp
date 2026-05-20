@@ -8,9 +8,10 @@
 
 
 
-void URoomButton::Setup(const FString& InRoomName)
+void URoomButton::Setup(const FString& InName, int32 InRoomId)
 {
-     RoomName = InRoomName;
+    RoomName = InName;
+    RoomId   = InRoomId;
     if (RoomNameText)
     {
         RoomNameText->SetText(FText::FromString(RoomName));
@@ -19,12 +20,12 @@ void URoomButton::Setup(const FString& InRoomName)
 
 void URoomButton::HandleClick()
 {
-     if (ClickSound)
+    if (ClickSound)
     {
         UGameplayStatics::PlaySound2D(this, ClickSound);
     }
 
-    OnClicked.Broadcast(RoomName);
+    OnClicked.Broadcast(RoomId);
 }
 
 void URoomButton::NativeConstruct()

@@ -9,6 +9,21 @@
 class FSocket;
 class FNetworkRecvWorker;
 
+USTRUCT(BlueprintType)
+struct FRoomInfo
+{
+    GENERATED_BODY()
+
+    UPROPERTY(BlueprintReadOnly)
+    int32 RoomId = 0;
+
+    UPROPERTY(BlueprintReadOnly)
+    int32 PlayerCount = 0;
+
+    UPROPERTY(BlueprintReadOnly)
+    FString Name;
+};
+
 UCLASS()
 class SIMPLESHOOTER_API UFBNetworkSubsystem : public UGameInstanceSubsystem, public FTickableGameObject
 {
@@ -43,6 +58,8 @@ public:
     void SendItemDrop(uint8 ItemType, const FVector& Pos);
     void SendItemPickup(const FVector& Pos);
     void SendStartGame();
+    void SendCreateRoom(const FString& Name);
+    void SendRequestRoomList();
 
     // 게임 스레드 이벤트 델리게이트
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLoginResult, int64, PlayerId, bool, bSuccess);
@@ -104,6 +121,10 @@ public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDisconnected);
     UPROPERTY(BlueprintAssignable)
     FOnDisconnected OnDisconnected;
+
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRoomListUpdate, TArray<FRoomInfo>, Rooms);
+    UPROPERTY(BlueprintAssignable)
+    FOnRoomListUpdate OnRoomListUpdate;
 
 private:
     FSocket*             Socket     = nullptr;

@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "FBNetworkSubsystem.h"
 #include "LoomList.generated.h"
 
 class URoomButton;
@@ -19,7 +20,7 @@ class SIMPLESHOOTER_API ULoomList : public UUserWidget
 public:
     virtual void NativeConstruct() override;
 
-    void AddRoom(const FString& RoomName);
+    void AddRoom(const FString& Name, int32 RoomId);
 
     UPROPERTY(BlueprintAssignable)
     FOnEnterRoomSuccess OnEnterRoomSuccess;
@@ -43,8 +44,11 @@ protected:
     void OnCreateRoomClicked();
 
     UFUNCTION()
-    void OnRoomSelected(const FString& RoomName);
+    void OnRoomSelected(int32 RoomId);
 
     UFUNCTION()
     void OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount, bool bIsOwner);
+
+    UFUNCTION()
+    void OnRoomListReceived(TArray<FRoomInfo> Rooms);
 };
