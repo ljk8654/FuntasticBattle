@@ -16,6 +16,7 @@
 #include "AIController.h"
 #include "FBNetworkSubsystem.h"
 #include "RemotePlayer.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 // Sets default values
 AShoorterCharater::AShoorterCharater()

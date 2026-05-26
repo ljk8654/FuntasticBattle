@@ -75,6 +75,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
 	void Shoot();
+
 	void TryStartGame();
 
 	

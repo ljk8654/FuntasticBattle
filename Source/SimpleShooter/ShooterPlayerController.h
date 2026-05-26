@@ -22,6 +22,7 @@ public:
 
     bool IsOwnerInWaitingRoom() const { return bIsOwner && WaitingRoomWidget != nullptr; }
 
+
     UPROPERTY(EditAnywhere, Category="UI")
     TSubclassOf<UHUDWidget> HUDClass;
 
@@ -58,7 +59,7 @@ public:
 
 protected:
     virtual void BeginPlay() override;
-
+    virtual void SetupInputComponent() override;
 private:
     UPROPERTY(EditAnywhere)
     TSubclassOf<class UUserWidget> WinnerScreenClass;
@@ -123,6 +124,9 @@ private:
 
     UFUNCTION()
     void OnGameStartReceived(uint8 SpawnIndex, int32 ItemSeed);
+
+    void ExitGame();
+
 
     bool bIsOwner = false;
 

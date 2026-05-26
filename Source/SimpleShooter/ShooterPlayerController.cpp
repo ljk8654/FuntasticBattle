@@ -8,8 +8,14 @@
 #include "HUDWidget.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/PlayerStart.h"
+#include "Engine/DamageEvents.h"
 
+void AShooterPlayerController::SetupInputComponent()
+{
+    Super::SetupInputComponent();
 
+    InputComponent->BindKey(EKeys::K, IE_Pressed, this, &AShooterPlayerController::ExitGame);
+}
 
 void AShooterPlayerController::GameHasEnded(class AActor* EndGameFocus, bool bIsWinner)
 {
@@ -79,6 +85,17 @@ void AShooterPlayerController::BeginPlay()
         Net->OnEnterGame.AddDynamic(this, &AShooterPlayerController::OnEnterGameReceived);
         Net->OnGameStart.AddDynamic(this, &AShooterPlayerController::OnGameStartReceived);
     }
+}
+
+void AShooterPlayerController::ExitGame()
+{
+    UE_LOG(LogTemp, Warning, TEXT("ESC Pressed - ExitGame Called"));
+    UKismetSystemLibrary::QuitGame(
+        GetWorld(),
+        nullptr,
+        EQuitPreference::Quit,
+        false
+    );
 }
 
 void AShooterPlayerController::OnLoginSuccess()

@@ -6,13 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "LoginWidget.generated.h"
 
-
-
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnLoginSuccess);
 
-/**
- * 
- */
 UCLASS()
 class SIMPLESHOOTER_API ULoginWidget : public UUserWidget
 {
@@ -22,6 +17,12 @@ public:
     virtual void NativeConstruct() override;
 
     FOnLoginSuccess OnLoginSuccess;
+
+protected:
+    virtual FReply NativeOnKeyDown(
+        const FGeometry& InGeometry,
+        const FKeyEvent& InKeyEvent
+    ) override;
 
 protected:
     UPROPERTY(meta = (BindWidget))
@@ -42,12 +43,13 @@ protected:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Sound")
     USoundBase* InputSound;
 
-    
 private:
     UFUNCTION()
     void OnLoginClicked();
+
     UFUNCTION()
     void OnTextChanged(const FText& Text);
+
     UFUNCTION()
     void OnLoginResult(int64 PlayerId, bool bSuccess);
 
