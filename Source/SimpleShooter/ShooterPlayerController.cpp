@@ -14,7 +14,7 @@ void AShooterPlayerController::SetupInputComponent()
 {
     Super::SetupInputComponent();
 
-    InputComponent->BindKey(EKeys::K, IE_Pressed, this, &AShooterPlayerController::ExitGame);
+    InputComponent->BindKey(EKeys::Escape, IE_Pressed, this, &AShooterPlayerController::ExitGame);
 }
 
 void AShooterPlayerController::GameHasEnded(class AActor* EndGameFocus, bool bIsWinner)
