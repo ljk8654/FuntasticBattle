@@ -38,6 +38,12 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+	UFUNCTION(BlueprintCallable)
+	void SetOutfitMaterial(int32 OutfitIndex);
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Outfit")
+	TArray<UMaterialInterface*> OutfitMaterials;
+	
 	void PickupBomb(class ABomb* Bomb);
 
     void ThrowBomb();

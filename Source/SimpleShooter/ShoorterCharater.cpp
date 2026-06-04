@@ -311,6 +311,28 @@ void AShoorterCharater::LookUpRate(float AxisValue)
 	AddControllerPitchInput(AxisValue * RotationRate * GetWorld()->GetDeltaSeconds());
 }
 
+void AShoorterCharater::SetOutfitMaterial(int32 OutfitIndex)
+{
+    if (!GetMesh())
+    {
+        return;
+    }
+
+    if (!OutfitMaterials.IsValidIndex(OutfitIndex))
+    {
+        return;
+    }
+
+    UMaterialInterface* SelectedMaterial = OutfitMaterials[OutfitIndex];
+
+    if (!SelectedMaterial)
+    {
+        return;
+    }
+
+    GetMesh()->SetMaterial(0, SelectedMaterial);
+}
+
 void AShoorterCharater::PunchAttack()
 {
 	if (bIsAttacking)
