@@ -39,11 +39,26 @@ protected:
 
 public:	
 	UFUNCTION(BlueprintCallable)
-	void SetOutfitMaterial(int32 OutfitIndex);
+	void EnterWaitingRoomView();
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Outfit")
+	UFUNCTION(BlueprintCallable)
+	void ExitWaitingRoomView();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Character")
+	TArray<USkeletalMesh*> CharacterMeshes;
+
+	UFUNCTION(BlueprintCallable)
+	void SetCharacterMesh(int32 MeshIndex);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Outfit")
 	TArray<UMaterialInterface*> OutfitMaterials;
-	
+
+	UFUNCTION(BlueprintCallable)
+	void SetOutfitMaterial(int32 MaterialIndex);
+
+	UFUNCTION(BlueprintCallable)
+	void MoveToWaitingPlayerStart();
+
 	void PickupBomb(class ABomb* Bomb);
 
     void ThrowBomb();

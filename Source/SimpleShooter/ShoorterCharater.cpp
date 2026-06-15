@@ -17,6 +17,11 @@
 #include "FBNetworkSubsystem.h"
 #include "RemotePlayer.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/GameplayStatics.h"
+#include "GameFramework/PlayerStart.h"
+#include "Materials/MaterialInterface.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/PlayerController.h"
 
 // Sets default values
 AShoorterCharater::AShoorterCharater()
@@ -311,27 +316,6 @@ void AShoorterCharater::LookUpRate(float AxisValue)
 	AddControllerPitchInput(AxisValue * RotationRate * GetWorld()->GetDeltaSeconds());
 }
 
-void AShoorterCharater::SetOutfitMaterial(int32 OutfitIndex)
-{
-    if (!GetMesh())
-    {
-        return;
-    }
-
-    if (!OutfitMaterials.IsValidIndex(OutfitIndex))
-    {
-        return;
-    }
-
-    UMaterialInterface* SelectedMaterial = OutfitMaterials[OutfitIndex];
-
-    if (!SelectedMaterial)
-    {
-        return;
-    }
-
-    GetMesh()->SetMaterial(0, SelectedMaterial);
-}
 
 void AShoorterCharater::PunchAttack()
 {
@@ -411,12 +395,176 @@ void AShoorterCharater::PunchAttack()
 	}
 }
 
+void AShoorterCharater::EnterWaitingRoomView()
+{
+    TArray<UCameraComponent*> Cameras;
+    GetComponents<UCameraComponent>(Cameras);
+
+    UCameraComponent* MainCamera = nullptr;
+    UCameraComponent* WaitingCamera = nullptr;
+
+    for (UCameraComponent* Cam : Cameras)
+    {
+        if (!Cam)
+        {
+            continue;
+        }
+
+        if (Cam->GetName().Contains(TEXT("waitingCamera")))
+        {
+            WaitingCamera = Cam;
+        }
+        else if (Cam->GetName().Contains(TEXT("Camera")))
+        {
+            MainCamera = Cam;
+        }
+    }
+
+    if (MainCamera)
+    {
+        MainCamera->SetActive(false);
+    }
+
+    if (WaitingCamera)
+    {
+        WaitingCamera->SetActive(true);
+    }
+
+    SetActorRotation(FRotator(0.f, 90.f, 0.f));
+
+    if (APlayerController* PC = Cast<APlayerController>(GetController()))
+    {
+        PC->SetShowMouseCursor(true);
+
+        FInputModeGameAndUI InputMode;
+        InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+        PC->SetInputMode(InputMode);
+    }
+}
+void AShoorterCharater::ExitWaitingRoomView()
+{
+    TArray<UCameraComponent*> Cameras;
+    GetComponents<UCameraComponent>(Cameras);
+
+    UCameraComponent* MainCamera = nullptr;
+    UCameraComponent* WaitingCamera = nullptr;
+
+    for (UCameraComponent* Cam : Cameras)
+    {
+        if (!Cam)
+        {
+            continue;
+        }
+
+        if (Cam->GetName().Contains(TEXT("waitingCamera")))
+        {
+            WaitingCamera = Cam;
+        }
+        else if (Cam->GetName().Contains(TEXT("Camera")))
+        {
+            MainCamera = Cam;
+        }
+    }
+
+    if (WaitingCamera)
+    {
+        WaitingCamera->SetActive(false);
+    }
+
+    if (MainCamera)
+    {
+        MainCamera->SetActive(true);
+    }
+
+    if (APlayerController* PC = Cast<APlayerController>(GetController()))
+    {
+        PC->SetShowMouseCursor(false);
+
+        FInputModeGameOnly InputMode;
+        PC->SetInputMode(InputMode);
+    }
+}
+
+void AShoorterCharater::MoveToWaitingPlayerStart()
+{
+    TArray<AActor*> PlayerStarts;
+
+    UGameplayStatics::GetAllActorsOfClass(
+        GetWorld(),
+        APlayerStart::StaticClass(),
+        PlayerStarts
+    );
+
+    for (AActor* Actor : PlayerStarts)
+    {
+        APlayerStart* Start = Cast<APlayerStart>(Actor);
+
+        if (Start && Start->PlayerStartTag == FName(TEXT("WaitPlayer1")))
+        {
+            SetActorLocation(Start->GetActorLocation());
+            SetActorRotation(Start->GetActorRotation());
+            return;
+        }
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("WaitPlayer1 PlayerStart를 찾지 못했습니다."));
+}
+
 void AShoorterCharater::BroadcastItemState(uint8 ItemType)
 {
     if (!IsPlayerControlled()) return;
     if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
         if (Net->IsConnected())
             Net->SendItemState(ItemType);
+}
+
+void AShoorterCharater::SetCharacterMesh(int32 MeshIndex)
+{
+    if (!GetMesh())
+    {
+        return;
+    }
+
+    if (!CharacterMeshes.IsValidIndex(MeshIndex))
+    {
+        return;
+    }
+
+    USkeletalMesh* NewMesh = CharacterMeshes[MeshIndex];
+
+    if (!NewMesh)
+    {
+        return;
+    }
+
+    GetMesh()->SetSkeletalMesh(NewMesh);
+}
+
+void AShoorterCharater::SetOutfitMaterial(int32 MaterialIndex)
+{
+    if (!GetMesh())
+    {
+        return;
+    }
+
+    if (!OutfitMaterials.IsValidIndex(MaterialIndex))
+    {
+        UE_LOG(LogTemp, Warning, TEXT("잘못된 머티리얼 인덱스입니다: %d"), MaterialIndex);
+        return;
+    }
+
+    UMaterialInterface* SelectedMaterial = OutfitMaterials[MaterialIndex];
+
+    if (!SelectedMaterial)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("머티리얼이 비어있습니다: %d"), MaterialIndex);
+        return;
+    }
+
+    // 0번 머티리얼 슬롯에 적용
+    GetMesh()->SetMaterial(0, SelectedMaterial);
+
+    UE_LOG(LogTemp, Warning, TEXT("머티리얼 변경 완료: %d"), MaterialIndex);
 }
 
 void AShoorterCharater::GunMode()

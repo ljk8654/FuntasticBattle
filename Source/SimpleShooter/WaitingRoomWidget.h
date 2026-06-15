@@ -6,8 +6,6 @@
 
 class UButton;
 class UImage;
-class UVerticalBox;
-class UTextBlock;
 
 UCLASS()
 class SIMPLESHOOTER_API UWaitingRoomWidget : public UUserWidget
@@ -17,18 +15,17 @@ class SIMPLESHOOTER_API UWaitingRoomWidget : public UUserWidget
 public:
     virtual void NativeConstruct() override;
 
-    UFUNCTION(BlueprintCallable)
     void SetOwnerMode(bool bOwner);
 
 protected:
     UPROPERTY(meta = (BindWidget))
+    UButton* CharacterButton1;
+
+    UPROPERTY(meta = (BindWidget))
+    UButton* CharacterButton2;
+
+    UPROPERTY(meta = (BindWidget))
     UButton* StartGameButton;
-
-    UPROPERTY(meta = (BindWidget))
-    UVerticalBox* PlayerListBox;
-
-    UPROPERTY(meta = (BindWidget))
-    UImage* CharacterPreview;
 
     UPROPERTY(meta = (BindWidget))
     UButton* ColorButton;
@@ -42,7 +39,10 @@ protected:
     UPROPERTY(meta = (BindWidget))
     UButton* ColorButton4;
 
-private:
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character")
+    int32 SelectedColorIndex = 0;
+
     UFUNCTION()
     void OnStartGameClicked();
 
@@ -59,8 +59,14 @@ private:
     void OnButton4Clicked();
 
     void SelectColor(int32 ColorIndex);
-    void UpdateCharacterPreviewColor(int32 ColorIndex);
 
-private:
-    int32 SelectedColorIndex = 0;
+    void SetUIMode();
+
+    void UpdateCharacterPreviewColor(int32 ColorIndex);
+    
+    UFUNCTION()
+    void OnCharacterButton1Clicked();
+
+    UFUNCTION()
+    void OnCharacterButton2Clicked();
 };
