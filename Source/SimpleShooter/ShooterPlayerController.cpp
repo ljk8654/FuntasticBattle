@@ -168,17 +168,41 @@ void AShooterPlayerController::OnRemotePlayerEnter(int64 PlayerId, FVector InitP
     FActorSpawnParameters Params;
     Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
+    // 내 슬롯을 건너뛰어 RemotePlayer 슬롯 결정
+    while (RemoteWaitSlotCounter == MyWaitSlotIndex)
+        RemoteWaitSlotCounter++;
+    int32 RemoteSlot = RemoteWaitSlotCounter++;
+
+    // WaitPlayer 태그 PlayerStart 위치 탐색
+    FVector SpawnPos = InitPos;
+    float SpawnYaw = InitYaw;
+    {
+        FName TagName = FName(*FString::Printf(TEXT("WaitPlayer%d"), RemoteSlot + 1));
+        TArray<AActor*> Starts;
+        UGameplayStatics::GetAllActorsOfClass(GetWorld(), APlayerStart::StaticClass(), Starts);
+        for (AActor* Actor : Starts)
+        {
+            APlayerStart* PS = Cast<APlayerStart>(Actor);
+            if (PS && PS->PlayerStartTag == TagName)
+            {
+                SpawnPos = PS->GetActorLocation();
+                SpawnYaw = PS->GetActorRotation().Yaw;
+                break;
+            }
+        }
+    }
+
     ARemotePlayer* Remote = World->SpawnActor<ARemotePlayer>(
         RemotePlayerClass,
-        InitPos,
-        FRotator(0.f, InitYaw, 0.f),
+        SpawnPos,
+        FRotator(0.f, SpawnYaw, 0.f),
         Params
     );
 
     if (Remote)
     {
         Remote->PlayerId = PlayerId;
-        Remote->SetTargetTransform(InitPos, InitYaw);
+        Remote->SetTargetTransform(SpawnPos, SpawnYaw);
         Remote->ApplyCustomization(ColorIndex, MeshIndex);
         RemotePlayers.Add(PlayerId, Remote);
         UE_LOG(LogTemp, Log, TEXT("[Controller] 원격 플레이어 스폰 id=%lld"), PlayerId);
@@ -311,8 +335,10 @@ void AShooterPlayerController::OnCharCustomizeReceived(int64 PlayerId, uint8 Col
 void AShooterPlayerController::OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount, bool bOwner)
 {
     bIsOwner = bOwner;
-    UE_LOG(LogTemp, Warning, TEXT("[OnEnterGame] PlayerId=%lld OtherCount=%d bIsOwner=%d"),
-        MyPlayerId, OtherCount, bIsOwner);
+    MyWaitSlotIndex = OtherCount;       // 입장 순서 = 이미 있는 인원 수 (0-based)
+    RemoteWaitSlotCounter = 0;
+    UE_LOG(LogTemp, Warning, TEXT("[OnEnterGame] PlayerId=%lld OtherCount=%d bIsOwner=%d WaitSlot=%d"),
+        MyPlayerId, OtherCount, bIsOwner, MyWaitSlotIndex);
 }
 
 void AShooterPlayerController::OnGameStartReceived(uint8 SpawnIndex, int32 ItemSeed)

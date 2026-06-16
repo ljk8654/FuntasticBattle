@@ -57,7 +57,7 @@ public:
 	void SetOutfitMaterial(int32 MaterialIndex);
 
 	UFUNCTION(BlueprintCallable)
-	void MoveToWaitingPlayerStart();
+	void MoveToWaitingPlayerStart(int32 SlotIndex = 0);
 
 	void PickupBomb(class ABomb* Bomb);
 

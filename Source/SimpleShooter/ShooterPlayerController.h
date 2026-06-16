@@ -132,6 +132,12 @@ private:
 
 
     bool bIsOwner = false;
+    int32 MyWaitSlotIndex = 0;
+    int32 RemoteWaitSlotCounter = 0;
+
+public:
+    int32 GetMyWaitSlotIndex() const { return MyWaitSlotIndex; }
+private:
 
     // 에디터에서 게임 시작 시 아이템을 스폰할 위치들을 등록
     UPROPERTY(EditAnywhere, Category="GameStart")

@@ -1,6 +1,7 @@
 #include "WaitingRoomWidget.h"
 
 #include "ShoorterCharater.h"
+#include "ShooterPlayerController.h"
 #include "FBNetworkSubsystem.h"
 
 #include "Components/Button.h"
@@ -58,7 +59,9 @@ void UWaitingRoomWidget::NativeConstruct()
 
     if (PlayerCharacter)
     {
-        PlayerCharacter->MoveToWaitingPlayerStart();
+        AShooterPlayerController* PC = Cast<AShooterPlayerController>(UGameplayStatics::GetPlayerController(this, 0));
+        int32 SlotIndex = PC ? PC->GetMyWaitSlotIndex() : 0;
+        PlayerCharacter->MoveToWaitingPlayerStart(SlotIndex);
         PlayerCharacter->EnterWaitingRoomView();
         PlayerCharacter->SetOutfitMaterial(SelectedColorIndex);
     }

@@ -485,21 +485,16 @@ void AShoorterCharater::ExitWaitingRoomView()
     }
 }
 
-void AShoorterCharater::MoveToWaitingPlayerStart()
+void AShoorterCharater::MoveToWaitingPlayerStart(int32 SlotIndex)
 {
+    FName TagName = FName(*FString::Printf(TEXT("WaitPlayer%d"), SlotIndex + 1));
     TArray<AActor*> PlayerStarts;
-
-    UGameplayStatics::GetAllActorsOfClass(
-        GetWorld(),
-        APlayerStart::StaticClass(),
-        PlayerStarts
-    );
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), APlayerStart::StaticClass(), PlayerStarts);
 
     for (AActor* Actor : PlayerStarts)
     {
         APlayerStart* Start = Cast<APlayerStart>(Actor);
-
-        if (Start && Start->PlayerStartTag == FName(TEXT("WaitPlayer1")))
+        if (Start && Start->PlayerStartTag == TagName)
         {
             SetActorLocation(Start->GetActorLocation());
             SetActorRotation(Start->GetActorRotation());
@@ -507,7 +502,7 @@ void AShoorterCharater::MoveToWaitingPlayerStart()
         }
     }
 
-    UE_LOG(LogTemp, Warning, TEXT("WaitPlayer1 PlayerStart를 찾지 못했습니다."));
+    UE_LOG(LogTemp, Warning, TEXT("%s PlayerStart를 찾지 못했습니다."), *TagName.ToString());
 }
 
 void AShoorterCharater::BroadcastItemState(uint8 ItemType)
