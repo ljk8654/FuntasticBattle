@@ -291,6 +291,7 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
             FRoomInfo Info;
             Info.RoomId      = static_cast<int32>(Entry.roomId);
             Info.PlayerCount = static_cast<int32>(Entry.playerCount);
+            Info.bIsStarted  = (Entry.isStarted != 0);
             Info.Name        = FString(Entry.name);
             Rooms.Add(Info);
         }

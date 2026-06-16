@@ -67,10 +67,13 @@ private:
     UPROPERTY(EditAnywhere)
     TSubclassOf<class UUserWidget> LoseScreenClass;
 
-    UPROPERTY(EditAnywhere)
-    float RestartDelay = 5.f;
+    UPROPERTY()
+    UUserWidget* ResultScreen = nullptr;
 
-    FTimerHandle RestartTimer;
+    bool bIsGameEnded = false;
+
+    UFUNCTION()
+    void ReturnToRoomList();
 
     UPROPERTY()
     UHUDWidget* HUD;

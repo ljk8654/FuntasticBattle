@@ -485,6 +485,94 @@ void AShoorterCharater::ExitWaitingRoomView()
     }
 }
 
+void AShoorterCharater::EnterSpectatorMode()
+{
+    Health = 0.f;
+    bIsRagdoll = false;
+
+    // 래그돌 복구·언프리즈 등 대기 중인 타이머 모두 취소
+    GetWorldTimerManager().ClearAllTimersForObject(this);
+
+    TryDropOnDeath();
+
+    // 물리 시뮬 OFF → 메시 캡슐에 재부착, 숨김
+    if (USkeletalMeshComponent* CharMesh = GetMesh())
+    {
+        CharMesh->SetSimulatePhysics(false);
+        CharMesh->SetCollisionProfileName(TEXT("CharacterMesh"));
+        CharMesh->SetVisibility(false);
+    }
+
+    // 캡슐: 바닥·벽은 막아 이동 가능, 다른 캐릭터는 무시 (유령처럼 통과)
+    if (UCapsuleComponent* Cap = GetCapsuleComponent())
+    {
+        Cap->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+        Cap->SetCollisionResponseToAllChannels(ECR_Ignore);
+        Cap->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
+        Cap->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
+    }
+
+    // 이동 활성화 (관전 중 자유이동)
+    if (UCharacterMovementComponent* MoveComp = GetCharacterMovement())
+        MoveComp->SetMovementMode(EMovementMode::MOVE_Walking);
+
+    // HUD 체력 0
+    if (APlayerController* PC0 = Cast<APlayerController>(GetController()))
+        if (AShooterPlayerController* PC = Cast<AShooterPlayerController>(PC0))
+            if (UHUDWidget* HUDPtr = PC->GetHUDWidget())
+                HUDPtr->SetHpNormalized(0.f);
+
+    // 다른 클라이언트에 사망 알림 → 그쪽에서 이 플레이어 숨김
+    BroadcastAnimState((uint8)EFBAnimState::Dead);
+}
+
+void AShoorterCharater::ResetForWaitingRoom()
+{
+    // 타이머 전부 취소 (래그돌 복구, 언프리즈 등)
+    GetWorldTimerManager().ClearAllTimersForObject(this);
+
+    // 체력 / 스태미나 완전 복구
+    Health  = MaxHealth;
+    Stamina = MaxStamina;
+
+    // 내부 플래그 초기화
+    bIsRagdoll         = false;
+    bHasTriggeredStun  = false;
+    bDroppedItem       = false;
+    bIsAttacking       = false;
+    running            = false;
+    ItemMode           = 0;
+    CurrentState       = ECharState::Normal;
+
+    // 메시 복구 (물리 OFF, 가시성 ON, 충돌 프로파일 원래대로)
+    if (USkeletalMeshComponent* CharMesh = GetMesh())
+    {
+        CharMesh->SetSimulatePhysics(false);
+        CharMesh->SetVisibility(true);
+        CharMesh->SetCollisionProfileName(TEXT("CharacterMesh"));
+    }
+
+    // 캡슐 충돌 완전 복구 (Pawn 기본 프로파일)
+    if (UCapsuleComponent* Cap = GetCapsuleComponent())
+        Cap->SetCollisionProfileName(TEXT("Pawn"));
+
+    // 이동 복구
+    if (UCharacterMovementComponent* MoveComp = GetCharacterMovement())
+    {
+        MoveComp->SetMovementMode(EMovementMode::MOVE_Walking);
+        MoveComp->MaxWalkSpeed = 300.f;
+    }
+
+    // HUD 수치 리셋
+    if (APlayerController* PC0 = Cast<APlayerController>(GetController()))
+        if (AShooterPlayerController* PC = Cast<AShooterPlayerController>(PC0))
+            if (UHUDWidget* HUDPtr = PC->GetHUDWidget())
+            {
+                HUDPtr->SetHpNormalized(1.f);
+                HUDPtr->SetStaminaNormalized(1.f);
+            }
+}
+
 void AShoorterCharater::MoveToWaitingPlayerStart(int32 SlotIndex)
 {
     FName TagName = FName(*FString::Printf(TEXT("WaitPlayer%d"), SlotIndex + 1));

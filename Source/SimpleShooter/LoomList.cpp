@@ -61,6 +61,7 @@ void ULoomList::OnRoomListReceived(TArray<FRoomInfo> Rooms)
     // 수신된 방 목록으로 버튼 생성
     for (const FRoomInfo& Room : Rooms)
     {
+        if (Room.bIsStarted) continue; // 게임 중인 방은 숨김
         AddRoom(Room.Name, Room.RoomId);
     }
 }

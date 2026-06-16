@@ -44,6 +44,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ExitWaitingRoomView();
 
+	UFUNCTION(BlueprintCallable)
+	void EnterSpectatorMode();
+
+	UFUNCTION(BlueprintCallable)
+	void ResetForWaitingRoom();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Character")
 	TArray<USkeletalMesh*> CharacterMeshes;
 
@@ -83,6 +89,8 @@ public:
 
 	UFUNCTION(BlueprintPure)
 	float StaminaPercent() const;
+
+	float GetMaxHealth() const { return MaxHealth; }
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

@@ -1,7 +1,9 @@
 #include "ShooterPlayerController.h"
 #include "FBNetworkSubsystem.h"
+#include "FBPackets.h"
 #include "RemotePlayer.h"
 #include "ShoorterCharater.h"
+#include "Components/CapsuleComponent.h"
 #include "Heart.h"
 #include "Bomb.h"
 #include "TimerManager.h"
@@ -16,35 +18,95 @@ void AShooterPlayerController::SetupInputComponent()
     Super::SetupInputComponent();
 
     InputComponent->BindKey(EKeys::Escape, IE_Pressed, this, &AShooterPlayerController::ExitGame);
+    InputComponent->BindKey(EKeys::Enter,  IE_Pressed, this, &AShooterPlayerController::ReturnToRoomList);
 }
 
 void AShooterPlayerController::GameHasEnded(class AActor* EndGameFocus, bool bIsWinner)
 {
     Super::GameHasEnded(EndGameFocus, bIsWinner);
 
-    if (HUD)
-        HUD->RemoveFromParent();
+    bIsGameEnded = true;
 
-    if (bIsWinner)
+    if (HUD) HUD->RemoveFromParent();
+
+    TSubclassOf<UUserWidget> ScreenClass = bIsWinner ? WinnerScreenClass : LoseScreenClass;
+    if (ScreenClass)
     {
-        UUserWidget* WinnerScreen = CreateWidget(this, WinnerScreenClass);
-        if (WinnerScreen) WinnerScreen->AddToViewport();
-    }
-    else
-    {
-        UUserWidget* LoseScreen = CreateWidget(this, LoseScreenClass);
-        if (LoseScreen) LoseScreen->AddToViewport();
+        ResultScreen = CreateWidget<UUserWidget>(this, ScreenClass);
+        if (ResultScreen) ResultScreen->AddToViewport();
     }
 
-    // 방 퇴장 후 레벨 재시작, CurrentRoomId는 재입장용으로 유지
+    // 커서 표시, 카메라/이동 입력 차단 (Enter 키는 컨트롤러 바인딩으로 수신)
+    SetShowMouseCursor(true);
+    SetIgnoreLookInput(true);
+    SetIgnoreMoveInput(true);
+    FInputModeGameOnly InputMode;
+    SetInputMode(InputMode);
+}
+
+void AShooterPlayerController::ReturnToRoomList()
+{
+    if (!bIsGameEnded) return;
+    bIsGameEnded = false;
+
+    // 결과 화면 제거
+    if (ResultScreen)
+    {
+        ResultScreen->RemoveFromParent();
+        ResultScreen = nullptr;
+    }
+
+    // 서버에 방 퇴장 알림
     if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+        Net->SendLeaveRoom();
+
+    // 리모트 플레이어 모두 제거
+    for (auto& [Id, Remote] : RemotePlayers)
+        if (Remote) Remote->Destroy();
+    RemotePlayers.Empty();
+
+    // 레벨 내 아이템(하트·폭탄) 정리
     {
-        int32 SavedRoomId = Net->GetCurrentRoomId();
-        Net->SendLeaveRoom();           // CS_LEAVE_ROOM 전송 (CurrentRoomId = 0으로 초기화됨)
-        Net->CurrentRoomId = SavedRoomId; // 레벨 재시작 후 재입장에 쓸 방 ID 복원
+        TArray<AActor*> Hearts, Bombs;
+        UGameplayStatics::GetAllActorsOfClass(GetWorld(), AHeart::StaticClass(), Hearts);
+        UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABomb::StaticClass(), Bombs);
+        for (AActor* A : Hearts) if (A) A->Destroy();
+        for (AActor* A : Bombs) if (A) A->Destroy();
     }
 
-    GetWorldTimerManager().SetTimer(RestartTimer, this, &APlayerController::RestartLevel, RestartDelay);
+    // 캐릭터 상태 완전 초기화 (관전 모드, 체력, 플래그, 충돌 등 모두 리셋)
+    if (AShoorterCharater* MyChar = Cast<AShoorterCharater>(GetPawn()))
+        MyChar->ResetForWaitingRoom();
+
+    // 슬롯 카운터 리셋
+    MyWaitSlotIndex     = 0;
+    RemoteWaitSlotCounter = 0;
+    bIsOwner            = false;
+
+    // 카메라/이동 입력 잠금 해제
+    SetIgnoreLookInput(false);
+    SetIgnoreMoveInput(false);
+
+    // HUD 숨기기
+    if (HUD) HUD->SetVisibility(ESlateVisibility::Hidden);
+
+    // 방 목록 화면 표시
+    SetShowMouseCursor(true);
+    FInputModeUIOnly UIInputMode;
+    SetInputMode(UIInputMode);
+
+    if (RoomListClass)
+    {
+        RoomList = CreateWidget<ULoomList>(this, RoomListClass);
+        if (RoomList)
+        {
+            RoomList->AddToViewport();
+            RoomList->OnEnterRoomSuccess.AddDynamic(this, &AShooterPlayerController::OnEnterRoomSuccess);
+        }
+    }
+
+    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+        Net->SendRequestRoomList();
 }
 
 void AShooterPlayerController::BeginPlay()
@@ -67,14 +129,6 @@ void AShooterPlayerController::BeginPlay()
     SetInputMode(InputMode);
     UGameplayStatics::SetGamePaused(GetWorld(), true);
 
-    // 게임 종료 후 재입장: 로그인 없이 바로 방으로 복귀
-    UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>();
-    if (Net && Net->IsConnected() && Net->GetMyPlayerId() != 0 && Net->GetCurrentRoomId() != 0)
-    {
-        Net->SendEnterRoom(static_cast<uint32>(Net->GetCurrentRoomId()));
-        return;
-    }
-
     // 로그인 UI
     if (LoginWidgetClass)
     {
@@ -87,6 +141,7 @@ void AShooterPlayerController::BeginPlay()
     }
 
     // 네트워크 이벤트 바인딩
+    UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>();
     if (Net)
     {
         Net->OnRemotePlayerEnter.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerEnter);
@@ -144,6 +199,10 @@ void AShooterPlayerController::OnEnterRoomSuccess()
         RoomList->RemoveFromParent();
         RoomList = nullptr;
     }
+
+    // 대기방 진입 전 캐릭터 상태 완전 초기화 (안전망: 이미 ReturnToRoomList에서 했더라도)
+    if (AShoorterCharater* MyChar = Cast<AShoorterCharater>(GetPawn()))
+        MyChar->ResetForWaitingRoom();
 
     // 대기방: 이동 가능 + UI 버튼 클릭도 가능하도록 GameAndUI 모드
     UGameplayStatics::SetGamePaused(GetWorld(), false);
@@ -252,7 +311,13 @@ void AShooterPlayerController::OnRemoteAnimState(int64 PlayerId, uint8 State)
     if (ARemotePlayer** Found = RemotePlayers.Find(PlayerId))
     {
         if (*Found)
+        {
             (*Found)->ApplyAnimState(State);
+
+            // 사망 상태 → 관전 모드 (다른 플레이어 눈에 안 보임)
+            if (State == static_cast<uint8>(EFBAnimState::Dead))
+                (*Found)->SetActorHiddenInGame(true);
+        }
     }
 }
 
@@ -264,20 +329,26 @@ void AShooterPlayerController::OnHitReceived(int64 AttackerId, int64 TargetId, f
     if (TargetId == Net->GetMyPlayerId())
     {
         AShoorterCharater* MyChar = Cast<AShoorterCharater>(GetPawn());
-        if (!MyChar) return;
+        if (!MyChar || MyChar->IsDead()) return;
 
-        // TakeDamage로 기절/래그돌 등 부가 효과 처리
-        FDamageEvent DmgEvent;
-        MyChar->TakeDamage(Amount, DmgEvent, nullptr, nullptr);
+        if (RemainHp <= 0.f)
+        {
+            // 사망 → 관전 모드 (메시 숨김, 이동 유지)
+            MyChar->EnterSpectatorMode();
+        }
+        else
+        {
+            // 일반 데미지 처리 (기절/래그돌 효과 포함)
+            FDamageEvent DmgEvent;
+            MyChar->TakeDamage(Amount, DmgEvent, nullptr, nullptr);
 
-        // 서버 RemainHp(0~100)로 클라이언트 체력 강제 동기화
-        // MaxHealth가 Blueprint에서 어떤 값이든 서버 기준으로 맞춤
-        float Normalized = FMath::Clamp(RemainHp / 100.f, 0.f, 1.f);
-        MyChar->Health = Normalized * MyChar->MaxHealth;
+            // 서버 RemainHp 기준으로 체력 동기화
+            float Normalized = FMath::Clamp(RemainHp / 100.f, 0.f, 1.f);
+            MyChar->Health = Normalized * MyChar->GetMaxHealth();
 
-        // HUD도 서버 기준으로 업데이트
-        if (UHUDWidget* HUD = GetHUDWidget())
-            HUD->SetHpNormalized(Normalized);
+            if (UHUDWidget* HUDPtr = GetHUDWidget())
+                HUDPtr->SetHpNormalized(Normalized);
+        }
     }
 }
 
@@ -367,11 +438,10 @@ void AShooterPlayerController::OnEnterGameReceived(int64 MyPlayerId, int32 Other
     UE_LOG(LogTemp, Warning, TEXT("[OnEnterGame] PlayerId=%lld OtherCount=%d bIsOwner=%d WaitSlot=%d"),
         MyPlayerId, OtherCount, bIsOwner, MyWaitSlotIndex);
 
-    // 게임 종료 후 재입장: LoomList가 없으므로 직접 대기방으로 복귀
-    if (RoomList == nullptr && WaitingRoomWidget == nullptr)
-    {
-        OnEnterRoomSuccess();
-    }
+    // WaitingRoomWidget이 이미 생성됐으면 오너 상태만 반영
+    // OnEnterRoomSuccess는 LoomList 위젯이 직접 호출하므로 여기서 중복 호출 금지
+    if (WaitingRoomWidget)
+        WaitingRoomWidget->SetOwnerMode(bIsOwner);
 }
 
 void AShooterPlayerController::OnGameStartReceived(uint8 SpawnIndex, int32 ItemSeed)

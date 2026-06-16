@@ -21,6 +21,9 @@ struct FRoomInfo
     int32 PlayerCount = 0;
 
     UPROPERTY(BlueprintReadOnly)
+    bool bIsStarted = false;
+
+    UPROPERTY(BlueprintReadOnly)
     FString Name;
 };
 
