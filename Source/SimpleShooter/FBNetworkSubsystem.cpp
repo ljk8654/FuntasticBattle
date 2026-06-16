@@ -201,7 +201,7 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
     {
         const FB_SC_PLAYER_ENTER_PKT* Pkt = reinterpret_cast<const FB_SC_PLAYER_ENTER_PKT*>(Data);
         FVector Pos(Pkt->p.x, Pkt->p.y, Pkt->p.z);
-        OnRemotePlayerEnter.Broadcast(static_cast<int64>(Pkt->p.playerId), Pos, Pkt->p.yaw);
+        OnRemotePlayerEnter.Broadcast(static_cast<int64>(Pkt->p.playerId), Pos, Pkt->p.yaw, Pkt->p.colorIndex, Pkt->p.meshIndex);
         break;
     }
     case EFBPacketId::SC_PLAYER_LEAVE:
@@ -295,6 +295,12 @@ void UFBNetworkSubsystem::HandlePacket(const uint8* Data, int32 Size)
             Rooms.Add(Info);
         }
         OnRoomListUpdate.Broadcast(Rooms);
+        break;
+    }
+    case EFBPacketId::SC_CHAR_CUSTOMIZE:
+    {
+        const FB_SC_CHAR_CUSTOMIZE_PKT* Pkt = reinterpret_cast<const FB_SC_CHAR_CUSTOMIZE_PKT*>(Data);
+        OnCharCustomize.Broadcast(static_cast<int64>(Pkt->playerId), Pkt->colorIndex, Pkt->meshIndex);
         break;
     }
     default:
@@ -430,5 +436,15 @@ void UFBNetworkSubsystem::SendRequestRoomList()
     FB_CS_REQUEST_ROOM_LIST_PKT Pkt{};
     Pkt.h.size = sizeof(Pkt);
     Pkt.h.id   = static_cast<uint16>(EFBPacketId::CS_REQUEST_ROOM_LIST);
+    SendRaw(&Pkt, sizeof(Pkt));
+}
+
+void UFBNetworkSubsystem::SendCharCustomize(uint8 ColorIndex, uint8 MeshIndex)
+{
+    FB_CS_CHAR_CUSTOMIZE_PKT Pkt{};
+    Pkt.h.size    = sizeof(Pkt);
+    Pkt.h.id      = static_cast<uint16>(EFBPacketId::CS_CHAR_CUSTOMIZE);
+    Pkt.colorIndex = ColorIndex;
+    Pkt.meshIndex  = MeshIndex;
     SendRaw(&Pkt, sizeof(Pkt));
 }

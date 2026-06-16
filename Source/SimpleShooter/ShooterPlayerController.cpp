@@ -84,6 +84,7 @@ void AShooterPlayerController::BeginPlay()
         Net->OnRemoteItemPickup.AddDynamic(this, &AShooterPlayerController::OnRemoteItemPickupReceived);
         Net->OnEnterGame.AddDynamic(this, &AShooterPlayerController::OnEnterGameReceived);
         Net->OnGameStart.AddDynamic(this, &AShooterPlayerController::OnGameStartReceived);
+        Net->OnCharCustomize.AddDynamic(this, &AShooterPlayerController::OnCharCustomizeReceived);
     }
 }
 
@@ -157,7 +158,7 @@ void AShooterPlayerController::OnEnterRoomSuccess()
     }
 }
 
-void AShooterPlayerController::OnRemotePlayerEnter(int64 PlayerId, FVector InitPos, float InitYaw)
+void AShooterPlayerController::OnRemotePlayerEnter(int64 PlayerId, FVector InitPos, float InitYaw, uint8 ColorIndex, uint8 MeshIndex)
 {
     if (!RemotePlayerClass) return;
 
@@ -178,6 +179,7 @@ void AShooterPlayerController::OnRemotePlayerEnter(int64 PlayerId, FVector InitP
     {
         Remote->PlayerId = PlayerId;
         Remote->SetTargetTransform(InitPos, InitYaw);
+        Remote->ApplyCustomization(ColorIndex, MeshIndex);
         RemotePlayers.Add(PlayerId, Remote);
         UE_LOG(LogTemp, Log, TEXT("[Controller] 원격 플레이어 스폰 id=%lld"), PlayerId);
     }
@@ -287,6 +289,22 @@ void AShooterPlayerController::OnRemoteItemStateReceived(int64 PlayerId, uint8 I
     {
         if (*Found)
             (*Found)->SetItemState(ItemType);
+    }
+}
+
+void AShooterPlayerController::OnCharCustomizeReceived(int64 PlayerId, uint8 ColorIndex, uint8 MeshIndex)
+{
+    UE_LOG(LogTemp, Warning, TEXT("[커스터마이즈] playerId=%lld color=%d mesh=%d RemotePlayers 수=%d"),
+        PlayerId, ColorIndex, MeshIndex, RemotePlayers.Num());
+
+    if (ARemotePlayer** Found = RemotePlayers.Find(PlayerId))
+    {
+        if (*Found)
+            (*Found)->ApplyCustomization(ColorIndex, MeshIndex);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("[커스터마이즈] playerId=%lld 를 RemotePlayers에서 찾지 못함"), PlayerId);
     }
 }
 

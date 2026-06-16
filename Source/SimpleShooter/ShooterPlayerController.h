@@ -87,7 +87,7 @@ private:
 
     // 네트워크 이벤트 핸들러
     UFUNCTION()
-    void OnRemotePlayerEnter(int64 PlayerId, FVector InitPos, float InitYaw);
+    void OnRemotePlayerEnter(int64 PlayerId, FVector InitPos, float InitYaw, uint8 ColorIndex, uint8 MeshIndex);
 
     UFUNCTION()
     void OnRemotePlayerLeave(int64 PlayerId);
@@ -118,6 +118,9 @@ private:
 
     UFUNCTION()
     void OnRemoteItemPickupReceived(FVector Pos);
+
+    UFUNCTION()
+    void OnCharCustomizeReceived(int64 PlayerId, uint8 ColorIndex, uint8 MeshIndex);
 
     UFUNCTION()
     void OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount, bool bOwner);

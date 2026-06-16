@@ -66,6 +66,11 @@ void UWaitingRoomWidget::NativeConstruct()
     UpdateCharacterPreviewColor(SelectedColorIndex);
 
     SetUIMode();
+
+    // 입장 시 초기 커스터마이즈를 서버에 알려 스냅샷 동기화
+    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+        if (Net->IsConnected())
+            Net->SendCharCustomize(static_cast<uint8>(SelectedColorIndex), static_cast<uint8>(SelectedMeshIndex));
 }
 
 void UWaitingRoomWidget::SetOwnerMode(bool bOwner)
@@ -118,23 +123,35 @@ void UWaitingRoomWidget::OnButton4Clicked()
 
 void UWaitingRoomWidget::OnCharacterButton1Clicked()
 {
+    SelectedMeshIndex = 0;
     if (AShoorterCharater* PlayerCharacter =
         Cast<AShoorterCharater>(UGameplayStatics::GetPlayerPawn(this, 0)))
     {
         PlayerCharacter->SetCharacterMesh(0);
+        PlayerCharacter->SetOutfitMaterial(SelectedColorIndex);
     }
+    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+        if (Net->IsConnected())
+            Net->SendCharCustomize(static_cast<uint8>(SelectedColorIndex), static_cast<uint8>(SelectedMeshIndex));
 }
 
 void UWaitingRoomWidget::OnCharacterButton2Clicked()
 {
+    SelectedMeshIndex = 1;
     if (AShoorterCharater* PlayerCharacter =
         Cast<AShoorterCharater>(UGameplayStatics::GetPlayerPawn(this, 0)))
     {
         PlayerCharacter->SetCharacterMesh(1);
+        PlayerCharacter->SetOutfitMaterial(SelectedColorIndex);
     }
+    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+        if (Net->IsConnected())
+            Net->SendCharCustomize(static_cast<uint8>(SelectedColorIndex), static_cast<uint8>(SelectedMeshIndex));
 }
+
 void UWaitingRoomWidget::SelectColor(int32 MaterialIndex)
 {
+    SelectedColorIndex = MaterialIndex;
     APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(this, 0);
     AShoorterCharater* PlayerCharacter = Cast<AShoorterCharater>(PlayerPawn);
 
@@ -142,6 +159,9 @@ void UWaitingRoomWidget::SelectColor(int32 MaterialIndex)
     {
         PlayerCharacter->SetOutfitMaterial(MaterialIndex);
     }
+    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+        if (Net->IsConnected())
+            Net->SendCharCustomize(static_cast<uint8>(SelectedColorIndex), static_cast<uint8>(SelectedMeshIndex));
 }
 
 void UWaitingRoomWidget::SetUIMode()

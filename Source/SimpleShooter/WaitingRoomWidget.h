@@ -43,6 +43,9 @@ protected:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character")
     int32 SelectedColorIndex = 0;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character")
+    int32 SelectedMeshIndex = 0;
+
     UFUNCTION()
     void OnStartGameClicked();
 

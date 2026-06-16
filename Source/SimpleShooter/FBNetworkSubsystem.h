@@ -60,6 +60,7 @@ public:
     void SendStartGame();
     void SendCreateRoom(const FString& Name);
     void SendRequestRoomList();
+    void SendCharCustomize(uint8 ColorIndex, uint8 MeshIndex);
 
     // 게임 스레드 이벤트 델리게이트
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLoginResult, int64, PlayerId, bool, bSuccess);
@@ -70,7 +71,7 @@ public:
     UPROPERTY(BlueprintAssignable)
     FOnEnterGame OnEnterGame;
 
-    DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnRemotePlayerEnter, int64, PlayerId, FVector, InitPos, float, InitYaw);
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnRemotePlayerEnter, int64, PlayerId, FVector, InitPos, float, InitYaw, uint8, ColorIndex, uint8, MeshIndex);
     UPROPERTY(BlueprintAssignable)
     FOnRemotePlayerEnter OnRemotePlayerEnter;
 
@@ -125,6 +126,10 @@ public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRoomListUpdate, TArray<FRoomInfo>, Rooms);
     UPROPERTY(BlueprintAssignable)
     FOnRoomListUpdate OnRoomListUpdate;
+
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnCharCustomize, int64, PlayerId, uint8, ColorIndex, uint8, MeshIndex);
+    UPROPERTY(BlueprintAssignable)
+    FOnCharCustomize OnCharCustomize;
 
 private:
     FSocket*             Socket     = nullptr;

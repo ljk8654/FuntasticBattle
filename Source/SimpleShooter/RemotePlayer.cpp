@@ -153,6 +153,20 @@ void ARemotePlayer::SetItemState(uint8 ItemType)
     }
 }
 
+void ARemotePlayer::ApplyCustomization(uint8 ColorIndex, uint8 MeshIndex)
+{
+    UE_LOG(LogTemp, Warning, TEXT("[RemotePlayer] ApplyCustomization color=%d mesh=%d / MeshArr=%d MatArr=%d"),
+        ColorIndex, MeshIndex, CharacterMeshes.Num(), OutfitMaterials.Num());
+
+    if (!GetMesh()) return;
+
+    if (CharacterMeshes.IsValidIndex(MeshIndex) && CharacterMeshes[MeshIndex])
+        GetMesh()->SetSkeletalMesh(CharacterMeshes[MeshIndex]);
+
+    if (OutfitMaterials.IsValidIndex(ColorIndex) && OutfitMaterials[ColorIndex])
+        GetMesh()->SetMaterial(0, OutfitMaterials[ColorIndex]);
+}
+
 void ARemotePlayer::SpawnSyncBomb(FVector Pos, float Yaw, float Pitch)
 {
     // 손에 들고 있던 폭탄 분리 후 제거

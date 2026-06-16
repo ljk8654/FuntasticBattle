@@ -23,6 +23,7 @@ enum class EFBPacketId : uint16
     CS_START_GAME        = 23,
     CS_CREATE_ROOM       = 24,
     CS_REQUEST_ROOM_LIST = 25,
+    CS_CHAR_CUSTOMIZE    = 26,
 
     SC_LOGIN_RES        = 1001,
     SC_ENTER_GAME       = 1002,
@@ -39,6 +40,7 @@ enum class EFBPacketId : uint16
     SC_ITEM_PICKUP      = 1022,
     SC_GAME_START       = 1023,
     SC_ROOM_LIST        = 1024,
+    SC_CHAR_CUSTOMIZE   = 1025,
 };
 
 struct FB_PacketHeader
@@ -136,6 +138,21 @@ struct FB_CS_START_GAME_PKT
     FB_PacketHeader h;
 };
 
+struct FB_CS_CHAR_CUSTOMIZE_PKT
+{
+    FB_PacketHeader h;
+    uint8 colorIndex;
+    uint8 meshIndex;
+};
+
+struct FB_SC_CHAR_CUSTOMIZE_PKT
+{
+    FB_PacketHeader h;
+    uint64 playerId;
+    uint8  colorIndex;
+    uint8  meshIndex;
+};
+
 struct FB_CS_CREATE_ROOM_PKT
 {
     FB_PacketHeader h;
@@ -167,6 +184,8 @@ struct FB_PlayerSnapshot
     float   x, y, z;
     float   yaw;
     wchar_t name[16];
+    uint8   colorIndex;
+    uint8   meshIndex;
 };
 
 struct FB_SC_ENTER_GAME_PKT

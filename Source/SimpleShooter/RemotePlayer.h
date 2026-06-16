@@ -24,6 +24,13 @@ public:
     void ApplyAnimState(uint8 State);
     void SetItemState(uint8 ItemType);
     void SpawnSyncBomb(FVector Pos, float Yaw, float Pitch);
+    void ApplyCustomization(uint8 ColorIndex, uint8 MeshIndex);
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Character")
+    TArray<USkeletalMesh*> CharacterMeshes;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Outfit")
+    TArray<UMaterialInterface*> OutfitMaterials;
 
     int64 PlayerId = 0;
 
