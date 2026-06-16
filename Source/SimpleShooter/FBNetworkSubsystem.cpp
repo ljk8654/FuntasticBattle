@@ -329,10 +329,20 @@ void UFBNetworkSubsystem::SendLogin(const FString& PlayerName)
 
 void UFBNetworkSubsystem::SendEnterRoom(uint32 RoomId)
 {
+    CurrentRoomId = static_cast<int32>(RoomId);
     FB_CS_ENTER_ROOM_PKT Pkt{};
     Pkt.h.size  = sizeof(Pkt);
     Pkt.h.id    = static_cast<uint16>(EFBPacketId::CS_ENTER_ROOM);
     Pkt.roomId  = RoomId;
+    SendRaw(&Pkt, sizeof(Pkt));
+}
+
+void UFBNetworkSubsystem::SendLeaveRoom()
+{
+    CurrentRoomId = 0;
+    FB_CS_LEAVE_ROOM_PKT Pkt{};
+    Pkt.h.size = sizeof(Pkt);
+    Pkt.h.id   = static_cast<uint16>(EFBPacketId::CS_LEAVE_ROOM);
     SendRaw(&Pkt, sizeof(Pkt));
 }
 

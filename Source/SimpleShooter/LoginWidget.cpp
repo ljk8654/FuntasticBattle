@@ -26,11 +26,13 @@ void ULoginWidget::NativeConstruct()
 
     if (IDInput)
     {
+        IDInput->SetHintText(FText::FromString(TEXT("닉네임")));
         IDInput->OnTextChanged.AddDynamic(this, &ULoginWidget::OnTextChanged);
     }
 
     if (PasswordInput)
     {
+        PasswordInput->SetHintText(FText::FromString(TEXT("서버 IP (예: 192.168.0.1)")));
         PasswordInput->OnTextChanged.AddDynamic(this, &ULoginWidget::OnTextChanged);
     }
 
@@ -63,36 +65,28 @@ FReply ULoginWidget::NativeOnKeyDown(
 
 void ULoginWidget::OnLoginClicked()
 {
-    FString PlayerName = IDInput ? IDInput->GetText().ToString() : TEXT("Player");
+    FString PlayerName = IDInput ? IDInput->GetText().ToString().TrimStartAndEnd() : TEXT("Player");
+    FString ServerIP   = PasswordInput ? PasswordInput->GetText().ToString().TrimStartAndEnd() : TEXT("");
 
     if (PlayerName.IsEmpty())
-    {
         PlayerName = TEXT("Player");
-    }
+
+    if (ServerIP.IsEmpty())
+        ServerIP = TEXT("127.0.0.1");
 
     if (ClickSound)
-    {
         UGameplayStatics::PlaySound2D(this, ClickSound);
-    }
 
     UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>();
     if (!Net)
-    {
         return;
-    }
 
-    // 서버에 연결, 이미 연결돼 있으면 무시
     if (!Net->IsConnected())
     {
-        if (!Net->Connect(TEXT("127.0.0.1"), 7777))
+        if (!Net->Connect(ServerIP, 7777))
         {
             if (ErrorText)
-            {
-                ErrorText->SetText(
-                    FText::FromString(TEXT("서버 연결 실패. 서버가 실행 중인지 확인하세요."))
-                );
-            }
-
+                ErrorText->SetText(FText::FromString(TEXT("서버 연결 실패. IP를 확인하세요.")));
             return;
         }
     }

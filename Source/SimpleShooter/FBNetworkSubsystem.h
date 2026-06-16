@@ -57,10 +57,14 @@ public:
     void SendChat(const FString& Msg);
     void SendItemDrop(uint8 ItemType, const FVector& Pos);
     void SendItemPickup(const FVector& Pos);
+    void SendLeaveRoom();
     void SendStartGame();
     void SendCreateRoom(const FString& Name);
     void SendRequestRoomList();
     void SendCharCustomize(uint8 ColorIndex, uint8 MeshIndex);
+
+    int32 GetCurrentRoomId() const { return CurrentRoomId; }
+    int32 CurrentRoomId = 0;
 
     // 게임 스레드 이벤트 델리게이트
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLoginResult, int64, PlayerId, bool, bSuccess);

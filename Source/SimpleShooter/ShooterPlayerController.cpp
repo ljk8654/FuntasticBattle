@@ -1,6 +1,7 @@
 #include "ShooterPlayerController.h"
 #include "FBNetworkSubsystem.h"
 #include "RemotePlayer.h"
+#include "ShoorterCharater.h"
 #include "Heart.h"
 #include "Bomb.h"
 #include "TimerManager.h"
@@ -34,6 +35,15 @@ void AShooterPlayerController::GameHasEnded(class AActor* EndGameFocus, bool bIs
         UUserWidget* LoseScreen = CreateWidget(this, LoseScreenClass);
         if (LoseScreen) LoseScreen->AddToViewport();
     }
+
+    // 방 퇴장 후 레벨 재시작, CurrentRoomId는 재입장용으로 유지
+    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+    {
+        int32 SavedRoomId = Net->GetCurrentRoomId();
+        Net->SendLeaveRoom();           // CS_LEAVE_ROOM 전송 (CurrentRoomId = 0으로 초기화됨)
+        Net->CurrentRoomId = SavedRoomId; // 레벨 재시작 후 재입장에 쓸 방 ID 복원
+    }
+
     GetWorldTimerManager().SetTimer(RestartTimer, this, &APlayerController::RestartLevel, RestartDelay);
 }
 
@@ -57,6 +67,14 @@ void AShooterPlayerController::BeginPlay()
     SetInputMode(InputMode);
     UGameplayStatics::SetGamePaused(GetWorld(), true);
 
+    // 게임 종료 후 재입장: 로그인 없이 바로 방으로 복귀
+    UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>();
+    if (Net && Net->IsConnected() && Net->GetMyPlayerId() != 0 && Net->GetCurrentRoomId() != 0)
+    {
+        Net->SendEnterRoom(static_cast<uint32>(Net->GetCurrentRoomId()));
+        return;
+    }
+
     // 로그인 UI
     if (LoginWidgetClass)
     {
@@ -69,7 +87,7 @@ void AShooterPlayerController::BeginPlay()
     }
 
     // 네트워크 이벤트 바인딩
-    if (UFBNetworkSubsystem* Net = GetGameInstance()->GetSubsystem<UFBNetworkSubsystem>())
+    if (Net)
     {
         Net->OnRemotePlayerEnter.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerEnter);
         Net->OnRemotePlayerLeave.AddDynamic(this, &AShooterPlayerController::OnRemotePlayerLeave);
@@ -245,12 +263,21 @@ void AShooterPlayerController::OnHitReceived(int64 AttackerId, int64 TargetId, f
 
     if (TargetId == Net->GetMyPlayerId())
     {
-        // 내가 맞은 경우 → 로컬 캐릭터에 직접 데미지 적용
-        if (APawn* MyPawn = GetPawn())
-        {
-            FDamageEvent DmgEvent;
-            MyPawn->TakeDamage(Amount, DmgEvent, nullptr, nullptr);
-        }
+        AShoorterCharater* MyChar = Cast<AShoorterCharater>(GetPawn());
+        if (!MyChar) return;
+
+        // TakeDamage로 기절/래그돌 등 부가 효과 처리
+        FDamageEvent DmgEvent;
+        MyChar->TakeDamage(Amount, DmgEvent, nullptr, nullptr);
+
+        // 서버 RemainHp(0~100)로 클라이언트 체력 강제 동기화
+        // MaxHealth가 Blueprint에서 어떤 값이든 서버 기준으로 맞춤
+        float Normalized = FMath::Clamp(RemainHp / 100.f, 0.f, 1.f);
+        MyChar->Health = Normalized * MyChar->MaxHealth;
+
+        // HUD도 서버 기준으로 업데이트
+        if (UHUDWidget* HUD = GetHUDWidget())
+            HUD->SetHpNormalized(Normalized);
     }
 }
 
@@ -335,14 +362,24 @@ void AShooterPlayerController::OnCharCustomizeReceived(int64 PlayerId, uint8 Col
 void AShooterPlayerController::OnEnterGameReceived(int64 MyPlayerId, int32 OtherCount, bool bOwner)
 {
     bIsOwner = bOwner;
-    MyWaitSlotIndex = OtherCount;       // 입장 순서 = 이미 있는 인원 수 (0-based)
+    MyWaitSlotIndex = OtherCount;
     RemoteWaitSlotCounter = 0;
     UE_LOG(LogTemp, Warning, TEXT("[OnEnterGame] PlayerId=%lld OtherCount=%d bIsOwner=%d WaitSlot=%d"),
         MyPlayerId, OtherCount, bIsOwner, MyWaitSlotIndex);
+
+    // 게임 종료 후 재입장: LoomList가 없으므로 직접 대기방으로 복귀
+    if (RoomList == nullptr && WaitingRoomWidget == nullptr)
+    {
+        OnEnterRoomSuccess();
+    }
 }
 
 void AShooterPlayerController::OnGameStartReceived(uint8 SpawnIndex, int32 ItemSeed)
 {
+    // 대기방 카메라 복원 (방장은 OnStartGameClicked에서 이미 호출, 비방장은 여기서 호출)
+    if (AShoorterCharater* PlayerCharacter = Cast<AShoorterCharater>(GetPawn()))
+        PlayerCharacter->ExitWaitingRoomView();
+
     // 대기 UI 닫기
     if (WaitingRoomWidget)
     {
